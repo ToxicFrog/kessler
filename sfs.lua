@@ -23,14 +23,43 @@ local function hashCrew(crew)
     end))
 end
 
+local function hashOrbit(orbit)
+    local keep = {
+        SMA = true; -- semi-major axis
+        ECC = true; -- eccentricity
+        INC = true; -- inclination
+        LPE = true; -- longitude of periapsis
+        LAN = true; -- longitude of ascending node
+    }
+    return (orbit:gsub("\n%s+(%w+) = ([^\n]*)", function(key, value)
+        if keep[key] then
+            return nil
+        else
+            return ""
+        end
+    end))
+end
+
 -- come up with a comparable reduction of a VESSEL block. This is slightly trickier than CREW, since it works by
 -- extracting the ship's crew roster and hashing it.
+-- there are two special cases here: if the vessel has no crew (ie, is debris), or if the vessel has crewmembers
+-- (0,1,2), indicating that it was the first ship created (and thus has Bill, Jeb, and Bob as crew)
+-- in those cases, we instead generate a hash based on its time-invariant orbital characteristics
 local function hashVessel(vessel, sfs)
     local roster = {}
     vessel:gsub("crew = (%d+)", function(id)
         -- the SFS file uses 0-indexed crew arrays; we need to compensate for that
+        assert(sfs.crew[id:tonumber()+1], "crewmember "..id.." not found in "..tostring(sfs))
         table.insert(roster, hashCrew(sfs.crew[id:tonumber() +1]))
     end)
+    
+    -- no crew or Jeb on board- vessel is debris
+    local Jeb = [[name = Jebediah Kerman%s+brave = 0.5%s+dumb = 0.5%s+badS = True]]
+    
+    if #roster == 0 or roster[1]:match(Jeb) then
+        return hashOrbit(vessel:match("ORBIT %b{}"))
+    end
+    
     return table.concat(roster)
 end
 
