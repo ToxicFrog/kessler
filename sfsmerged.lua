@@ -25,24 +25,10 @@ log = function(...)
     log:close()
 end
 
-function main(...)
-    -- read SFS from user
-    local time = os.time()
-    local name = io.read("*l"):gsub("[^%w%s_]", "_")
-    local buffer = {}
-    
-    for line in io.lines() do
-        if line == "END" then
-            break
-        end
-        table.insert(buffer, line)
-    end
-    
-    buffer = table.concat(buffer, "\n"):trim().."\n"
-    
+function doMerge(buffer, name)
     -- merge in other SFSs
+    log("Merging SFS")
     local merged = sfs.parse(buffer)
-    log("Received save file from "..name)
         
     log("Scanning save directory...")
     local saves = {}
@@ -61,13 +47,47 @@ function main(...)
             log("Merging:", file, sfs.load(SAVEDIR.."/"..file))
             merged:merge(sfs.load(SAVEDIR.."/"..file), mergename)
         end
-    end 
-    
-    -- save SFS
-    assert(io.writefile(SAVEDIR.."/"..time.." "..name, buffer))
-    
+    end
+
     -- send to user
     io.write(merged:write())
+end
+
+function doSave(buffer, name, time)
+    log("Saving SFS:", SAVEDIR.."/"..time.." "..name)
+    assert(io.writefile(SAVEDIR.."/"..time.." "..name, buffer))
+end
+
+function main(...)
+    -- read SFS from user
+    local time = os.time()
+    local name = io.read("*l")
+    local buffer = {}
+    
+    local flags = {}
+    name = name:gsub("%-%-(%w+)", function(flag) flags[flag] = true; return "" end)
+    name = name:gsub("[^%w%s_]", "_")
+    
+    for line in io.lines() do
+        if line == "END" then
+            break
+        end
+        table.insert(buffer, line)
+    end
+    
+    buffer = table.concat(buffer, "\n"):trim().."\n"
+    log("Received save file from "..name)
+    
+    if not flags.nomerge then
+        doMerge(buffer, name)
+    else
+        print("//")
+    end
+    
+    -- save SFS
+    if not flags.nosave then
+        doSave(buffer, name, time)
+    end
 end
 
 (function(success, message)
