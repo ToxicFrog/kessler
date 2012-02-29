@@ -121,7 +121,7 @@ end
 -- To check if a given ship exists in both, we see if there's a ship with the
 -- same crewmember stats - since the odds of two different ships having three
 -- crewmembers with the same stats and names are infinitesmal.
-function sfs:merge(src)
+function sfs:merge(src, name)
     local last_crew = #self.crew
     
     local function mergeCrew(crew)
@@ -135,6 +135,11 @@ function sfs:merge(src)
     
     local function mergeVessel(vessel)
         vessel = vessel:gsub("crew = (%d+)", remapCrew)
+        
+        if name then
+            vessel = vessel:gsub("name = ([^\n]+)", "name = %1 ("..name..")", 1)
+        end
+        
         return self:addVessel(vessel)
     end
 
