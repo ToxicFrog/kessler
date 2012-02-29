@@ -22,19 +22,26 @@ end
 function main(...)
     local argv = { ... }
     
---    backup(argv[1])
+    assert(#argv >= 2, "Usage: sfsmerge <target file> <merge file 1> [merge file 2] ...")
     
+    backup(argv[1])
+    
+    log("Loading "..argv[1])
     local original = sfs.load(argv[1])
     
     for i=2,#argv do
+        log("Merging in "..argv[i])
         original:merge(sfs.load(argv[i]))
     end
     
-    print(original:write())
+    log("Writing merged save file...")
+    original:save(argv[1])
 end
 
 function backup(file)
-    io.writefile(file.."."..os.date("%F %H:%M:%S")..".bak", io.readfile(file))
+    local name = file.."."..os.date("%F@%H.%M.%S")..".bak"
+    log("Backing up "..file.." to "..name)
+    io.writefile(name, io.readfile(file))
 end
 
 return main(...)
