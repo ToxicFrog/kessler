@@ -60,7 +60,7 @@ function sfs.parse(buf)
 end
 
 function sfs:save(name)
-    return io.writefile(name, sfs:write())
+    return io.writefile(name, self:write())
 end
 
 function sfs:write()
@@ -93,13 +93,15 @@ end
 -- same crewmember stats - since the odds of two different ships having three
 -- crewmembers with the same stats and names are infinitesmal.
 function sfs:merge(src)
+    local last_crew = #self.crew
+    
     local function mergeCrew(crew)
         return self:addCrew(crew)
     end
     
     local function remapCrew(id)
-        local crew = src.crew[id:tonumber() +1]
-        return "crew = "..mergeCrew(crew)
+        local crew = assert(src.crew[id:tonumber() +1], "No crewmember with id "..id.." in source SFS")
+        return "crew = "..(mergeCrew(crew) - 1)
     end
     
     local function mergeVessel(vessel)
@@ -110,31 +112,21 @@ function sfs:merge(src)
     for _,vessel in ipairs(src.vessels) do
         local name = vessel:match("name = ([^\n]+)")
         if not self:containsVessel(vessel, src) then
-            log("Merging vessel '"..name.."'")
+            log("  Merging vessel '"..name.."'")
             -- mergeVessel will automatically merge in the crew records if needed
             mergeVessel(vessel)
         else
-            log("Skipping duplicate vessel '"..name.."'")
-        end
-    end
-
-    for _,crew in ipairs(src.crew) do
-        local name = crew:match("name = ([^\n]+)")
-        if not self:containsCrew(crew) then
-            log("Merging crewmember '"..name.."'")
-            mergeCrew(crew)
-        else
-            log("Skipping duplicate crewmember '"..name.."'")
+            log("  Skipping duplicate vessel '"..name.."'")
         end
     end
 end
 
-function sfs:containsVessel(vessel)
-    return self.vessels[hashVessel(vessel, self)] ~= nil
+function sfs:containsVessel(vessel, src)
+    return self.vessels[hashVessel(vessel, src or self)]
 end
 
 function sfs:containsCrew(crew)
-    return self.crew[hashCrew(crew)] ~= nil
+    return self.crew[hashCrew(crew)]
 end
 
 return sfs
