@@ -4,7 +4,7 @@ function main(...)
     require "socket"
     require "util.init"
     
-    local host,port,name,file = ...
+    local host,port,name,file,output = ...
     
     local sock = assert(socket.connect(host, port:tonumber()))
     assert(sock:send(name.."\n"))
@@ -12,7 +12,10 @@ function main(...)
     assert(sock:send("\nEND\n"))
     
     local buf = assert(sock:receive("*a"))
-    print(buf)
+    if output then
+        io.output(io.open(output, "wb"))
+    end
+    io.write(buf)
 end
 
 return main(...)

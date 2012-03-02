@@ -26,6 +26,8 @@ log = function(...)
 end
 
 function doMerge(buffer, name)
+    local done = { [name] = true }
+    
     -- merge in other SFSs
     log("Merging SFS")
     local merged = sfs.parse(buffer)
@@ -43,9 +45,10 @@ function doMerge(buffer, name)
     for i=#saves,1,-1 do
         local file = saves[i]
         local mergename = file:match("%d+ (.*)")
-        if mergename ~= name then
+        if not done[mergename] then
             log("Merging:", file, sfs.load(SAVEDIR.."/"..file))
             merged:merge(sfs.load(SAVEDIR.."/"..file), mergename)
+            done[mergename] = true
         end
     end
 

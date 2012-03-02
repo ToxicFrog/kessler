@@ -15,7 +15,7 @@ xcopy /E /I "saves\default" "saves\backup\%TIMESTAMP%"
 @ECHO Getting merged save from server...
 
 pushd kessler
-sfsupload.exe %SERVER% %PORT% %NAME%--nosave ..\saves\default\persistent.sfs > tmp.sfs
+sfsupload.exe %SERVER% %PORT% %NAME%--nosave ..\saves\default\persistent.sfs tmp.sfs
 move tmp.sfs ..\saves\default\persistent.sfs
 popd
 
