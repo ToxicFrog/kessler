@@ -1,6 +1,4 @@
-package ksp.sfs
-
-import collection.mutable.LinkedHashMap
+package ksp
 
 /*
  * Parser for KSP savegames (.sfs files).
@@ -15,14 +13,14 @@ import collection.mutable.LinkedHashMap
  * A VESSEL block, in turn, contains an ORBIT block holding orbital characteristics, and one or more PART
  * blocks containing information about the vessel's structure.
  */
-object Parser extends scala.util.parsing.combinator.RegexParsers {
+object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def key       = """[^\s]+""".r
   private def value     = """= [^\n]*""".r
   private def blockname = """\p{Upper}+""".r
 
-  private def S: Parser[ksp.Game] = phrase(sfs(new ksp.Game()))
+  private def S = phrase(sfs(new ksp.Object()))
 
-  private def sfs[T <: ksp.Object](o: T): Parser[T] = (entry(o) *) ~> success(o)
+  private def sfs(o: ksp.Object): Parser[ksp.Object] = (entry(o) *) ~> success(o)
 
   private def entry(o: ksp.Object) = comment(o) | keyvalue(o) | block(o)
 
@@ -37,7 +35,7 @@ object Parser extends scala.util.parsing.combinator.RegexParsers {
   }
 
   def parseString(reader: String) = parse(S, reader) match {
-    case Success(content, _) => content
+    case Success(content, _) => new ksp.Game(content)
     case fail: NoSuccess => throw new RuntimeException(fail.toString())
   }
 }

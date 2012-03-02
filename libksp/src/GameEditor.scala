@@ -1,44 +1,58 @@
 package ksp
 
+import java.io.File
+
 object GameEditor {
-  def main(args: Array[String]) {
-    val game = Game.fromFile(args(0))
-
-    cleanAuto(game)
-    println(game.mkString)
-  }
-
-  def clean(game: Game, name: String, key: String, value: Regex) {
-    game.getChildren(name) filterNot {
-      v => value.findFirstMatchIn(v.getProperty(key)).isEmpty
-    } foreach {
-      game.deleteChild(name, _)
-    }
-  }
-
-  def cleanAuto(game: Game) {
-    cleanDebris(game)
-    cleanImportedFlights(game)
-    cleanDeadCrew(game)
-  }
-
-  def cleanDebris(game: Game, only_imported: Boolean) {
-    if (only_imported) {
-      clean(game, "VESSEL", "name", """\([^)]+\) Debris$""".r)
+  def main(args:Array[String]) {
+    val filename = if(args.length > 0) {
+      args(0)
     } else {
-      clean(game, "VESSEL", "name", """Debris$""".r)
+      ask("Enter location of save file:")
     }
+    val game = Game.fromFile(filename)
+
+    askAndThen("Clean imported debris?") {
+      () => game.clean(v => v.isDebris && v.isImport)
+    }
+    askAndThen("Clean landed/splashed debris?") {
+      () => game.clean(v => v.isDebris && v.isLanded)
+    }
+    askAndThen("Clean all other debris?") {
+      () => game.clean(v => v.isDebris)
+    }
+    askAndThen("Clean all imported ships?") {
+      () => game.clean(v => !(v.isDebris) && v.isImport)
+    }
+    askAndThen("Clean landed/splashed ships?") {
+      () => game.clean(v => !(v.isDebris) && v.isLanded)
+    }
+    askAndThen("Clean all other ships?") {
+      () => game.clean(v => v.isDebris)
+    }
+
+    println("Backing up original savegames...")
+    new File(filename).renameTo(new File(filename + "." + timestamp))
+
+    println("Writing new savegame...")
+    game.save(filename)
   }
 
-  def cleanFlights(game: Game, only_imported: Boolean) {
-    if (only_imported) {
-      clean(game, "VESSEL", "name", """\([^)]+\)$""".r)
-    } else {
-      clean(game, "VESSEL", "name", """.""".r)
-    }
+  def timestamp:String = new java.text.SimpleDateFormat("yyyy-MM-dd@hh-mm-ss").format(new java.util.Date())
+
+  def ask(question:String):String = {
+    print(question + " ")
+    readLine()
   }
 
-  def cleanDeadCrew(game: Game) {
+  def askYN(question:String):Boolean = {
+    val answer = ask(question + " [y/N]:")
+    answer.startsWith("y") || answer.startsWith("Y")
+  }
 
+  def askAndThen(question:String) = {
+    (p: () => Unit) => {
+      if(askYN(question)) p()
+    }
   }
 }
+

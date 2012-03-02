@@ -1,64 +1,10 @@
 package ksp
 
-import collection.mutable.{LinkedHashMap,Buffer}
+import java.io.FileWriter
 
-class Object {
-  val properties = new LinkedHashMap[String, Buffer[String]]()
-  val children = new LinkedHashMap[String, Buffer[Object]]()
-
-  /*
-   * get(key) => first value for that key
-   * getAll(key) => list of values for that key
-   * set(key, value) => sets first value for that key
-   * set(key, oldval, newval) => sets first matching value
-   * set(key, index, newval) => sets nth value
-   * delete(key, val)
-   * delete(key, index)
-   * delete(key)
-   * addProperty(key, val)
-   * addChild(key, val)
-   */
-  def getProperty(key: String) = getProperties(key).head
-  def getProperties(key: String) = properties(key)
-  
-  
-  def addProperty(key: String,  value: String) {
-    if (properties contains key) {
-      properties(key) += value
-    } else {
-      properties += ((key, Buffer(value)))
-    }
-  }
-
-  def getChild(key: String): Object = getChildren(key).head
-  def getChildren(key: String): Seq[Object] = children(key)
-
-  def addChild(key: String, child: Object) {
-    if (children contains key) {
-      children(key) += child
-    } else {
-      children += ((key, Buffer(child)))
-    }
-  }
-  
-  def deleteChild(key: String, child: Object) {
-    val cs = children(key)
-    cs.remove(cs.indexOf(child))
-  }
-
-  def mkString: String = mkString("")
-  def mkString(indent: String): String = {
-    val sb = new StringBuilder()
-    properties foreach {
-      case (k, vs) => vs.addString(sb, indent + k + " = ", "\n" + indent + k + " = ", "\n")
-    }
-    children foreach {
-      case (k, vs) => vs foreach {
-        sb ++= indent ++= k ++= " {\n" ++= _.mkString(indent + "\t") ++= indent ++= "}\n"
-      }
-    }
-    sb.toString()
-  }
+/* Superclass for types that wrap an in-game SFS object */
+abstract class WrappedObject(self: Object) {
+  def asObject = self
 }
 
 /*
@@ -75,9 +21,30 @@ class Object {
  * For writing out the save, we dump properties, then crew, then vessels, then unknown blocks.
  */
 object Game {
-  def fromFile(file: String) = sfs.Parser.parseString(io.Source.fromFile(file).mkString)
-  def fromString(string: String) = sfs.Parser.parseString(string)
+  def fromFile(file: String) = SFSParser.parseString(io.Source.fromFile(file).mkString)
+  def fromString(string: String) = SFSParser.parseString(string)
 }
 
-class Game extends Object {
+class Game(self: Object) extends WrappedObject(self) {
+  def mkString = "// KSP Flight State\n// Edited by libKSP\n\n" + self.mkString
+
+  def save(filename: String) {
+    val fout = new FileWriter(filename)
+    fout.write(mkString)
+    fout.close()
+  }
+
+  def vessels = self.getChildren("VESSEL") map { new Vessel(_) }
+
+  def clean(p: (Vessel => Boolean)) {
+    vessels.filter(p).foreach {
+      v => println("\tD " + v.asObject.getProperty("name")); self.deleteChild("VESSEL", v.asObject)
+    }
+  }
+}
+
+class Vessel(self: ksp.Object) extends WrappedObject(self) {
+  def isDebris = !(self.getChild("PART", self.getProperty("root").toInt) hasProperty "crew")
+  def isImport = self.testProperty("name", """\([^)]+\)( Debris)?$""")
+  def isLanded = self.testProperty("sit", """(SPLASHED|LANDED)""")
 }
