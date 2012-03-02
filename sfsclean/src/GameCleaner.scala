@@ -1,8 +1,7 @@
-package ksp
-
 import java.io.File
+import ksp.Game
 
-object GameEditor {
+object GameCleaner {
   def main(args:Array[String]) {
     val filename = if(args.length > 0) {
       args(0)
@@ -29,6 +28,7 @@ object GameEditor {
     askAndThen("Clean all other ships?") {
       () => game.clean(v => v.isDebris)
     }
+    /* Not implemented yet: clean ships inside planets - needs more research */
 
     println("Backing up original savegames...")
     new File(filename).renameTo(new File(filename + "." + timestamp))
@@ -50,9 +50,8 @@ object GameEditor {
   }
 
   def askAndThen(question:String) = {
-    (p: () => Unit) => {
+    (p:() => Unit) => {
       if(askYN(question)) p()
     }
   }
 }
-

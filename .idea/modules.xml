@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/libksp/libksp.iml" filepath="$PROJECT_DIR$/libksp/libksp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sfsclean/sfsclean.iml" filepath="$PROJECT_DIR$/sfsclean/sfsclean.iml" />
     </modules>
   </component>
 </project>
