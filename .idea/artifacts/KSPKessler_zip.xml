@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="KSPKessler.zip">
+    <output-path>$PROJECT_DIR$/</output-path>
+    <root id="root">
+      <element id="archive" name="KSPKessler.zip">
+        <element id="directory" name="kessler">
+          <element id="artifact" artifact-name="sfsclean:jar" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/sfsclean/sfsclean.bat" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -3,13 +3,27 @@ import ksp.Game
 
 object GameCleaner {
   def main(args:Array[String]) {
-    val filename = if(args.length > 0) {
-      args(0)
-    } else {
-      ask("Enter location of save file:")
-    }
-    val game = Game.fromFile(filename)
+    try {
+      val filename = if(args.length > 0) {
+        args(0)
+      } else {
+        ask("Enter location of save file:")
+      }
+      val game = Game.fromFile(filename)
 
+      autoclean(game)
+
+      println("Backing up original savegames...")
+      new File(filename).renameTo(new File(filename + "." + timestamp))
+
+      println("Writing new savegame...")
+      game.save(filename)
+    } catch {
+      case e: Exception => e.printStackTrace(); print("Press enter to quit..."); readLine()
+    }
+  }
+
+  def autoclean(game: Game) {
     askAndThen("Clean imported debris?") {
       () => game.clean(v => v.isDebris && v.isImport)
     }
@@ -29,12 +43,6 @@ object GameCleaner {
       () => game.clean(v => v.isDebris)
     }
     /* Not implemented yet: clean ships inside planets - needs more research */
-
-    println("Backing up original savegames...")
-    new File(filename).renameTo(new File(filename + "." + timestamp))
-
-    println("Writing new savegame...")
-    game.save(filename)
   }
 
   def timestamp:String = new java.text.SimpleDateFormat("yyyy-MM-dd@hh-mm-ss").format(new java.util.Date())
