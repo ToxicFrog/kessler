@@ -5,13 +5,12 @@ class WrappedObject(self: Object) {
 
   override def hashCode = self.hashCode
 
-  override def equals(x: Any) = x match {
-    case x: WrappedObject => this.equals(x)
-    case x => super.equals(x)
-  }
-
-  def equals(x: WrappedObject) = {
-    x.asObject == self
+  // subclass T should override equals(Any) and define it on (other: T) if it wants custom
+  // equality
+  override def equals(other: Any): Boolean = other match {
+    case other: Object => this == WrappedObject(other)
+    case other: WrappedObject => self == other.asObject
+    case _ => super.equals(other)
   }
 
   def parseProperty(prop: String): (Seq[WrappedObject], String, Int) = {
@@ -25,9 +24,9 @@ class WrappedObject(self: Object) {
       val (kind, index, tail): (String, String, String) = splitPrefix(key)
 
       (index match {
-        case "*" => objs.flatMap(_.asObject.getChildren(kind)).map(new WrappedObject(_))
-        case null => objs.map(_.asObject.getChild(kind)).map(new WrappedObject(_))
-        case n: String => objs.map(_.asObject.getChild(kind, n.toInt)).map(new WrappedObject(_))
+        case "*" => objs.flatMap(_.asObject.getChildren(kind)).map(x => WrappedObject(x))
+        case null => objs.map(_.asObject.getChild(kind)).map(WrappedObject(_))
+        case n: String => objs.map(_.asObject.getChild(kind, n.toInt)).map(WrappedObject(_))
       }, tail)
     }
     def hasSuffix(key: String) = """.+,\d+$""".r.findFirstMatchIn(key).isDefined
@@ -65,5 +64,14 @@ class WrappedObject(self: Object) {
     val (objs, key, index) = parseProperty(prop)
 
     objs filter (_.asObject.hasProperty(key)) map (_.asObject.getProperty(key, index))
+  }
+}
+
+object WrappedObject {
+  def apply(self: Object): WrappedObject = self.kind match {
+    case "VESSEL" => new Vessel(self)
+    case "PART"   => new Part(self)
+    case "GAME"   => new Game(self)
+    case _        => new WrappedObject(self)
   }
 }

@@ -20,7 +20,6 @@ import java.io.FileWriter
  */
 object Game {
   def fromFile(file: String) = SFSParser.parseString(io.Source.fromFile(file).mkString)
-
   def fromString(string: String) = SFSParser.parseString(string)
 }
 
@@ -40,6 +39,47 @@ class Game(self: Object) extends WrappedObject(self) {
   def clean(p: (Vessel => Boolean)) {
     vessels.filter(p).foreach {
       v => println("\tD " + v.asObject.getProperty("name")); self.deleteChild("VESSEL", v.asObject)
+    }
+  }
+
+  def merge(other: Object) {
+    self.addChild(other.kind, other.copy)
+    self.children(other.kind).length - 1
+  }
+
+  def merge(other: WrappedObject) {
+    merge(other.asObject)
+  }
+
+  // merge all of other's ships into us, skipping any that we already have
+  def merge(other: Game) {
+    /*
+    * Merging in a vessel is slightly more involved than just copying the underlying object
+    * into our set of child objects - we also need to bring the crew over, if any, and remap
+    * the crew indexes in this vessel.
+    * Note that this is a destructive operation, so it creates a copy first.
+    */
+    def mergeVessel(v: Object) {
+      v.getChildren("PART").filter(_.hasProperty("crew")).foreach { part =>
+        part.getProperties("crew").zipWithIndex.foreach {
+          case (crew, i) => part.setProperty("crew", i, merge(other.asObject.getChild("CREW", crew.toInt)).toString)
+        }
+      }
+
+      self.addChild("VESSEL", v)
+    }
+
+    other.asObject.getChildren("VESSEL") filterNot {
+      /* The comparison here needs to be slightly more involved than "do we already contain
+       * this vessel", since it might have fragmented in one save file, in which case we need
+       * to mark not just the original but also all debris as duplicates.
+       * More problematically, if the root part is gone but there is still some debris left
+       * over from it, we need to mark this vessel as a duplicate - basically, a vessel is
+       * a duplicate if ANY of its parts exist in the current game.
+       */
+      _.getChildren("PART").exists(self contains WrappedObject(_))
+    } foreach {
+      v => println("merging vessel " + v); mergeVessel(v.copy)
     }
   }
 }

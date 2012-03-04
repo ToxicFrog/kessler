@@ -3,24 +3,34 @@ package ksp
 import collection.mutable.{LinkedHashMap, Buffer}
 import util.matching.Regex
 
-class Object {
+class Object(val kind: String) {
   val properties = new LinkedHashMap[String, Buffer[String]]()
   val children = new LinkedHashMap[String, Buffer[Object]]()
 
   def asObject = this
 
-  /*
-  * get(key) => first value for that key
-  * getAll(key) => list of values for that key
-  * set(key, value) => sets first value for that key
-  * set(key, oldval, newval) => sets first matching value
-  * set(key, index, newval) => sets nth value
-  * delete(key, val)
-  * delete(key, index)
-  * delete(key)
-  * addProperty(key, val)
-  * addChild(key, val)
-  */
+  def copy: Object = new Object(kind).copyFrom(this)
+  
+  def copyFrom(other: Object) = {
+    other.properties.foreach {
+      case (key, values) => values foreach (v => addProperty(key, v))
+    }
+    other.children.foreach {
+      case (key, values) => values foreach (v => addChild(key, v.copy))
+    }
+    this
+  }
+
+  // contains is transitive; we contain this object if we or any of our subobjects
+  // contain it.
+  def contains(child: Object): Boolean = children exists {
+    case (key, objs) => objs.contains(child) || objs.exists(_ contains child)
+  }
+  
+  def contains(child: WrappedObject): Boolean = children exists {
+    case (key, objs) => objs.exists(child == _) || objs.exists(_ contains child)
+  }
+
   def hasProperty(key: String) = properties contains key
 
   def getProperty(key: String, n: Int = 0) = getProperties(key)(n)

@@ -18,7 +18,7 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def value     = """= [^\n]*""".r
   private def blockname = """\p{Upper}+""".r
 
-  private def S = phrase(sfs(new ksp.Object()))
+  private def S = phrase(sfs(new ksp.Object("GAME")))
 
   private def sfs(o: ksp.Object): Parser[ksp.Object] = (entry(o) *) ~> success(o)
 
@@ -31,7 +31,7 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   }
 
   private def block(o: ksp.Object) = (blockname <~ "{") >> {
-    name => sfs(new ksp.Object()) <~ "}" ^^ {
+    name => sfs(new ksp.Object(name)) <~ "}" ^^ {
       obj => o.addChild(name, obj)
     }
   }

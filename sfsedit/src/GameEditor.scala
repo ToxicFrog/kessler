@@ -31,6 +31,7 @@ object GameEditor extends DefaultTextUI {
   register(SetCommand)      // set an object or subobject property
   register(GetCommand)      // display an object or subobject property
   register(OrbitCommand)    // move an object to another orbit
+  register(MergeCommand)    // merge in vessels from another save file
 
   register(CheckedExitCommand)     // quit the editor
   /*
@@ -514,8 +515,26 @@ object GameEditor extends DefaultTextUI {
           
           applyOrbit(body, SMA, INC)
       }
+    }
+  }
+  
+  protected object MergeCommand extends Command("merge") {
+    override def describe = "merge all vessels in another save file into this one"
+    override def help = """
+      Usage: merge <filename>
 
-
+      Attempts to merge the contents of another save file into this one. Duplicate
+      vessels will not be merged (duplicates include debris originally part of
+      duplicate vessels). Any crewed vessels merged in will have their crew merged
+      in as well, but other (read: dead) crewmembers will not be merged.
+      
+      The save file merged into this one is not modified by this process.
+    """
+    
+    override def run(in: Scanner) {
+      game.merge(Game.fromFile(in.next))
+      dirty = true
+      SelectCommand.run("all")
     }
   }
   
