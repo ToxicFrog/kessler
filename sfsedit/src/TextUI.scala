@@ -87,11 +87,12 @@ class DefaultTextUI extends TextUI {
 
     override def run(in: Scanner) {
       /* No args? List commands. */
+      val maxCommandWidth = commands.foldLeft(0)((len, kv) => len.max(kv._1.length)) + 2
       if (!in.hasNext) {
         commands.values.toSeq.sortWith {
           (lhs, rhs) => lhs.name.compare(rhs.name) < 0
         } foreach {
-          command => println("%-20s %59s".format(command.name, command.describe))
+          command => println(("%" + maxCommandWidth + "s  %s").format(command.name, command.describe))
         }
       } else {
         val name = in.next()
