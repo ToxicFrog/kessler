@@ -50,7 +50,7 @@ class WrappedObject(self: Object) {
     (objs, key, index)
   }
   
-  def setParsedProperties(prop: String, value: String) {
+  def setParsedProperty(prop: String, value: String) {
     val (objs, key, index) = parseProperty(prop)
     
     objs foreach {
@@ -58,7 +58,7 @@ class WrappedObject(self: Object) {
     }
   }
   
-  def getParsedProperties(prop: String): Seq[String] = {
+  def getParsedProperty(prop: String): Seq[String] = {
     val (objs, key, index) = parseProperty(prop)
     
     objs map (_.asObject.getProperty(key, index))

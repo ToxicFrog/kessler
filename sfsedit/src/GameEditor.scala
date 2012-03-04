@@ -413,28 +413,30 @@ object GameEditor extends DefaultTextUI {
       val (key,value) = (in.next, if (in.hasNextLine) in.nextLine.trim else "")
 
       dirty = true
-      selected foreach (_.setParsedProperties(key, value))
+      selected foreach (_.setParsedProperty(key, value))
     }
   }
   
   protected object GetCommand extends Command("get") {
     override def describe = "display object or subobject properties"
     override def help = """
-      Usage: get <property>
+      Usage: get <property> [<property...]
       
-      Display an object property. If more than one object is selected, displays the property
-      for each object, prefixed with the object name.
+      Displays one or more object properties for each selected object.
       
       Property naming rules are the same as for set (see 'help set').
     """
     
     override def run(in: Scanner) {
-      val key = in.next
-      
+      import collection.JavaConversions._
+      val keys = in.toSeq
+
       selected foreach { obj =>
         println(obj.asObject.getProperty("name"))
-        obj.getParsedProperties(key) foreach {
-          value => println("\t" + value)
+        keys foreach { key =>
+          obj.getParsedProperty(key) foreach {
+            value => printf("%20s  %s\n", key, value)
+          }
         }
       }
     }
