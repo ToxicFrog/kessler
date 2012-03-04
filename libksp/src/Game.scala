@@ -61,7 +61,8 @@ class WrappedObject(self: Object) {
   def getParsedProperty(prop: String): Seq[String] = {
     val (objs, key, index) = parseProperty(prop)
     
-    objs map (_.asObject.getProperty(key, index))
+    objs filter (_.asObject.hasProperty(key)) map (_.asObject.getProperty(key, index))
+//    objs map (_.asObject.getProperty(key, index))
   }
 }
 

@@ -58,9 +58,9 @@ object GameEditor extends DefaultTextUI {
     def not(first: Filter): Filter = (obj => !first(obj))
     def hasprop(key: String): Filter = (obj => obj.asObject.hasProperty(key))
     def comparer(key: String, op: Op, value: String): Filter = (
-      obj => op(obj.asObject.getProperty(key), value)
+      _.getParsedProperty(key) exists (op(_, value))
     )
-    
+
     while (in.hasNext) {
       val (key,invert) = in.next match {
         case k if k startsWith "!" => (k.slice(1, k.length), true)
@@ -86,9 +86,10 @@ object GameEditor extends DefaultTextUI {
         if (in.hasNext) in.next
 
         if (invert)
-          p = concat(concat(p, hasprop(key)), not(comparer(key, compares(op), value)))
+          //p = concat(concat(p, hasprop(key)), not(comparer(key, compares(op), value)))
+          p = concat(p, not(comparer(key, compares(op), value)))
         else
-          p = concat(concat(p, hasprop(key)), comparer(key, compares(op), value))
+          p = concat(p, comparer(key, compares(op), value))
       }
     }
     p
