@@ -116,28 +116,20 @@ class Vessel(self: ksp.Object) extends WrappedObject(self) {
   }
 }
 
+class Orbit(self: ksp.Object) extends WrappedObject(self) {}
+
 object Orbit {
   case class Body(id: Int, name: String, radius: Double) {}
 
-  val bodies = Seq(
-    Body(0, "Kerbol", 1.0),
-    Body(1, "Kerbin", 600.0),
-    Body(2, "Muna",   200.0)
+  val bodies = Seq( // radius is in game units (meters), not km
+    Body(0, "Kerbol",   1000.0), // Kerbol is actually an infinitely small point
+    Body(1, "Kerbin", 600000.0),
+    Body(2, "Muna",   200000.0)
   )
 
   def getBody(id: Int) = bodies(id)
   def getBody(name: String) = bodies find (b => b.name equals name) match {
     case Some(b) => b
     case _ => throw new NoSuchElementException(name)
-  }
-}
-
-class Orbit(self: ksp.Object) extends WrappedObject(self) {
-  def orbit(body: Orbit.Body, alt: Double = 100.0, inc: Double = 0.0, ecc: Double = 0.0) {
-    /*
-    self.setProperty("SMA", (alt + body.radius).toString)
-    self.setProperty("ECC", ecc.toString)
-    self.setProperty("INC", inc.toString)
-    */
   }
 }
