@@ -376,7 +376,8 @@ object GameEditor extends DefaultTextUI {
     
     override def run(in: Scanner) {
       val (key,value) = (in.next, in.nextLine.trim)
-      
+
+      dirty = true
       selected foreach (_.setParsedProperties(key, value))
     }
   }
@@ -440,14 +441,21 @@ object GameEditor extends DefaultTextUI {
       } catch {
         case _ => ksp.Orbit.getBody(bodyname)
       }
+      
+      val SMA = if (in.hasNext)
+        in.next.toDouble * 1000.0 + body.radius
+      else
+        100000.0 + body.radius
+      
+      val INC = if (in.hasNext)
+        in.next.toDouble
+      else
+        0.0
+      
       SetCommand.run("ORBIT:REF " + body.id)
-
-      if (in.hasNext) {
-        SetCommand.run("ORBIT:SMA " + (in.next.toDouble * 1000.0 + body.radius))
-        if (in.hasNext) {
-          SetCommand.run("ORBIT:INC " + in.next.toDouble)
-        }
-      }
+      SetCommand.run("ORBIT:ECC 0.0")
+      SetCommand.run("ORBIT:SMA " + SMA)
+      SetCommand.run("ORBIT:INC " + INC)
     }
   }
   
