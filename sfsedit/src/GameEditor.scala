@@ -110,7 +110,7 @@ object GameEditor extends DefaultTextUI {
     "/"  -> ((x,y) => y.r.findFirstMatchIn(x).isDefined)
   )
   
-  def isSelected(obj: ksp.Vessel) = selected exists (_.asObject == obj.asObject)
+  def isSelected(obj: ksp.Vessel) = selected contains obj
   def select(p: Filter) {
     selected = game.vessels.filter (p(_))
   }
@@ -309,9 +309,30 @@ object GameEditor extends DefaultTextUI {
       (in which case it selects exactly that object), or a range 'low-high', in which
       case it selects all objects numbered between low and high INCLUSIVE.
 
-      For example, the command 'choose 0-5 8 9 14-17' would select objects 0,1,2,3,4,5,
-      8,9,14,15,16,17.
+      For example, the command 'choose 0-5 8 9 14-17' would select objects 0, 1, 2, 3,
+      4, 5, 8, 9, 14, 15, 16, and 17.
     """
+    
+    override def run(in: Scanner) {
+      def parseIndex(index: String) = {
+        val groups = """(\d+)(?:-(\d+))?""".r.findFirstMatchIn(index).get.subgroups
+        
+        groups(1) match {
+          case null => Set(groups(0).toInt)
+          case x: String => Range(groups(0).toInt, groups(1).toInt + 1)
+        }
+      }
+      def parseIndexes: Set[Int] = {
+        in.hasNext match {
+          case true => val index = in.next; parseIndexes ++ parseIndex(index)
+          case false => Set.empty[Int]
+        }
+      }
+
+      val chosen = parseIndexes map (selected(_))
+      select(chosen contains _)
+      ListCommand.run("")
+    }
   }
   
   protected object AddCommand extends Command("add") {
@@ -319,19 +340,33 @@ object GameEditor extends DefaultTextUI {
     override def help = """
       Usage: add <condition>
 
-      Adds all objects meeting the condition to the current selection. The condition
-      works the same way as 'select'; see 'help select' for details.
+      Adds all objects meeting the filter to the current selection. See 'help select'
+      for details on filters.
     """
+    
+    override def run(in: Scanner) {
+      val p = input2filter(in)
+      
+      select(obj => isSelected(obj) || p(obj))
+      ListCommand.run("")
+    }
   }
   
   protected object RemoveCommand extends Command("remove") {
     override def describe = "remove objects from the selection"
     override def help = """
-      Usage: remove <condition>
+      Usage: remove <filter>
 
-      Removes all objects meeting the condition from the current selection. The condition
-      works the same way as 'select'; see 'help select' for details.
+      Removes all objects meeting the filter from the current selection. See 'help select'
+      for details on filters.
     """
+    
+    override def run(in: Scanner) {
+      val p = input2filter(in)
+      
+      select(obj => isSelected(obj) && !p(obj))
+      ListCommand.run("")
+    }
   }
   
   protected object DeleteCommand extends Command("delete") {
