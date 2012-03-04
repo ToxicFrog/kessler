@@ -259,7 +259,7 @@ object GameEditor extends DefaultTextUI {
 
     override def run(in: Scanner) {
       selected.zipWithIndex.foreach {
-        case (v, n) => println(n + "\t" + v.asObject.getProperty("name"))
+        case (v, n) => printf("%4d  %s\n", n, v.asObject.getProperty("name"))
       }
     }
   }
@@ -469,24 +469,7 @@ object GameEditor extends DefaultTextUI {
         orbit Kerbin 250 90
     """
 
-    override def run(in: Scanner) {
-      val bodyname = in.next
-      val body = try {
-        ksp.Orbit.getBody(bodyname.toInt)
-      } catch {
-        case _ => ksp.Orbit.getBody(bodyname)
-      }
-      
-      val SMA = if (in.hasNext)
-        in.next.toDouble * 1000.0 + body.radius
-      else
-        100000.0 + body.radius
-      
-      val INC = if (in.hasNext)
-        in.next.toDouble
-      else
-        0.0
-
+    private def applyOrbit(body: ksp.Orbit.Body, SMA: Double, INC: Double) {
       SetCommand.run("sit ORBITING")
       SetCommand.run("landed False")
       SetCommand.run("splashed False")
@@ -494,6 +477,38 @@ object GameEditor extends DefaultTextUI {
       SetCommand.run("ORBIT:ECC 0.0")
       SetCommand.run("ORBIT:SMA " + SMA)
       SetCommand.run("ORBIT:INC " + INC)
+    }
+    
+    private def listBodies() {
+      println("No such orbitable body '" + name + "'. Known bodies:")
+      println("")
+      ksp.Orbit.bodies foreach {
+        b => printf("    %4d  %s\n", b.id, b.names.mkString(", "))
+      }
+    }
+
+    override def run(in: Scanner) {
+      if (in.hasNextInt) {
+        ksp.Orbit.getBody(in.nextInt)
+      } else {
+        ksp.Orbit.getBody(in.next)
+      } match {
+        case None => listBodies()
+        case Some(body) =>
+          val SMA = if (in.hasNext)
+            in.next.toDouble * 1000.0 + body.radius
+          else
+            100000.0 + body.radius
+
+          val INC = if (in.hasNext)
+            in.next.toDouble
+          else
+            0.0
+          
+          applyOrbit(body, SMA, INC)
+      }
+
+
     }
   }
   
