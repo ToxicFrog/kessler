@@ -390,7 +390,7 @@ object GameEditor extends DefaultTextUI {
 
       Set an object property.
 
-      <value> is any text.
+      <value> is any text; if omitted, the property will be made blank.
 
       <property> is a property specifier, of the form {type[,index]:}name{,index} - that is to
       say, any number of 'type:' or 'type,index:' prefixes, followed by a property name, optionally
@@ -410,7 +410,7 @@ object GameEditor extends DefaultTextUI {
     """
     
     override def run(in: Scanner) {
-      val (key,value) = (in.next, in.nextLine.trim)
+      val (key,value) = (in.next, if (in.hasNextLine) in.nextLine.trim else "")
 
       dirty = true
       selected foreach (_.setParsedProperties(key, value))
@@ -473,6 +473,7 @@ object GameEditor extends DefaultTextUI {
       SetCommand.run("sit ORBITING")
       SetCommand.run("landed False")
       SetCommand.run("splashed False")
+      SetCommand.run("landedAt")
       SetCommand.run("ORBIT:REF " + body.id)
       SetCommand.run("ORBIT:ECC 0.0")
       SetCommand.run("ORBIT:SMA " + SMA)
