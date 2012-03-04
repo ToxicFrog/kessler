@@ -451,7 +451,10 @@ object GameEditor extends DefaultTextUI {
         in.next.toDouble
       else
         0.0
-      
+
+      SetCommand.run("sit ORBITING")
+      SetCommand.run("landed False")
+      SetCommand.run("splashed False")
       SetCommand.run("ORBIT:REF " + body.id)
       SetCommand.run("ORBIT:ECC 0.0")
       SetCommand.run("ORBIT:SMA " + SMA)
