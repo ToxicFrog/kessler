@@ -213,9 +213,10 @@ object GameEditor extends DefaultTextUI {
       'add', 'remove', or 'choose'.
 
       <filter> is either a predefined filter name (see below) or an expression in the form
-      <name> <operator> <value>. <name> is any property name an object can have (objects which
-      do not have that property are considered not to match the filter). <value> is any text.
-      <operator> is any of the following operators:
+      <name> <operator> <value>.
+
+      <name> is a property name (optionally prefixed with a subobject type and index; see
+      'help set' for details). <value> is any text. <op> is one of the following:
 
         =     equality
         >     greater than
@@ -239,7 +240,11 @@ object GameEditor extends DefaultTextUI {
 
         select !debris && name ~ Station
 
-      Would select all non-debris objects with "Station" somewhere in the name.
+      Would select all non-debris objects with "Station" somewhere in the name, and the command:
+
+        select PART,*:mass > 4 && sit = ORBITING
+
+      Would select all orbiting objects which contain at least one part with a mass exceeding 4.
     """
 
     override def run(in: Scanner) {
