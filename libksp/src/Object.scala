@@ -25,6 +25,14 @@ class Object {
   def getProperty(key: String, n: Int = 0) = getProperties(key)(n)
   def getProperties(key: String) = properties(key)
 
+  def setProperty(key: String, value: String) {
+    setProperty(key, 0, value)
+  }
+
+  def setProperty(key: String, n: Int, value: String) {
+    properties(key).update(n, value)
+  }
+
   def testProperty(key: String, test: String): Boolean = testProperty(key, test.r)
   def testProperty(key: String, test: Regex) = test.findFirstMatchIn(getProperty(key)).isDefined
 

@@ -4,9 +4,9 @@
     <root id="root">
       <element id="archive" name="KSPKessler.zip">
         <element id="directory" name="kessler">
-          <element id="artifact" artifact-name="sfsclean:jar" />
+          <element id="artifact" artifact-name="sfsedit:jar" />
         </element>
-        <element id="file-copy" path="$PROJECT_DIR$/sfsclean/sfsclean.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/sfsedit/sfsedit.bat" />
       </element>
     </root>
   </artifact>

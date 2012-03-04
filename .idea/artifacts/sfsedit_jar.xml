@@ -1,11 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="sfsclean:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/sfsclean_jar</output-path>
-    <root id="archive" name="sfsclean.jar">
+  <artifact type="jar" name="sfsedit:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/sfsedit_jar</output-path>
+    <root id="archive" name="sfsedit.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/sfsclean/src/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/sfsedit/src/META-INF/MANIFEST.MF" />
       </element>
-      <element id="module-output" name="sfsclean" />
+      <element id="module-output" name="sfsedit" />
       <element id="module-output" name="libksp" />
       <element id="extracted-dir" path="/opt/scala/lib/scala-library.jar" path-in-jar="/" />
       <element id="extracted-dir" path="/opt/scala/lib/scala-swing.jar" path-in-jar="/" />
