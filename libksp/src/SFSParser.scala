@@ -27,11 +27,13 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def comment(o: ksp.Object) = "//[^\n]*".r ~> success(o)
 
   private def keyvalue(o: ksp.Object) = key ~ value ^^ {
-    case ~(k,v) => o.addProperty(k, v drop 2)
+    case ~(k, v) => o.addProperty(k, v drop 2)
   }
 
   private def block(o: ksp.Object) = (blockname <~ "{") >> {
-    name => sfs(new ksp.Object()) <~ "}" ^^ { obj => o.addChild(name, obj) }
+    name => sfs(new ksp.Object()) <~ "}" ^^ {
+      obj => o.addChild(name, obj)
+    }
   }
 
   def parseString(reader: String) = parse(S, reader) match {

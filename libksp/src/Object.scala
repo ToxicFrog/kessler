@@ -1,6 +1,6 @@
 package ksp
 
-import collection.mutable.{LinkedHashMap,Buffer}
+import collection.mutable.{LinkedHashMap, Buffer}
 import util.matching.Regex
 
 class Object {
@@ -8,21 +8,23 @@ class Object {
   val children = new LinkedHashMap[String, Buffer[Object]]()
 
   def asObject = this
+
   /*
-   * get(key) => first value for that key
-   * getAll(key) => list of values for that key
-   * set(key, value) => sets first value for that key
-   * set(key, oldval, newval) => sets first matching value
-   * set(key, index, newval) => sets nth value
-   * delete(key, val)
-   * delete(key, index)
-   * delete(key)
-   * addProperty(key, val)
-   * addChild(key, val)
-   */
+  * get(key) => first value for that key
+  * getAll(key) => list of values for that key
+  * set(key, value) => sets first value for that key
+  * set(key, oldval, newval) => sets first matching value
+  * set(key, index, newval) => sets nth value
+  * delete(key, val)
+  * delete(key, index)
+  * delete(key)
+  * addProperty(key, val)
+  * addChild(key, val)
+  */
   def hasProperty(key: String) = properties contains key
 
   def getProperty(key: String, n: Int = 0) = getProperties(key)(n)
+
   def getProperties(key: String) = properties(key)
 
   def setProperty(key: String, value: String) {
@@ -34,9 +36,10 @@ class Object {
   }
 
   def testProperty(key: String, test: String): Boolean = testProperty(key, test.r)
+
   def testProperty(key: String, test: Regex) = test.findFirstMatchIn(getProperty(key)).isDefined
 
-  def addProperty(key: String,  value: String) {
+  def addProperty(key: String, value: String) {
     if (properties contains key) {
       properties(key) += value
     } else {
@@ -45,6 +48,7 @@ class Object {
   }
 
   def getChild(key: String, n: Int = 0) = getChildren(key)(n)
+
   def getChildren(key: String): Seq[Object] = children(key)
 
   def addChild(key: String, child: Object) {
@@ -61,6 +65,7 @@ class Object {
   }
 
   def mkString: String = mkString("")
+
   def mkString(indent: String): String = {
     val sb = new StringBuilder()
     properties foreach {

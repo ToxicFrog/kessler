@@ -56,7 +56,6 @@ object GameEditor extends DefaultTextUI {
 
     def concat(first: Filter, second: Filter): Filter = (obj => first(obj) && second(obj))
     def not(first: Filter): Filter = (obj => !first(obj))
-    def hasprop(key: String): Filter = (obj => obj.asObject.hasProperty(key))
     def comparer(key: String, op: Op, value: String): Filter = (
       _.getParsedProperty(key) exists (op(_, value))
     )
@@ -86,7 +85,6 @@ object GameEditor extends DefaultTextUI {
         if (in.hasNext) in.next
 
         if (invert)
-          //p = concat(concat(p, hasprop(key)), not(comparer(key, compares(op), value)))
           p = concat(p, not(comparer(key, compares(op), value)))
         else
           p = concat(p, comparer(key, compares(op), value))
