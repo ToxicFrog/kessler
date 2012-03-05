@@ -19,7 +19,7 @@ class Vessel(self: ksp.Object) extends WrappedObject(self) {
 
 object Vessel {
   def isDebris(obj: Object) = if (obj.kind == "VESSEL") {
-    obj.getChild("ORBIT").getProperty("OBJ") == "0"
+    obj.getChild("ORBIT").getProperty("OBJ") != "0"
   } else false
 
   def isLanded(obj: Object): Boolean = if (obj.kind == "VESSEL") {
