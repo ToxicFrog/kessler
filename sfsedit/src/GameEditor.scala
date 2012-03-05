@@ -589,16 +589,21 @@ object GameEditor extends DefaultTextUI {
       Usage: pilot <stages>
 
       Makes all selected objects pilotable, as though they were primary rocket stages.
-      Objects which are already pilotable are not further modified.
+      This can also be used to restage already-pilotable objects (see below), but using
+      it in this manner will completely destroy your existing stage order, so it is
+      recommended not to use this on already-pilotable objects unless you REALLY,
+      REALLY want to restage the whole thing from scratch.
 
-      <stages> is the number of blank stages to insert. By default it crams everything
-      into one stage; with this you can create a bunch of blank stages and restage while
-      in flight.
+      If <stages> is specified and is a number, it will attempt to create up to that
+      many additional stages, for you to restage in flight. It cannot create more than
+      one stage per part in the rocket. This feature is HIGHLY EXPERIMENTAL and makes
+      no guarantee that the resulting staging is sensible; it is up to you to review
+      it in-flight and reorganize the staging so that it makes sense. While doing this,
+      bear in mind that detached stages usually have the decoupler that detached them
+      as their root node; firing this decoupler again may have unfortunate consequences
+      like the entire rocket erasing itself from existence.
 
-      This feature is more experimental than the rest of the editor, ESPECIALLY the
-      part that attempts to re-enable staging on the detached object. Incautious use
-      of the spacebar while controlling a detached stage may cause it to implode.
-      Handle with care.
+      If you do not request additional stages, all parts will be placed into stage 0.
     """
 
     /* To make an object pilotable, there's a few things we need to do.
@@ -618,18 +623,29 @@ object GameEditor extends DefaultTextUI {
      * PART:sqor always seems to == PART:istg at launch
      * PART:dstg ("design stage") is how many parts away from root the part is, I think
      * PART:istg is what stage the part is actually in
+     *
+     * We can't just create empty stages for the user to restage into, because the game will
+     * automatically collapse empty stages
      */
     override def run(in: Scanner) {
-      val stage = if (in.hasNextInt) in.nextInt else 0
-      selected filter {
-        _.getChild("ORBIT").getProperty("OBJ").toInt == 0
-      } foreach { obj =>
-          obj.getChildren("PART").foreach { part =>
-            part.setProperty("attached", "True")
-            part.setProperty("connected", "True")
+      val max_stage = if (in.hasNextInt) in.nextInt else 0
+
+      selected foreach { obj =>
+        val root = obj.getChild("PART", obj.getProperty("root").toInt)
+        var stage = 0
+        obj.getChildren("PART").foreach { part =>
+          part.setProperty("attached", "True")
+          part.setProperty("connected", "True")
+          if (part != root) {
+            part.setProperty("istg", stage.toString)
+            if (stage < max_stage) {
+              stage = stage + 1
+            }
           }
-          obj.setProperty("stg", stage.toString)
-          obj.getChild("ORBIT").setProperty("OBJ", "0")
+        }
+        obj.setProperty("stg", max_stage.toString)
+        obj.getChild("ORBIT").setProperty("OBJ", "0")
+        root.setProperty("istg", max_stage.toString)
       }
       dirty = true
     }
