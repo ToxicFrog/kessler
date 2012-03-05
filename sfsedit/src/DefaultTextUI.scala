@@ -1,3 +1,5 @@
+import java.util.Scanner
+
 class DefaultTextUI extends TextUI {
   register(HelpCommand)
   register(ExitCommand)
