@@ -8,9 +8,11 @@ object GameEditor extends DefaultTextUI {
   var filename = ""
   var timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@hh-mm-ss").format(new java.util.Date())
 
+  type Selection = Seq[ksp.Object]
   var game: ksp.Game = null
-  var selected: Seq[ksp.Vessel] = Seq.empty[ksp.Vessel]
-  var stack: List[Seq[ksp.Vessel]] = List.empty[Seq[ksp.Vessel]]
+  var selected: Selection = Seq.empty[ksp.Object]
+  var stack: List[Selection] = List.empty[Selection]
+  var select_type: String = "VESSEL"
   
   override def prompt = "\n(%d) ".format(selected.length)
 
@@ -19,6 +21,7 @@ object GameEditor extends DefaultTextUI {
   register(RevertCommand)   // revert to version on disk
   register(SaveCommand)     // save file to disk
 
+  register(TypeCommand)     // change which type of object you're editing
   register(SelectCommand)   // select all vessels matching P
   register(PushCommand)     // push the current selection
   register(PopCommand)      // pop the current selection
@@ -35,10 +38,7 @@ object GameEditor extends DefaultTextUI {
   register(PilotCommand)    // make an object remote-pilotable
 
   register(CheckedExitCommand)     // quit the editor
-  /*
-  register(OrbitCommand)    // edit the orbits of the selected objects
-  */
-  
+
   def checkDirty = !dirty || askYN("All unsaved changes will be lost. Are you sure?")
   
   def loadGame(name: String) {
@@ -51,10 +51,10 @@ object GameEditor extends DefaultTextUI {
     runCommand("select all")
   }
 
-  type Filter = ksp.Vessel => Boolean
+  type Filter = ksp.Object => Boolean
   type Op = (String, String) => Boolean
   def input2filter(in: Scanner) = {
-    var p: Filter = (_ => true)
+    var p: Filter = (select_type == "*" || _.kind == select_type)
 
     def concat(first: Filter, second: Filter): Filter = (obj => first(obj) && second(obj))
     def not(first: Filter): Filter = (obj => !first(obj))
@@ -97,8 +97,9 @@ object GameEditor extends DefaultTextUI {
   }
 
   private val specials = Map[String, Filter](
-    "landed" -> (_.isLanded),
-    "debris" -> (_.isDebris),
+    "landed" -> (obj => ksp.Vessel.isLanded(obj)),
+    "debris" -> (obj => ksp.Vessel.isDebris(obj)),
+    "ghost"  -> (obj => ksp.Vessel.isGhost(obj)),
     "invert" -> (obj => !isSelected(obj)),
     "all" -> (_ => true)
   )
@@ -112,14 +113,14 @@ object GameEditor extends DefaultTextUI {
     "/"  -> ((x,y) => y.r.findFirstMatchIn(x).isDefined)
   )
   
-  def isSelected(obj: ksp.Vessel) = selected contains obj
+  def isSelected(obj: ksp.Object) = selected contains obj
   def select(p: Filter) {
-    selected = game.vessels.filter (p(_))
+    selected = game.asObject.getChildren.filter (p(_))
   }
 
-  def delete(v: ksp.Vessel) {
+  def delete(v: ksp.Object) {
     dirty = true
-    game.asObject.deleteChild("VESSEL", v.asObject)
+    game.asObject.deleteChild(v)
   }
   
   protected object LoadCommand extends Command("load") {
@@ -159,7 +160,7 @@ object GameEditor extends DefaultTextUI {
     override def run(in: Scanner) {
       val added = game.merge(Game.fromFile(in.next))
       dirty = true
-      select { o => added exists (_.asObject == o.asObject) }
+      select { o => added exists (_ == o) }
       ListCommand.run("")
     }
   }
@@ -228,6 +229,45 @@ object GameEditor extends DefaultTextUI {
     }
   }
 
+  protected object TypeCommand extends Command("type") {
+    override def describe = "choose what type of game objects to edit"
+    override def help = """
+      Usage: type [type]
+      
+      This command applies a global filter on the save file based on the type of each
+      object. Only objects matching the filter are selectable. By default the setting
+      for [type] is VESSEL, meaning that only vessels (both pilotable and debris) are
+      selectable.
+      
+      If run without arguments, displays the current type filter. If run with the
+      argument '*' (without the quotes), disables filtering so that all objects in
+      the save file can be selected at once - this is usually a VERY BAD IDEA, as
+      editing commands that make sense on one object type are rarely useful on others.
+      
+      At present the only types of objects stored at the top level of save files are
+      CREW and VESSEL.
+      
+      This does not affect your ability to edit subobjects; for example, if the setting
+      is VESSEL, you will still be able to edit the ORBIT and PART blocks stored inside
+      the selected VESSEL objects.
+      
+      Examples:
+      
+        type VESSEL         restrict selections to VESSEL objects (the default)
+        type CREW           restrict selections to CREW objects
+        type *              enable simultaneous selection of all objects
+    """
+    
+    override def run(in: Scanner) {
+      if (!in.hasNext) {
+        println("Current type filter: " + select_type)
+      } else {
+        select_type = in.next
+        SelectCommand.run("all")
+      }
+    }
+  }
+  
   protected object SelectCommand extends Command("select") {
     override def describe = "select all objects meeting a condition"
     override def help = """
@@ -256,6 +296,7 @@ object GameEditor extends DefaultTextUI {
 
         landed    matches all objects which are landed or splashed down
         debris    matches all debris objects (objects without crew)
+        ghost     matches all ghost ships (ships with orbital information but no parts, created by some staging bugs)
         invert    matches all objects not currently selected (selected items are deselected and vice versa)
         all       matches all objects
 
@@ -288,7 +329,7 @@ object GameEditor extends DefaultTextUI {
 
     override def run(in: Scanner) {
       selected.zipWithIndex.foreach {
-        case (v, n) => printf("%4d  %s\n", n, v.asObject.getProperty("name"))
+        case (obj, n) => printf("%4d  %s\n", n, obj.getProperty("name"))
       }
     }
   }
@@ -461,7 +502,7 @@ object GameEditor extends DefaultTextUI {
       val keys = in.toSeq
 
       selected foreach { obj =>
-        println(obj.asObject.getProperty("name"))
+        println(obj.getProperty("name"))
         keys foreach { key =>
           obj.getParsedProperty(key) foreach {
             value => printf("%20s  %s\n", key, value)
@@ -526,7 +567,7 @@ object GameEditor extends DefaultTextUI {
         ksp.Orbit.getBody(in.next)
       } match {
         case None => listBodies()
-        case Some(body) =>
+        case Some(body: ksp.Orbit.Body) =>
           val SMA = if (in.hasNext)
             in.next.toDouble * 1000.0 + body.radius
           else
@@ -581,14 +622,14 @@ object GameEditor extends DefaultTextUI {
     override def run(in: Scanner) {
       val stage = if (in.hasNextInt) in.nextInt else 0
       selected filter {
-        _.asObject.getChild("ORBIT").getProperty("OBJ").toInt == 0
+        _.getChild("ORBIT").getProperty("OBJ").toInt == 0
       } foreach { obj =>
-          obj.asObject.getChildren("PART").foreach { part =>
+          obj.getChildren("PART").foreach { part =>
             part.setProperty("attached", "True")
             part.setProperty("connected", "True")
           }
-          obj.asObject.setProperty("stg", stage.toString)
-          obj.asObject.getChild("ORBIT").setProperty("OBJ", "0")
+          obj.setProperty("stg", stage.toString)
+          obj.getChild("ORBIT").setProperty("OBJ", "0")
       }
       dirty = true
     }

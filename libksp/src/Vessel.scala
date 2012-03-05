@@ -3,10 +3,6 @@ package ksp
 class Vessel(self: ksp.Object) extends WrappedObject(self) {
   assert(self.kind == "VESSEL")
   
-  def isDebris = !(self.getChild("PART", self.getProperty("root").toInt) hasProperty "crew")
-  def isImport = self.testProperty("name", """\([^)]+\)( Debris)?$""")
-  def isLanded = self.testProperty("sit", """(SPLASHED|LANDED)""")
-  
   def root = new Part(self.getChild("PART", self.getProperty("root").toInt))
 
   /* Two VESSELs are equal if:
@@ -19,6 +15,20 @@ class Vessel(self: ksp.Object) extends WrappedObject(self) {
     }
     case _ => super.equals(other)
   }
+}
+
+object Vessel {
+  def isDebris(obj: Object) = if (obj.kind == "VESSEL") {
+    obj.getChild("ORBIT").getProperty("OBJ") == "0"
+  } else false
+
+  def isLanded(obj: Object): Boolean = if (obj.kind == "VESSEL") {
+    obj.testProperty("sit", """(SPLASHED|LANDED)""")
+  } else false
+
+  def isGhost(obj: Object): Boolean = if (obj.kind == "VESSEL") {
+    obj.getChildren("PART").isEmpty
+  } else false
 }
 
 class Part(self: ksp.Object) extends WrappedObject(self) {

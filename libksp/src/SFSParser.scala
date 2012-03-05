@@ -38,6 +38,6 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
 
   def parseString(reader: String) = parse(S, reader) match {
     case Success(content, _) => new ksp.Game(content)
-    case fail: NoSuccess => throw new RuntimeException(fail.toString())
+    case fail: NoSuccess => throw new RuntimeException(fail.toString)
   }
 }
