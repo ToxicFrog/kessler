@@ -554,7 +554,17 @@ object GameEditor extends DefaultTextUI {
   }
 
   def main(args:Array[String]) {
-    if (args.length > 0) runCommand("load " + args(0))
+    println("Welcome to the KSP Save File Editor")
+    println("Type 'help' for a list of commands, or 'help <command>' for information on a specific command.")
+
+    if (args.length > 0) try {
+      runCommand("load " + args(0))
+    } catch {
+      case e: Exception => {
+        println("Error loading " + args(0) + ": " + e.getMessage)
+        println("Not loading any game - use 'load <filename>' before doing anything else!")
+      }
+    }
 
     run()
   }
