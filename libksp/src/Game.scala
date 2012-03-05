@@ -36,12 +36,6 @@ class Game(self: Object) extends WrappedObject(self) {
     new Vessel(_)
   }
 
-  def clean(p: (Vessel => Boolean)) {
-    vessels.filter(p).foreach {
-      v => println("\tD " + v.asObject.getProperty("name")); self.deleteChild("VESSEL", v.asObject)
-    }
-  }
-
   // merge all of other's ships into us, skipping any that we already have
   def merge(other: Game): Seq[Object] = {
     /*
