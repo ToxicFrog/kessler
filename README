@@ -1,0 +1,15 @@
+Kessler is a set of tools for Kerbal Space Program. Currently it consists of a Scala library for editing save files (libksp), and a tool based on that library (sfsedit). With this editor, you can (among other things):
+
+ * Combine save files
+ * Teleport objects to any orbit
+ * Make detached stages controllable
+ * Delete objects
+ * Edit raw object properties such as orbital characteristics and staging information
+
+To install Kessler, download KSPKessler.zip and unpack it your KSP directory. You should end up with a "kessler" directory and "sfsedit.bat" file in the same directory as KSP.exe.
+
+In addition to Kessler itself, you will need Java installed.
+
+To run the save file editor, windows users can double-click on sfsedit.bat; on any operating system, you can start it directly with the command 'java -jar kessler/sfsedit.jar' from the KSP directory.
+
+Once the save file editor is running, use 'help' to list all available commands, or 'help command' to get information on a specific command.
