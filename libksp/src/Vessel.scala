@@ -15,7 +15,7 @@ class Vessel(self: ksp.Object) extends WrappedObject(self) {
   */
   override def equals(other: Any): Boolean = other match {
     case other: ksp.Vessel => {
-      this.asObject.getProperty("name") == other.asObject.getProperty("name") && this.root == other.root
+      (this eq other) || this.asObject.getProperty("name") == other.asObject.getProperty("name") && this.root == other.root
     }
     case _ => super.equals(other)
   }

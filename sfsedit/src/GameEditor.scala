@@ -15,6 +15,7 @@ object GameEditor extends DefaultTextUI {
   override def prompt = "\n(%d) ".format(selected.length)
 
   register(LoadCommand)     // load a file
+  register(MergeCommand)    // merge in vessels from another save file
   register(RevertCommand)   // revert to version on disk
   register(SaveCommand)     // save file to disk
 
@@ -31,7 +32,6 @@ object GameEditor extends DefaultTextUI {
   register(SetCommand)      // set an object or subobject property
   register(GetCommand)      // display an object or subobject property
   register(OrbitCommand)    // move an object to another orbit
-  register(MergeCommand)    // merge in vessels from another save file
 
   register(CheckedExitCommand)     // quit the editor
   /*
@@ -139,7 +139,29 @@ object GameEditor extends DefaultTextUI {
       }
     }
   }
-  
+
+  protected object MergeCommand extends Command("merge") {
+    override def describe = "merge all vessels in another save file into this one"
+    override def help = """
+      Usage: merge <filename>
+
+      Attempts to merge the contents of another save file into this one. Duplicate
+      vessels will not be merged (duplicates include debris originally part of
+      duplicate vessels). Any crewed vessels merged in will have their crew merged
+      in as well, but other (read: dead) crewmembers will not be merged.
+
+      After the merge completes, all of the vessels added by the merge will be selected,
+      allowing you to easily edit them.
+    """
+
+    override def run(in: Scanner) {
+      val added = game.merge(Game.fromFile(in.next))
+      dirty = true
+      select { o => added exists (_.asObject == o.asObject) }
+      ListCommand.run("")
+    }
+  }
+
   protected object RevertCommand extends Command("revert") {
     override def describe = "revert to the last saved version"
     override def help = """
@@ -515,26 +537,6 @@ object GameEditor extends DefaultTextUI {
           
           applyOrbit(body, SMA, INC)
       }
-    }
-  }
-  
-  protected object MergeCommand extends Command("merge") {
-    override def describe = "merge all vessels in another save file into this one"
-    override def help = """
-      Usage: merge <filename>
-
-      Attempts to merge the contents of another save file into this one. Duplicate
-      vessels will not be merged (duplicates include debris originally part of
-      duplicate vessels). Any crewed vessels merged in will have their crew merged
-      in as well, but other (read: dead) crewmembers will not be merged.
-      
-      The save file merged into this one is not modified by this process.
-    """
-    
-    override def run(in: Scanner) {
-      game.merge(Game.fromFile(in.next))
-      dirty = true
-      SelectCommand.run("all")
     }
   }
   

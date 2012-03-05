@@ -42,31 +42,30 @@ class Game(self: Object) extends WrappedObject(self) {
     }
   }
 
-  def merge(other: Object) {
-    self.addChild(other.kind, other.copy)
-    self.children(other.kind).length - 1
-  }
-
-  def merge(other: WrappedObject) {
-    merge(other.asObject)
-  }
-
   // merge all of other's ships into us, skipping any that we already have
-  def merge(other: Game) {
+  def merge(other: Game): Seq[Object] = {
     /*
     * Merging in a vessel is slightly more involved than just copying the underlying object
     * into our set of child objects - we also need to bring the crew over, if any, and remap
     * the crew indexes in this vessel.
     * Note that this is a destructive operation, so it creates a copy first.
     */
-    def mergeVessel(v: Object) {
+    def mergeVessel(v: Object) = {
       v.getChildren("PART").filter(_.hasProperty("crew")).foreach { part =>
         part.getProperties("crew").zipWithIndex.foreach {
-          case (crew, i) => part.setProperty("crew", i, merge(other.asObject.getChild("CREW", crew.toInt)).toString)
+          case (crew, i) => {
+            mergeObject(other.asObject.getChild("CREW", crew.toInt))
+            part.setProperty("crew", i, (self.children("CREW").length-1).toString)
+          }
         }
       }
 
       self.addChild("VESSEL", v)
+      v
+    }
+
+    def mergeObject(other: Object) {
+      self.addChild(other.kind, other.copy)
     }
 
     other.asObject.getChildren("VESSEL") filterNot {
@@ -78,8 +77,8 @@ class Game(self: Object) extends WrappedObject(self) {
        * a duplicate if ANY of its parts exist in the current game.
        */
       _.getChildren("PART").exists(self contains WrappedObject(_))
-    } foreach {
-      v => println("merging vessel " + v); mergeVessel(v.copy)
+    } map {
+      v => mergeVessel(v.copy)
     }
   }
 }
