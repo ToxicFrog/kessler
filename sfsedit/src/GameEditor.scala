@@ -32,6 +32,7 @@ object GameEditor extends DefaultTextUI {
   register(SetCommand)      // set an object or subobject property
   register(GetCommand)      // display an object or subobject property
   register(OrbitCommand)    // move an object to another orbit
+  register(PilotCommand)    // make an object remote-pilotable
 
   register(CheckedExitCommand)     // quit the editor
   /*
@@ -537,6 +538,56 @@ object GameEditor extends DefaultTextUI {
           
           applyOrbit(body, SMA, INC)
       }
+    }
+  }
+  
+  protected object PilotCommand extends Command("pilot") {
+    override def describe = "make a discarded stage pilotable again"
+    override def help = """
+      Usage: pilot
+
+      Makes all selected objects pilotable, as though they were primary rocket stages.
+      Objects which are already pilotable are not further modified.
+
+      This feature is more experimental than the rest of the editor, ESPECIALLY the
+      part that attempts to re-enable staging on the detached object. Incautious use
+      of the spacebar while controlling a detached stage may cause it to implode.
+      Handle with care.
+    """
+
+    /* To make an object pilotable, there's a few things we need to do.
+     * In order for it to show up at the tracking center, ORBIT:OBJ needs to be 0.
+     * Furthermore, all parts need to be marked as connected and attached, or we won't be
+     * able to control the rocket.
+     * Finally, for staging to work properly, stg needs to be set to the number of the last
+     * stage activated, and istg needs to be adjusted for each part - it looks like setting
+     * istg = qstg for each part should do this.
+     * 
+     * Notes on staging
+     * 
+     * stg is the last stage activated, so if your rocket has stages 0-4 and you put it on
+     * the pad, stg=5.
+     * 
+     * PART:sidx is the index within the stage of the part.
+     * PART:sqor always seems to == PART:istg at launch
+     * PART:dstg ("design stage") is how many parts away from root the part is, I think
+     * PART:istg is what stage the part is actually in
+     */
+    override def run(in: Scanner) {
+      selected filter {
+        _.asObject.getChild("ORBIT").getProperty("OBJ").toInt == 0
+      } foreach { obj =>
+          var stage = 0
+          obj.asObject.getChildren("PART").foreach { part =>
+            part.setProperty("attached", "True")
+            part.setProperty("connected", "True")
+            part.setProperty("istg", part.getProperty("sqor"))
+            stage = stage max (part.getProperty("sqor").toInt)
+          }
+          obj.asObject.setProperty("stg", stage.toString)
+          obj.asObject.getChild("ORBIT").setProperty("OBJ", "0")
+      }
+      dirty = true
     }
   }
   
