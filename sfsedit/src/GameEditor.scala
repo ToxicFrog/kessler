@@ -83,14 +83,15 @@ object GameEditor extends DefaultTextUI {
         }
 
         val value = in.findInLine("((?!&&).)+").trim
-        // skip '&&'
-        if (in.hasNext) in.next
 
         if (invert)
           p = concat(p, not(comparer(key, compares(op), value)))
         else
           p = concat(p, comparer(key, compares(op), value))
       }
+
+      // skip '&&'
+      if (in.hasNext) in.next
     }
     p
   }
