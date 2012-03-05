@@ -545,10 +545,14 @@ object GameEditor extends DefaultTextUI {
   protected object PilotCommand extends Command("pilot") {
     override def describe = "make a discarded stage pilotable again"
     override def help = """
-      Usage: pilot
+      Usage: pilot <stages>
 
       Makes all selected objects pilotable, as though they were primary rocket stages.
       Objects which are already pilotable are not further modified.
+
+      <stages> is the number of blank stages to insert. By default it crams everything
+      into one stage; with this you can create a bunch of blank stages and restage while
+      in flight.
 
       This feature is more experimental than the rest of the editor, ESPECIALLY the
       part that attempts to re-enable staging on the detached object. Incautious use
@@ -575,15 +579,13 @@ object GameEditor extends DefaultTextUI {
      * PART:istg is what stage the part is actually in
      */
     override def run(in: Scanner) {
+      val stage = if (in.hasNextInt) in.nextInt else 0
       selected filter {
         _.asObject.getChild("ORBIT").getProperty("OBJ").toInt == 0
       } foreach { obj =>
-          var stage = 0
           obj.asObject.getChildren("PART").foreach { part =>
             part.setProperty("attached", "True")
             part.setProperty("connected", "True")
-            part.setProperty("istg", part.getProperty("sqor"))
-            stage = stage max (part.getProperty("sqor").toInt)
           }
           obj.asObject.setProperty("stg", stage.toString)
           obj.asObject.getChild("ORBIT").setProperty("OBJ", "0")
