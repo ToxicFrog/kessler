@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/libksp/libksp.iml" filepath="$PROJECT_DIR$/libksp/libksp.iml" />
       <module fileurl="file://$PROJECT_DIR$/sfsedit/sfsedit.iml" filepath="$PROJECT_DIR$/sfsedit/sfsedit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sfsclean/sfsedit.iml" filepath="$PROJECT_DIR$/sfsclean/sfsedit.iml" />
     </modules>
   </component>
 </project>
