@@ -34,6 +34,13 @@ class Object(val kind: String) {
     sb.toString()
   }
 
+  override def equals(other: Any): Boolean = other match {
+    case other: Object if other eq this => true
+    case other: Object => {
+      (properties equals other.properties) && (children equals other.children)
+    }
+    case _ => super.equals(other)
+  }
 
 
   // contains is transitive; we contain this object if we or any of our subobjects

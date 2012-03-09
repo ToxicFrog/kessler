@@ -36,8 +36,23 @@ class Game(self: Object) extends WrappedObject(self) {
     new Vessel(_)
   }
 
+  // create a new game with only vessels that contain the listed parts
+  def filter(parts: Set[String]): ksp.Game = {
+    val result = self.copy
+    
+    result.getChildren("VESSEL").filter {
+      vessel => !(vessel.getChildren("PART").contains((part: ksp.Object) => parts contains part.getProperty("name")))
+    } foreach {
+      result.deleteChild(_)
+    }
+
+    new Game(result)
+  }
+  
   // merge all of other's ships into us, skipping any that we already have
-  def merge(other: Game): Seq[Object] = {
+  def merge(other: Game): Game = {
+    val result = self.copy
+
     /*
     * Merging in a vessel is slightly more involved than just copying the underlying object
     * into our set of child objects - we also need to bring the crew over, if any, and remap
@@ -49,17 +64,17 @@ class Game(self: Object) extends WrappedObject(self) {
         part.getProperties("crew").zipWithIndex.foreach {
           case (crew, i) => {
             mergeObject(other.asObject.getChild("CREW", crew.toInt))
-            part.setProperty("crew", i, (self.children("CREW").length-1).toString)
+            part.setProperty("crew", i, (result.children("CREW").length-1).toString)
           }
         }
       }
 
-      self.addChild("VESSEL", v)
+      result.addChild("VESSEL", v)
       v
     }
 
     def mergeObject(other: Object) {
-      self.addChild(other.kind, other.copy)
+      result.addChild(other.kind, other.copy)
     }
 
     other.asObject.getChildren("VESSEL") filterNot {
@@ -70,9 +85,11 @@ class Game(self: Object) extends WrappedObject(self) {
        * over from it, we need to mark this vessel as a duplicate - basically, a vessel is
        * a duplicate if ANY of its parts exist in the current game.
        */
-      _.getChildren("PART").exists(self contains WrappedObject(_))
+      _.getChildren("PART").exists(result contains WrappedObject(_))
     } map {
       v => mergeVessel(v.copy)
     }
+
+    new Game(result)
   }
 }

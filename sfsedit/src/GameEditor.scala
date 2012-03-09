@@ -53,8 +53,11 @@ object GameEditor extends DefaultTextUI {
 
   type Filter = ksp.Object => Boolean
   type Op = (String, String) => Boolean
+
+  def defaultFilter(o: ksp.Object): Boolean = select_type == "*" || o.kind == select_type
+
   def input2filter(in: Scanner) = {
-    var p: Filter = (select_type == "*" || _.kind == select_type)
+    var p: Filter = defaultFilter _
 
     def concat(first: Filter, second: Filter): Filter = (obj => first(obj) && second(obj))
     def not(first: Filter): Filter = (obj => !first(obj))
@@ -158,9 +161,10 @@ object GameEditor extends DefaultTextUI {
     """
 
     override def run(in: Scanner) {
-      val added = game.merge(Game.fromFile(in.next))
+      val oldgame = game
+      game = game.merge(Game.fromFile(in.next))
       dirty = true
-      select { o => added exists (_ == o) }
+      select(o => defaultFilter(o) && !oldgame.asObject.contains(o))
       ListCommand.run("")
     }
   }
@@ -682,3 +686,5 @@ object GameEditor extends DefaultTextUI {
     run()
   }
 }
+
+
