@@ -1,11 +1,7 @@
-@ECHO OFF
-MODE CON: COLS=120
-TITLE KSP SFSEdit
-
 CALL :FindJRE
 
-:RunEditor
-"%JAVAPATH%\bin\java.exe" -jar kessler/sfsedit.jar saves/default/persistent.sfs
+:RunJAR
+"%JAVAPATH%\bin\java.exe" -cp "kessler\*.jar" %*
 
 PAUSE
 GOTO :EOF

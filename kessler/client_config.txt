@@ -1,0 +1,11 @@
+# Kessler Client configuration file.
+
+# Host and port the server is running on.
+kessler.client.host = localhost
+kessler.client.port = 8988
+
+# Server password. Uncomment and provide password if connecting to a password-protected server.
+#kessler.client.password = topsecret
+
+# Savegame file. Uncomment and change if you want to sync a different save file.
+#kessler.client.savegame = saves/default/persistent.sfs

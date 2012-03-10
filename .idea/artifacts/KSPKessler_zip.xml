@@ -5,8 +5,17 @@
       <element id="archive" name="KSPKessler.zip">
         <element id="directory" name="kessler">
           <element id="artifact" artifact-name="sfsedit:jar" />
+          <element id="library" level="application" name="scala-library-2.9.1 (2)" />
+          <element id="artifact" artifact-name="libksp:jar" />
+          <element id="artifact" artifact-name="kesslerd:jar" />
+          <element id="artifact" artifact-name="kessler:jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/libksp/launcher.bat" />
+          <element id="file-copy" path="$PROJECT_DIR$/kessler/client_config.txt" />
+          <element id="file-copy" path="$PROJECT_DIR$/kesslerd/server_config.txt" />
         </element>
-        <element id="file-copy" path="$PROJECT_DIR$/sfsedit/sfsedit.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/sfsedit/kessler_editor.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/kessler/kessler_client.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/kesslerd/kessler_server.bat" />
       </element>
     </root>
   </artifact>

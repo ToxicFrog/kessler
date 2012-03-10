@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="kessler:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/kessler_jar</output-path>
+    <root id="root">
+      <element id="archive" name="kessler.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/kessler/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="kessler" />
+      </element>
+      <element id="library" level="application" name="scala-library-2.9.1 (4)" />
+    </root>
+  </artifact>
+</component>

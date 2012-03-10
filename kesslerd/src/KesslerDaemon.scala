@@ -100,23 +100,9 @@ object KesslerDaemon {
 
   def main(args: Array[String]) {
     val port = if (args.length > 0) args(0).toInt else 8988
-    val pass = if (args.length > 1) args(1) else null
+    val pass = if (args.length > 1 && args(1).length > 0) args(1) else null
     val games = if (args.length > 2) args.drop(2).toList else default_games
 
     new KesslerDaemon(port, pass, games).start()
-  }
-}
-
-
-
-object Test {
-  def main(args: Array[String]) {
-    KesslerDaemon.main(Array("8988", "password", "toxicfrog.sfs"))
-    KesslerClient.main(Array("localhost", "8988", "send", "airconswitch.sfs", "password"))
-    KesslerClient.main(Array("localhost", "8988", "send", "airconswitch.sfs", "spiders"))
-    KesslerClient.main(Array("localhost", "8988", "get", "kdtest.sfs", "spiders"))
-    KesslerClient.main(Array("localhost", "8988", "get", "kdtest2.sfs", "password"))
-    KesslerClient.main(Array("localhost", "8988", "send", "bentai.sfs"))
-    KesslerClient.main(Array("localhost", "8988", "get", "kdtest3.sfs"))
   }
 }

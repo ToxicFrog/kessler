@@ -4,9 +4,10 @@ import ksp._
 import scala.actors._
 
 class KesslerClient(host: String, port: Int, command: String, arg: String, pass: String) extends Actor {
+
   import scala.actors.remote.Node
   import scala.actors.remote.RemoteActor._
-  import KesslerDaemon.{SendCommand,GetCommand,Success,Error}
+  import KesslerDaemon.{SendCommand, GetCommand, Success, Error}
 
   def act() {
     val server = select(Node(host, port), 'kesslerd)

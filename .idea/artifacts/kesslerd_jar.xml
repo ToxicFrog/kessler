@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact name="kesslerd:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/kesslerd_jar</output-path>
+    <root id="root">
+      <element id="archive" name="kesslerd.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/kesslerd/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="kesslerd" />
+        <element id="module-output" name="libksp" />
+      </element>
+      <element id="library" level="application" name="scala-library-2.9.1 (1)" />
+      <element id="library" level="application" name="scala-library-2.9.1 (3)" />
+    </root>
+  </artifact>
+</component>

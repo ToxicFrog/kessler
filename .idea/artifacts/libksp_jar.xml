@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="libksp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/libksp_jar</output-path>
+    <root id="root">
+      <element id="archive" name="libksp.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/kessler/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="libksp" />
+      </element>
+      <element id="library" level="application" name="scala-library-2.9.1 (1)" />
+    </root>
+  </artifact>
+</component>
