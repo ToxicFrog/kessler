@@ -6,6 +6,3 @@ port = 8988
 
 # Server password. Uncomment and provide password if connecting to a password-protected server.
 #password = topsecret
-
-# Savegame file. Uncomment and change if you want to sync a different save file.
-#save = saves/default/persistent.sfs

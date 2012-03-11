@@ -2,8 +2,6 @@ CALL :FindJRE
 
 :RunJAR
 "%JAVAPATH%\bin\java.exe" -cp "kessler\*.jar" %*
-
-PAUSE
 GOTO :EOF
 
 :FindJRE

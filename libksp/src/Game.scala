@@ -43,7 +43,9 @@ class Game(self: Object) extends WrappedObject(self) {
     val result = self.copy
     
     result.getChildren("VESSEL").filter {
-      vessel => !(vessel.getChildren("PART").contains((part: ksp.Object) => parts contains part.getProperty("name")))
+      vessel => vessel.getChildren("PART").contains(
+        (part: ksp.Object) => !(parts contains part.getProperty("name"))
+      )
     } foreach {
       result.deleteChild(_)
     }

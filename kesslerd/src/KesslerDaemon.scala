@@ -2,6 +2,7 @@ package kessler
 
 import ksp._
 import scala.actors._
+import java.io.FileWriter
 
 /**
  * A daemon for merging save files and replying with the merged files.
@@ -15,29 +16,32 @@ class KesslerDaemon() extends Actor {
   import scala.actors.remote.RemoteActor._
   import KesslerDaemon.{PutCommand,GetCommand,Success,Error}
   import java.util.Properties
-  import java.io.FileInputStream
+  import java.io.{File,FileInputStream,FileWriter}
 
   val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
   val port = config.getProperty("port", "8988").toInt
-  val pass = config.getProperty("password", null)
+  val pass = config.getProperty("password", "")
+  val save = config.getProperty("password", "kessler/merged.sfs")
   val games = config.getProperty("games", "kessler/merged.sfs:saves/default/persistent.sfs").split(':')
 
   var game = loadFile(games)
 
+  def log(message: String) { println(message) }
+  
   def loadFile(names: Seq[String]): Game = {
     if (names.isEmpty) {
-      println("Error: couldn't find any games to load. Exiting.")
+      log("Error: couldn't find any games to load. Exiting.")
       System.exit(1)
     } else {
-      print("Looking for " + names.head + ":")
+      log("Looking for " + names.head + ":")
     }
     
     try {
       val game = Game.fromFile(names.head)
-      println(" loaded " + names.head)
+      log(" loaded " + names.head)
       game
     } catch {
-      case e: Exception => println(" failed (" + e.getMessage + ")"); loadFile(names.tail)
+      case e: Exception => log(" failed (" + e.getMessage + ")"); loadFile(names.tail)
     }
   }
 
@@ -54,14 +58,17 @@ class KesslerDaemon() extends Actor {
       react {
         case PutCommand(pass, save) => if (doAuth(pass)) doSend(save);
         case GetCommand(pass, parts) => if (doAuth(pass)) doGet(parts);
+        case 'Connect => Unit
       }
     }
   }
 
   def doAuth(pass: String) = {
-    if (this.pass != null && this.pass == pass) {
+    if (this.pass == "" || this.pass == pass) {
+      log("Command received from " + sender)
       true
     } else {
+      log("Rejecting command from " + sender + ": invalid password)")
       reply(Error("invalid password"))
       false
     }
@@ -70,22 +77,26 @@ class KesslerDaemon() extends Actor {
   def doSend(save: String) {
     var count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length)
 
-    println("Merging in new save.")
     game = game.merge(Game.fromString(save))
-
     count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length) - count
-    
+
+    log(count + " objects merged into world.")
     reply(Success(count + " objects merged."))
 
-    // FIXME: save game
+    safeSave(game)
+  }
+
+  def safeSave(game: Game) {
+    game.save(save + ".tmp")
+    new File(save).delete()
+    new File(save + ".tmp").renameTo(new File(save))
   }
   
   def doGet(parts: Set[String]) {
-    println("Game request from " + sender)
-    println("Available parts: " + parts.mkString(", "))
+    log("Creating merged save file: " + parts.count(_ => true) + " parts available.")
 
     val filtered = game.filter(parts)
-    println("Created save containing "
+    log("Created save containing "
       + filtered.asObject.getChildren("CREW").length
       + " crew and "
       + filtered.asObject.getChildren("VESSEL").length

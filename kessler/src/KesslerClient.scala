@@ -6,7 +6,7 @@ import scala.actors._
 class KesslerClient(command: String, arg: String) extends Actor {
 
   import java.util.Properties
-  import java.io.{File,FileInputStream}
+  import java.io.{File,FileInputStream,FileWriter}
   import scala.actors.remote.Node
   import scala.actors.remote.RemoteActor._
   import KesslerDaemon.{PutCommand, GetCommand, Success, Error}
@@ -14,11 +14,12 @@ class KesslerClient(command: String, arg: String) extends Actor {
   val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
   val host = config.getProperty("host", "localhost")
   val port = config.getProperty("port", "8988").toInt
-  val pass = config.getProperty("password", null)
+  val pass = config.getProperty("password", "")
 
   def act() {
+    println("Connecting to " + host + ":" + port + "...")
     val server = select(Node(host, port), 'kesslerd)
-    println("Connected to server: " + server)
+    server ! 'Connect
 
     (command match {
       case "put" => putGame(server, arg)
@@ -40,11 +41,22 @@ class KesslerClient(command: String, arg: String) extends Actor {
     println("Requesting new save file from server...")
     server !? new GetCommand(pass, parts) match {
       case Success(msg) => {
-
+        safeSave(filename, msg)
         Success("Game received successfully: " + msg.length + " bytes.")
       }
       case x: Any => x
     }
+  }
+
+  def safeSave(file: String, game: String) {
+    val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@hh.mm.ss").format(new java.util.Date())
+    println("Saving to " + file)
+    val fw = new FileWriter(file + ".tmp")
+    fw.write(game)
+    fw.close()
+    
+    new File(file).renameTo(new File(file + "." + timestamp))
+    new File(file + ".tmp").renameTo(new File(file))
   }
 
   def listParts: Set[String] = {

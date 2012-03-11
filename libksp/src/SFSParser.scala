@@ -27,7 +27,7 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def comment(o: ksp.Object) = "//[^\n]*".r ~> success(o)
 
   private def keyvalue(o: ksp.Object) = key ~ value ^^ {
-    case ~(k, v) => o.addProperty(k, v.dropWhile(c => c == '=' || c == ' '))
+    case ~(k, v) => o.addProperty(k, v.dropWhile(c => c == '=' || c == ' ').trim)
   }
 
   private def block(o: ksp.Object) = (blockname <~ "{") >> {
