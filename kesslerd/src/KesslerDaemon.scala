@@ -11,13 +11,20 @@ import scala.actors._
  * - get - get a copy of the merged file
  * - get <list> - get a copy of the merged file, excluding rockets that require parts not in <list>
  */
-class KesslerDaemon(port: Int, pass: String, games: List[String]) extends Actor {
+class KesslerDaemon() extends Actor {
   import scala.actors.remote.RemoteActor._
-  import KesslerDaemon.{SendCommand,GetCommand,Success,Error}
+  import KesslerDaemon.{PutCommand,GetCommand,Success,Error}
+  import java.util.Properties
+  import java.io.FileInputStream
+
+  val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
+  val port = config.getProperty("port", "8988").toInt
+  val pass = config.getProperty("password", null)
+  val games = config.getProperty("games", "kessler/merged.sfs:saves/default/persistent.sfs").split(':')
 
   var game = loadFile(games)
-  
-  def loadFile(names: List[String]): Game = {
+
+  def loadFile(names: Seq[String]): Game = {
     if (names.isEmpty) {
       println("Error: couldn't find any games to load. Exiting.")
       System.exit(1)
@@ -45,7 +52,7 @@ class KesslerDaemon(port: Int, pass: String, games: List[String]) extends Actor 
 
     loop {
       react {
-        case SendCommand(pass, save) => if (doAuth(pass)) doSend(save);
+        case PutCommand(pass, save) => if (doAuth(pass)) doSend(save);
         case GetCommand(pass, parts) => if (doAuth(pass)) doGet(parts);
       }
     }
@@ -89,7 +96,7 @@ class KesslerDaemon(port: Int, pass: String, games: List[String]) extends Actor 
 
 object KesslerDaemon {
   abstract case class Command();
-  case class SendCommand(pass: String, game: String) extends Command;
+  case class PutCommand(pass: String, game: String) extends Command;
   case class GetCommand(pass: String, exclude: Set[String]) extends Command;
 
   abstract case class Reply();
@@ -99,10 +106,6 @@ object KesslerDaemon {
   val default_games = List("kessler/merged.sfs", "saves/default/persistent.sfs")
 
   def main(args: Array[String]) {
-    val port = if (args.length > 0) args(0).toInt else 8988
-    val pass = if (args.length > 1 && args(1).length > 0) args(1) else null
-    val games = if (args.length > 2) args.drop(2).toList else default_games
-
-    new KesslerDaemon(port, pass, games).start()
+    new KesslerDaemon().start()
   }
 }

@@ -15,10 +15,10 @@ package ksp
  */
 object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def key       = """[^\s]+""".r
-  private def value     = """= [^\n]*""".r
+  private def value     = """= *[^\n]*""".r
   private def blockname = """\p{Upper}+""".r
 
-  private def S = phrase(sfs(new ksp.Object("GAME")))
+  private def S(kind: String) = phrase(sfs(new ksp.Object(kind)))
 
   private def sfs(o: ksp.Object): Parser[ksp.Object] = (entry(o) *) ~> success(o)
 
@@ -27,7 +27,7 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
   private def comment(o: ksp.Object) = "//[^\n]*".r ~> success(o)
 
   private def keyvalue(o: ksp.Object) = key ~ value ^^ {
-    case ~(k, v) => o.addProperty(k, v drop 2)
+    case ~(k, v) => o.addProperty(k, v.dropWhile(c => c == '=' || c == ' '))
   }
 
   private def block(o: ksp.Object) = (blockname <~ "{") >> {
@@ -36,8 +36,8 @@ object SFSParser extends scala.util.parsing.combinator.RegexParsers {
     }
   }
 
-  def parseString(reader: String) = parse(S, reader) match {
-    case Success(content, _) => new ksp.Game(content)
+  def parseString(kind: String, reader: String) = parse(S(kind), reader) match {
+    case Success(content, _) => content
     case fail: NoSuccess => throw new RuntimeException(fail.toString)
   }
 }

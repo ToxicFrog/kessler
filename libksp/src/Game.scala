@@ -1,6 +1,7 @@
 package ksp
 
-import java.io.FileWriter
+import java.io.{File, FileWriter}
+
 
 /* Superclass for types that wrap an in-game SFS object */
 
@@ -19,8 +20,9 @@ import java.io.FileWriter
  * For writing out the save, we dump properties, then crew, then vessels, then unknown blocks.
  */
 object Game {
-  def fromFile(file: String) = SFSParser.parseString(io.Source.fromFile(file).mkString)
-  def fromString(string: String) = SFSParser.parseString(string)
+  def fromFile(file: String) = new Game(SFSParser.parseString("GAME", io.Source.fromFile(file).mkString))
+  def fromFile(file: File) = SFSParser.parseString("GAME", io.Source.fromFile(file).mkString)
+  def fromString(string: String) = new Game(SFSParser.parseString("GAME", string))
 }
 
 class Game(self: Object) extends WrappedObject(self) {

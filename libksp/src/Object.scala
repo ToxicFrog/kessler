@@ -2,6 +2,13 @@ package ksp
 
 import collection.mutable.{LinkedHashMap, Buffer}
 import util.matching.Regex
+import java.io.File
+
+object Object {
+  def fromFile(file: String) = SFSParser.parseString("PART", io.Source.fromFile(file).mkString)
+  def fromFile(file: File) = SFSParser.parseString("PART", io.Source.fromFile(file).mkString)
+  def fromString(string: String) = SFSParser.parseString("PART", string)
+}
 
 class Object(val kind: String) {
   val properties = new LinkedHashMap[String, Buffer[String]]()
@@ -171,6 +178,4 @@ class Object(val kind: String) {
 
     (objs, key, index)
   }
-
-
 }
