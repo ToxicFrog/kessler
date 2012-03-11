@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact name="libksp:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/libksp_jar</output-path>
+  <artifact build-on-make="true" name="libksp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
     <root id="root">
       <element id="archive" name="libksp.jar">
         <element id="directory" name="META-INF">

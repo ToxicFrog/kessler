@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact name="kessler:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/kessler_jar</output-path>
+  <artifact build-on-make="true" name="kessler:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
     <root id="root">
-      <element id="archive" name="kessler.jar">
+      <element id="archive" name="client.jar">
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/kessler/src/META-INF/MANIFEST.MF" />
         </element>

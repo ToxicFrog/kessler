@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact name="KSPKessler.zip">
+  <artifact build-on-make="true" name="KSPKessler.zip">
     <output-path>$PROJECT_DIR$/</output-path>
     <root id="root">
       <element id="archive" name="KSPKessler.zip">

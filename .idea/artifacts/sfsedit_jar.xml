@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact name="sfsedit:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/sfsedit_jar</output-path>
+  <artifact build-on-make="true" name="sfsedit:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
     <root id="root">
       <element id="archive" name="sfsedit.jar">
         <element id="directory" name="META-INF">

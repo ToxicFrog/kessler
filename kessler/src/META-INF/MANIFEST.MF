@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Class-Path: scala-library.jar scala-swing.jar scala-dbc.jar
+Class-Path: scala-library.jar scala-swing.jar scala-dbc.jar server.jar
 Main-Class: kessler.KesslerClient
 
