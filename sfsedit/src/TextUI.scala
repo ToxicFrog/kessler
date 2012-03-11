@@ -32,9 +32,9 @@ class TextUI {
 
   @tailrec final def run() {
     try {
-      val in = new Scanner(ask(prompt))
-      
-      if (in.hasNext) runCommand(in)
+      val line = ask(prompt)
+      if (line == null) { println(""); System.exit(0) }
+      if (line.trim.length > 0) runCommand(line)
     } catch {
       case e: Exception => e.printStackTrace()
     }
