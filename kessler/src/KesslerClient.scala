@@ -41,20 +41,28 @@ class KesslerClient(command: String, arg: String) extends Actor {
     println("Requesting new save file from server...")
     server !? new GetCommand(pass, parts) match {
       case Success(msg) => {
-        safeSave(filename, msg)
+        safeSave(filename, Game.fromString(msg))
         Success("Game received successfully: " + msg.length + " bytes.")
       }
       case x: Any => x
     }
   }
 
-  def safeSave(file: String, game: String) {
+  def safeSave(file: String, game: Game) {
+    /* update elapsed-time value in downloaded save to match local save so
+       orbits are correct */
+    try {
+      val UT = Game.fromFile(file).asObject.getProperty("UT")
+      println("Updating elapsed time in save file to " + UT)
+      game.asObject.setProperty("UT", UT)
+    } catch {
+      case e: Exception => println("Warning: couldn't set elapsed-time in merged save: " + e.getMessage)
+    }
+
     val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@hh.mm.ss").format(new java.util.Date())
     println("Saving to " + file)
-    val fw = new FileWriter(file + ".tmp")
-    fw.write(game)
-    fw.close()
-    
+    game.save(file + ".tmp")
+
     new File(file).renameTo(new File(file + "." + timestamp))
     new File(file + ".tmp").renameTo(new File(file))
   }

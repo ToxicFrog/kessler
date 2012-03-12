@@ -48,7 +48,7 @@ class KesslerDaemon() extends Actor {
   override def exceptionHandler = {
     case e: Exception => e.printStackTrace()
   }
-  
+
   def act() {
     alive(port)
     register('kesslerd, this)
@@ -58,7 +58,7 @@ class KesslerDaemon() extends Actor {
       react {
         case PutCommand(pass, save) => if (doAuth(pass)) doSend(save);
         case GetCommand(pass, parts) => if (doAuth(pass)) doGet(parts);
-        case 'Connect => Unit
+        case 'Connect => println("Connection established from " + sender)
       }
     }
   }
