@@ -59,7 +59,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
       case e: Exception => println("Warning: couldn't set elapsed-time in merged save: " + e.getMessage)
     }
 
-    val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@hh.mm.ss").format(new java.util.Date())
+    val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@HH.mm.ss").format(new java.util.Date())
     println("Saving to " + file)
     game.save(file + ".tmp")
 

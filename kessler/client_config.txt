@@ -1,7 +1,7 @@
 # Kessler Client configuration file.
 
 # Host and port the server is running on.
-host = localhost
+host = durandal
 port = 8988
 
 # Server password. Uncomment and provide password if connecting to a password-protected server.
