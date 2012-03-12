@@ -52,7 +52,7 @@ class KesslerDaemon() extends Actor {
   def act() {
     alive(port)
     register('kesslerd, this)
-    println("Kessler daemon running on port " + port)
+    log("Kessler daemon running on port " + port)
 
     loop {
       react {
@@ -100,7 +100,11 @@ class KesslerDaemon() extends Actor {
       + filtered.asObject.getChildren("CREW").length
       + " crew and "
       + filtered.asObject.getChildren("VESSEL").length
-      + " vessels.")
+      + " vessels. (Original: "
+      + game.asObject.getChildren("CREW").length
+      + "/" + game.asObject.getChildren("VESSEL").length
+      + ")"
+    )
     reply(Success(filtered.mkString))
   }
 }
