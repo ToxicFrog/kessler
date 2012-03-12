@@ -15,6 +15,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
   val host = config.getProperty("host", "localhost")
   val port = config.getProperty("port", "8988").toInt
   val pass = config.getProperty("password", "")
+  val allow_debris = config.getProperty("allow_debris", "all")
 
   def act() {
     println("Connecting to " + host + ":" + port + "...")
@@ -41,6 +42,26 @@ class KesslerClient(command: String, arg: String) extends Actor {
     println("Requesting new save file from server...")
     server !? new GetCommand(pass, Game.fromFile(filename).mkString, parts) match {
       case Success(msg) => {
+        val game = Game.fromString(msg)
+
+        /* remove debris that is not pilotable */
+        if (allow_debris == "none" || allow_debris == "only_controllable") {
+          game.asObject.getChildren("VESSEL").filter {
+            _.getChild("ORBIT").getProperty("OBJ") == "0"
+          } foreach {
+            game.asObject.deleteChild(_)
+          }
+        }
+
+        /* remove objects with names ending in "Debris" */
+        if (allow_debris == "none" || allow_debris == "only_named") {
+          game.asObject.getChildren("VESSEL").filter {
+            _.getProperty("name").endsWith("Debris")
+          } foreach {
+            game.asObject.deleteChild(_)
+          }
+        }
+
         safeSave(filename, Game.fromString(msg))
         Success("Game received successfully: " + msg.length + " bytes.")
       }

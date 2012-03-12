@@ -6,3 +6,25 @@ port = 8988
 
 # Server password. Uncomment and provide password if connecting to a password-protected server.
 #password = topsecret
+
+
+# Whether or not to permit debris or not. Debris is interesting (and thematic!) but can bog down
+# the game on slower systems; furthermore, there is as yet no perfectly reliable way to detect
+# duplicate debris when each duplicate was created by a different player, so under some circumstances
+# you can end up with duplicates of the same debris (albeit not in the same place), or debris in
+# space that's a duplicate of stages still attached to a ship in your game.
+#
+# There are four possible values for this option:
+#   all                 allow all debris
+#   only_controllable   only allow controllable objects (reject any non-controllable debris)
+#   only_named          only allow objects with names that don't end in "Debris"
+#   none                reject all debris (allow only pilotable objects with names that don't end in "Debris")
+# If unspecified, the default is "all".
+#
+# Regardless of this setting, debris you create yourself will be left as-is; it only affects whether
+# debris from other players will be downloaded by Kessler.
+#
+allow_debris = all
+#allow_debris = only_controllable
+#allow_debris = only_named
+#allow_debris = none
