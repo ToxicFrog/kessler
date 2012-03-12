@@ -12,7 +12,7 @@ import java.io.FileWriter
  * - get - get a copy of the merged file
  * - get <list> - get a copy of the merged file, excluding rockets that require parts not in <list>
  */
-class KesslerDaemon() extends Actor {
+class KesslerDaemon(configfile: String) extends Actor {
   import scala.actors.remote.RemoteActor._
   import KesslerDaemon.{PutCommand,GetCommand,Success,Error}
   import java.util.Properties
@@ -58,7 +58,7 @@ class KesslerDaemon() extends Actor {
     loop {
       react {
         case PutCommand(pass, save) => if (doAuth(pass)) doSend(save);
-        case GetCommand(pass, parts) => if (doAuth(pass)) doGet(parts);
+        case GetCommand(pass, save, parts) => if (doAuth(pass)) doGet(save, parts);
         case 'Connect => println("Connection established from " + sender)
       }
     }
@@ -93,7 +93,7 @@ class KesslerDaemon() extends Actor {
     new File(save + ".tmp").renameTo(new File(save))
   }
   
-  def doGet(parts: Set[String]) {
+  def doGet(save: String, parts: Set[String]) {
     log("Creating merged save file: " + parts.count(_ => true) + " parts available.")
 
     val filtered = game.filter(parts)
@@ -106,14 +106,17 @@ class KesslerDaemon() extends Actor {
       + "/" + game.asObject.getChildren("VESSEL").length
       + ")"
     )
-    reply(Success(filtered.mkString))
+    
+    val merged = Game.fromString(save).merge(filtered)
+    
+    reply(Success(merged.mkString))
   }
 }
 
 object KesslerDaemon {
   abstract case class Command();
   case class PutCommand(pass: String, game: String) extends Command;
-  case class GetCommand(pass: String, exclude: Set[String]) extends Command;
+  case class GetCommand(pass: String, game: String, exclude: Set[String]) extends Command;
 
   abstract case class Reply();
   case class Success(msg: String) extends Reply;

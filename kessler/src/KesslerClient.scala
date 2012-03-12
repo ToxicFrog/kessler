@@ -39,7 +39,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
     println("Scanning KSP directory for parts...")
     val parts = listParts
     println("Requesting new save file from server...")
-    server !? new GetCommand(pass, parts) match {
+    server !? new GetCommand(pass, Game.fromFile(filename).mkString, parts) match {
       case Success(msg) => {
         safeSave(filename, Game.fromString(msg))
         Success("Game received successfully: " + msg.length + " bytes.")
