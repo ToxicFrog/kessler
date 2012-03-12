@@ -18,11 +18,12 @@ class KesslerDaemon() extends Actor {
   import java.util.Properties
   import java.io.{File,FileInputStream,FileWriter}
 
-  val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
+  println("Loading configuration from " + configfile)
+  val config = new Properties(); config.load(new FileInputStream(configfile))
   val port = config.getProperty("port", "8988").toInt
   val pass = config.getProperty("password", "")
-  val save = config.getProperty("password", "kessler/merged.sfs")
-  val games = config.getProperty("games", "kessler/merged.sfs:saves/default/persistent.sfs").split(':')
+  val save = config.getProperty("save", "kessler/merged.sfs")
+  val games = config.getProperty("load", "kessler/merged.sfs:saves/default/persistent.sfs").split(':')
 
   var game = loadFile(games)
 
@@ -118,9 +119,8 @@ object KesslerDaemon {
   case class Success(msg: String) extends Reply;
   case class Error(msg: String) extends Reply;
 
-  val default_games = List("kessler/merged.sfs", "saves/default/persistent.sfs")
-
   def main(args: Array[String]) {
-    new KesslerDaemon().start()
+    val configfile = if (args.length > 0) args(0) else "kessler/client_config.txt"
+    new KesslerDaemon(configfile).start()
   }
 }
