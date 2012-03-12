@@ -89,15 +89,17 @@ class Game(self: Object) extends WrappedObject(self) {
       result.addChild(other.kind, other.copy)
     }
 
-    other.asObject.getChildren("VESSEL") filterNot {
-      /* The comparison here needs to be slightly more involved than "do we already contain
-       * this vessel", since it might have fragmented in one save file, in which case we need
-       * to mark not just the original but also all debris as duplicates.
-       * More problematically, if the root part is gone but there is still some debris left
-       * over from it, we need to mark this vessel as a duplicate - basically, a vessel is
-       * a duplicate if ANY of its parts exist in the current game.
+    other.asObject.getChildren("VESSEL") filterNot { vessel =>
+      /**
+       * The previous approach of comparing the UID of the root part turns out not to work,
+       * because the UID changes every time the ship is focused! So instead we compare the
+       * LCT of the ship, which is set when it detaches from its parent (or takes off) and
+       * does not change thereafter.
+       * 
+       * This does mean that we can't easily determine when debris has been created that is
+       * associated with a ship that exists in the save. I can't figure out a way around that.
        */
-      _.getChildren("PART").exists(result contains WrappedObject(_))
+      self.getChildren("VESSEL").exists(_.getProperty("lct") == vessel.getProperty("lct"))
     } map {
       v => mergeVessel(v.copy)
     }
