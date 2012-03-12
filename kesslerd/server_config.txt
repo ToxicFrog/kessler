@@ -11,4 +11,4 @@ save = kessler/merged.sfs
 
 # Colon-separated list of files to load on startup (the server will load the first one it finds).
 # The first one of these should match kessler.server.save unless you want it to reset the world every time it starts up.
-load = kessler/merged.sfs:saves/default/persistent.sfs
+load = kessler/merged.sfs:saves/default/persistent.sfs:kessler/empty.sfs

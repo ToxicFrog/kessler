@@ -12,6 +12,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/libksp/launcher.bat" />
           <element id="file-copy" path="$PROJECT_DIR$/kessler/client_config.txt" />
           <element id="file-copy" path="$PROJECT_DIR$/kesslerd/server_config.txt" />
+          <element id="file-copy" path="$PROJECT_DIR$/kesslerd/empty.sfs" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/sfsedit/kessler_editor.bat" />
         <element id="file-copy" path="$PROJECT_DIR$/kessler/kessler_client.bat" />

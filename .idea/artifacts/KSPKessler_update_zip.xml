@@ -11,6 +11,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/libksp.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/server.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/sfsedit.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/kesslerd/empty.sfs" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/kessler/kessler_client.bat" />
         <element id="file-copy" path="$PROJECT_DIR$/sfsedit/kessler_editor.bat" />
