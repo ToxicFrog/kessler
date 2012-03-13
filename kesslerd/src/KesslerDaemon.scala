@@ -14,10 +14,12 @@ import java.io.FileWriter
  */
 class KesslerDaemon(configfile: String) extends Actor {
   import scala.actors.remote.RemoteActor._
-  import KesslerDaemon.{PutCommand,GetCommand,Success,Error}
+  import KesslerDaemon.{ConnectCommand,PutCommand,GetCommand,Success,Error}
   import java.util.Properties
-  import java.io.{File,FileInputStream,FileWriter}
+  import java.io.{File,FileInputStream}
 
+  val VERSION = 12031200;
+  
   println("Loading configuration from " + configfile)
   val config = new Properties(); config.load(new FileInputStream(configfile))
   val port = config.getProperty("port", "8988").toInt
@@ -47,7 +49,7 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
 
   override def exceptionHandler = {
-    case e: Exception => e.printStackTrace()
+    case e: Exception => e.printStackTrace(); sender ! Error(e.getMessage)
   }
 
   def act() {
@@ -57,10 +59,20 @@ class KesslerDaemon(configfile: String) extends Actor {
 
     loop {
       react {
-        case PutCommand(pass, save) => if (doAuth(pass)) doSend(save);
+        case ConnectCommand(pass, version) => checkVersion(version) && doAuth(pass)
+        case PutCommand(pass, save) => if (doAuth(pass)) doPut(save);
         case GetCommand(pass, save, parts) => if (doAuth(pass)) doGet(save, parts);
-        case 'Connect => println("Connection established from " + sender)
+        case other => sender ! Error("Invalid command: " + other)
       }
+    }
+  }
+  
+  def checkVersion(version: Int) = {
+    if (version != VERSION) {
+      sender ! Error("Version mismatch: server " + VERSION + ", client " + version)
+      false
+    } else {
+      true
     }
   }
 
@@ -75,7 +87,7 @@ class KesslerDaemon(configfile: String) extends Actor {
     }
   }
 
-  def doSend(save: String) {
+  def doPut(save: String) {
     var count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length)
 
     game = game.merge(Game.fromString(save))
@@ -115,6 +127,7 @@ class KesslerDaemon(configfile: String) extends Actor {
 
 object KesslerDaemon {
   abstract case class Command();
+  case class ConnectCommand(pass: String, version: Int) extends Command
   case class PutCommand(pass: String, game: String) extends Command;
   case class GetCommand(pass: String, game: String, exclude: Set[String]) extends Command;
 
