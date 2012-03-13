@@ -97,7 +97,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
     /* remove debris that is not pilotable */
     if (allow_debris == "none" || allow_debris == "only_controllable") {
       println("Culling non-controllable debris...")
-      tidyGame(newGame, _.getChild("ORBIT").getProperty("OBJ") == "0")
+      tidyGame(newGame, _.getChild("ORBIT").getProperty("OBJ") != "0") // controllable objects all have OBJ=0
     }
 
     /* remove objects with names ending in "Debris" */
