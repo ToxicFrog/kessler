@@ -7,6 +7,11 @@ port = 8988
 # Server password. Uncomment and provide password if connecting to a password-protected server.
 #password = topsecret
 
+# Where (and if) to log rejections of craft based on missing parts. If enabled this will allow you
+# to identify which parts you need to install to get all of the craft from the server, but it can
+# be extremely spammy, which is why it logs to a file.
+# If not set, rejections are not logged.
+log_rejects = kessler/rejected.txt
 
 # Whether or not to permit debris or not. Debris is interesting (and thematic!) but can bog down
 # the game on slower systems; furthermore, there is as yet no perfectly reliable way to detect

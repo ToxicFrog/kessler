@@ -2,6 +2,7 @@ package kessler
 
 import ksp._
 import actors._
+import java.io.PrintStream
 
 class KesslerClient(command: String, arg: String) extends Actor {
 
@@ -17,6 +18,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
   val host = config.getProperty("host", "localhost")
   val port = config.getProperty("port", "8988").toInt
   val pass = config.getProperty("password", "")
+  val log_rejects = config.getProperty("log_rejects", null)
   val allow_debris = config.getProperty("allow_debris", "all")
 
   val server = select(Node(host, port), 'kesslerd)
@@ -61,6 +63,23 @@ class KesslerClient(command: String, arg: String) extends Actor {
     println(send(60000, PutCommand(pass, io.Source.fromFile(arg).mkString)))
   }
 
+  def logRejects(game: Game, parts: Set[String]) {
+    val fout = new PrintStream(log_rejects)
+
+    game.asObject.getChildren("VESSEL").foreach { v =>
+      val missing = v.getChildren("PART").map(_.getProperty("name")).filterNot(parts contains _)
+
+      if (!missing.isEmpty) {
+        fout.println("Rejecting vessel " + v.getProperty("name") + " - requires the following parts:")
+        missing foreach { name =>
+          fout.println("\t" + name)
+        }
+      }
+    }
+    
+    fout.close()
+  }
+  
   def getGame() {
     println("Requesting new save file from server...")
     val localGame = Game.fromFile(arg)
@@ -70,6 +89,9 @@ class KesslerClient(command: String, arg: String) extends Actor {
     val parts = listParts
 
     println("Merging save...")
+    if (log_rejects != null) {
+      logRejects(remoteGame, parts)
+    }
     val newGame = localGame.merge(remoteGame.filter(parts))
 
     /* remove debris that is not pilotable */
