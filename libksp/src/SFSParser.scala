@@ -14,7 +14,7 @@ package ksp
  * blocks containing information about the vessel's structure.
  */
 object SFSParser extends scala.util.parsing.combinator.RegexParsers {
-  private def key       = """[^\s]+""".r
+  private def key       = """[^=\s]+""".r
   private def value     = """= *[^\n]*""".r
   private def blockname = """\p{Upper}+""".r
 
