@@ -18,7 +18,7 @@ class KesslerDaemon(configfile: String) extends Actor {
   import java.util.Properties
   import java.io.{File,FileInputStream}
 
-  val VERSION = 12031200;
+  val VERSION = 12031300;
   
   println("Loading configuration from " + configfile)
   val config = new Properties(); config.load(new FileInputStream(configfile))
@@ -61,7 +61,7 @@ class KesslerDaemon(configfile: String) extends Actor {
       react {
         case ConnectCommand(pass, version) => doAuth(pass) && checkVersion(version)
         case PutCommand(pass, save) => if (doAuth(pass)) doPut(save);
-        case GetCommand(pass, save, parts) => if (doAuth(pass)) doGet(save, parts);
+        case GetCommand(pass) => if (doAuth(pass)) doGet();
         case other => sender ! Error("Invalid command: " + other)
       }
     }
@@ -107,23 +107,15 @@ class KesslerDaemon(configfile: String) extends Actor {
     new File(save + ".tmp").renameTo(new File(save))
   }
   
-  def doGet(save: String, parts: Set[String]) {
-    log("Creating merged save file: " + parts.count(_ => true) + " parts available.")
-
-    val filtered = game.filter(parts)
-    log("Created save containing "
-      + filtered.asObject.getChildren("CREW").length
-      + " crew and "
-      + filtered.asObject.getChildren("VESSEL").length
-      + " vessels. (Original: "
+  def doGet() {
+    log("Sending merged save file containing "
       + game.asObject.getChildren("CREW").length
-      + "/" + game.asObject.getChildren("VESSEL").length
-      + ")"
+      + " crew and "
+      + game.asObject.getChildren("VESSEL").length
+      + " vessels."
     )
     
-    val merged = Game.fromString(save).merge(filtered)
-    
-    reply(Success(merged.mkString))
+    reply(Success(game.mkString))
   }
 }
 
@@ -131,7 +123,7 @@ object KesslerDaemon {
   abstract case class Command();
   case class ConnectCommand(pass: String, version: Int) extends Command
   case class PutCommand(pass: String, game: String) extends Command;
-  case class GetCommand(pass: String, game: String, exclude: Set[String]) extends Command;
+  case class GetCommand(pass: String) extends Command;
 
   abstract case class Reply();
   case class Success(msg: String) extends Reply;

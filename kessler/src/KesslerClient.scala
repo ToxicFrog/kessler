@@ -11,7 +11,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
   import actors.remote.RemoteActor._
   import KesslerDaemon.{PutCommand, GetCommand, ConnectCommand, Success, Error}
 
-  val VERSION = 12031200;
+  val VERSION = 12031300;
 
   val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
   val host = config.getProperty("host", "localhost")
@@ -62,20 +62,25 @@ class KesslerClient(command: String, arg: String) extends Actor {
   }
 
   def getGame() {
-    println("Scanning KSP directory for parts...")
-    val parts = listParts
-    
     println("Requesting new save file from server...")
     val localGame = Game.fromFile(arg)
-    val newGame = Game.fromString(send(60000, GetCommand(pass, localGame.mkString, parts)))
+    val remoteGame = Game.fromString(send(60000, GetCommand(pass)))
+
+    println("Scanning KSP directory for parts...")
+    val parts = listParts
+
+    println("Merging save...")
+    val newGame = localGame.merge(remoteGame.filter(parts))
 
     /* remove debris that is not pilotable */
     if (allow_debris == "none" || allow_debris == "only_controllable") {
+      println("Culling non-controllable debris...")
       tidyGame(newGame, _.getChild("ORBIT").getProperty("OBJ") == "0")
     }
 
     /* remove objects with names ending in "Debris" */
     if (allow_debris == "none" || allow_debris == "only_named") {
+      println("Culling named debris...")
       tidyGame(newGame, _.getProperty("name").endsWith("Debris"))
     }
 
@@ -87,7 +92,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
     safeSave(arg, newGame)
   }
-  
+
   def tidyGame(game: Game, filter: (Object => Boolean)) {
     game.asObject.getChildren("VESSEL").filter {
       filter(_)
