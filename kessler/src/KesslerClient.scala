@@ -36,13 +36,15 @@ class KesslerClient(command: String, arg: String) extends Actor {
   def act() {
     println("Connecting to " + host + ":" + port + "...")
 
-    val sid = send(10000, ConnectCommand(pass, VERSION))
+    send(10000, ConnectCommand(pass, VERSION))
     
     command match {
-      case "put" => putGame(sid)
-      case "get" => getGame(sid)
+      case "put" => putGame()
+      case "get" => getGame()
       case other => die("Invalid command: " + other)
     }
+
+    System.exit(0)
   }
   
   def send(timeout: Long, message: KesslerDaemon.Command): String = {
@@ -54,18 +56,18 @@ class KesslerClient(command: String, arg: String) extends Actor {
     }
   }
 
-  def putGame(sid: String) {
+  def putGame() {
     println("Uploading " + arg + " to server for merge...")
-    println(send(60000, PutCommand(sid, io.Source.fromFile(arg).mkString)))
+    println(send(60000, PutCommand(pass, io.Source.fromFile(arg).mkString)))
   }
 
-  def getGame(sid: String) {
+  def getGame() {
     println("Scanning KSP directory for parts...")
     val parts = listParts
     
     println("Requesting new save file from server...")
     val localGame = Game.fromFile(arg)
-    val newGame = Game.fromString(send(60000, GetCommand(sid, localGame.mkString, parts)))
+    val newGame = Game.fromString(send(60000, GetCommand(pass, localGame.mkString, parts)))
 
     /* remove debris that is not pilotable */
     if (allow_debris == "none" || allow_debris == "only_controllable") {

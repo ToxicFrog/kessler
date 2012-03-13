@@ -55,11 +55,11 @@ class KesslerDaemon(configfile: String) extends Actor {
   def act() {
     alive(port)
     register('kesslerd, this)
-    log("Kessler daemon running on port " + port)
+    log("Kessler daemon running on port " + port + " (protocol version " + VERSION + ")")
 
     loop {
       react {
-        case ConnectCommand(pass, version) => checkVersion(version) && doAuth(pass)
+        case ConnectCommand(pass, version) => doAuth(pass) && checkVersion(version)
         case PutCommand(pass, save) => if (doAuth(pass)) doPut(save);
         case GetCommand(pass, save, parts) => if (doAuth(pass)) doGet(save, parts);
         case other => sender ! Error("Invalid command: " + other)
@@ -68,10 +68,12 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
   
   def checkVersion(version: Int) = {
+    println("Performing version check: " + version)
     if (version != VERSION) {
       sender ! Error("Version mismatch: server " + VERSION + ", client " + version)
       false
     } else {
+      sender ! Success("Server ready.")
       true
     }
   }
@@ -81,7 +83,7 @@ class KesslerDaemon(configfile: String) extends Actor {
       log("Command received from " + sender)
       true
     } else {
-      log("Rejecting command from " + sender + ": invalid password)")
+      log("Rejecting command from " + sender + ": invalid password")
       reply(Error("invalid password"))
       false
     }
