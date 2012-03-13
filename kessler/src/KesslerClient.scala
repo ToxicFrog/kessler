@@ -96,12 +96,14 @@ class KesslerClient(command: String, arg: String) extends Actor {
     }
   }
 
-  def safeSave(file: String, game: Game) {
+  def safeSave(filename: String, game: Game) {
     val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@HH.mm.ss").format(new java.util.Date())
-    println("Saving to " + file)
-    game.save(file + ".tmp")
+    println("Saving to " + filename)
 
-    new File(file).renameTo(new File(file + "." + timestamp)) && new File(file + ".tmp").renameTo(new File(file))
+    if (!new File(filename).renameTo(new File(filename + "." + timestamp)))
+      println("Warning: couldn't create backup of save file.")
+
+    game.save(filename)
   }
 
   def listParts: Set[String] = {
