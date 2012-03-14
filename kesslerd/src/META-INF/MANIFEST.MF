@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Class-Path: scala-library.jar scala-swing.jar scala-dbc.jar scala-libr
- ary.jar scala-swing.jar scala-dbc.jar
+ ary.jar scala-swing.jar scala-dbc.jar libksp.jar sfsedit.jar
 Main-Class: kessler.KesslerDaemon
 
