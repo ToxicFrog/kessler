@@ -13,23 +13,31 @@ port = 8988
 # If not set, rejections are not logged.
 log_rejects = kessler/rejected.txt
 
-# Whether or not to permit debris or not. Debris is interesting (and thematic!) but can bog down
-# the game on slower systems; furthermore, there is as yet no perfectly reliable way to detect
-# duplicate debris when each duplicate was created by a different player, so under some circumstances
-# you can end up with duplicates of the same debris (albeit not in the same place), or debris in
-# space that's a duplicate of stages still attached to a ship in your game.
+# What filters to apply to incoming vessels. These have the same meanings as in the editor's
+# "select" and "clean" commands; the ones that are actually useful for Kessler are listed here.
 #
-# There are four possible values for this option:
-#   all                 allow all debris
-#   only_controllable   only allow controllable objects (reject any non-controllable debris)
-#   only_named          only allow objects with names that don't end in "Debris"
-#   none                reject all debris (allow only pilotable objects with names that don't end in "Debris")
-# If unspecified, the default is "all".
+#       debris          vessels that cannot be player controlled
+#       launchpad       anything on the KSC launchpad
+#       ksc             anything on the KSC grounds but not on the launchpad itself
+#       nan             anything with NaN errors in it
+#       ghost           anything with a ship definition but no actual parts to display
 #
-# Regardless of this setting, debris you create yourself will be left as-is; it only affects whether
-# debris from other players will be downloaded by Kessler.
+# Note that these apply only to stuff newly downloaded from the server; stuff already in your
+# save file won't be affected. If you want kessler to automatically clean up parts of your save
+# file, see the "clean" option.
 #
-allow_debris = all
-#allow_debris = only_controllable
-#allow_debris = only_named
-#allow_debris = none
+#filter = debris,launchpad,ksc,nan,ghost
+#
+# The recommended value is to filter out ships with NaN errors (causes massive performance hits),
+# ghost ships (clutter up the map screen with orbits with no ship attached), and ships on the
+# launchpad (or clients will get a "X is already on the launchpad!" warning every time they sync).
+#
+filter = launchpad,nan,ghost
+
+# What filters to apply to your own save file. This applies both to stuff downloaded from the
+# server and stuff in your save. Use it if you want Kessler to automatically clean up certain
+# classes of errors like NaN temperature/orbital errors or "ghost" ships with no parts attached
+# to them. It works the same way as "filter" above.
+#
+#clean = debris,launchpad,ksc,NaN,ghost
+clean = nan,ghost

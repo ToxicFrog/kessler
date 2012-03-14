@@ -14,14 +14,23 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
   val VERSION = 12031300;
 
-  val config = new Properties(); config.load(new FileInputStream("kessler/client_config.txt"))
-  val host = config.getProperty("host", "localhost")
-  val port = config.getProperty("port", "8988").toInt
-  val pass = config.getProperty("password", "")
-  val log_rejects = config.getProperty("log_rejects", null)
-  val allow_debris = config.getProperty("allow_debris", "all")
+  private object config extends Properties(new Properties()) {
+    load(new FileInputStream("kessler/client_config.txt"))
 
-  val server = select(Node(host, port), 'kesslerd)
+    defaults put ("host", "localhost")
+    defaults put ("port", "8988")
+    defaults put ("filter", "nan,ghost,launchpad")
+    defaults put ("clean", "nan,ghost")
+
+    def apply(key: String) = getProperty(key)
+    def apply(key: Symbol) = getProperty(key name)
+
+    def port = this('port).toInt
+    def filter = this('filter).split(",")
+    def clean = this('clean).split(",")
+  }
+
+  val server = select(Node(config('host), config.port), 'kesslerd)
   
   override def exceptionHandler = {
     case e: Exception => e.printStackTrace(); die("unhandled exception")
@@ -36,9 +45,9 @@ class KesslerClient(command: String, arg: String) extends Actor {
   }
   
   def act() {
-    println("Connecting to " + host + ":" + port + "...")
+    println("Connecting to " + config('host) + ":" + config.port + "...")
 
-    send(10000, ConnectCommand(pass, VERSION))
+    send(10000, ConnectCommand(config('pass), VERSION))
     
     command match {
       case "put" => putGame()
@@ -60,11 +69,11 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
   def putGame() {
     println("Uploading " + arg + " to server for merge...")
-    println(send(60000, PutCommand(pass, io.Source.fromFile(arg).mkString)))
+    println(send(60000, PutCommand(config('pass), io.Source.fromFile(arg).mkString)))
   }
 
   def logRejects(game: Game, parts: Set[String]) {
-    val fout = new PrintStream(log_rejects)
+    val fout = new PrintStream(config('log_rejects))
 
     game.asObject.getChildren("VESSEL").foreach { v =>
       val missing = v.getChildren("PART").map(_.getProperty("name")).filterNot(parts contains _)
@@ -83,27 +92,23 @@ class KesslerClient(command: String, arg: String) extends Actor {
   def getGame() {
     println("Requesting new save file from server...")
     val localGame = Game.fromFile(arg)
-    val remoteGame = Game.fromString(send(60000, GetCommand(pass)))
+    var remoteGame = Game.fromString(send(60000, GetCommand(config('pass))))
 
     println("Scanning KSP directory for parts...")
     val parts = listParts
 
+    if (config.filter != null) {
+      remoteGame = filterGame(remoteGame, config.filter)
+    }
+
     println("Merging save...")
-    if (log_rejects != null) {
+    if (config('log_rejects) != null) {
       logRejects(remoteGame, parts)
     }
-    val newGame = localGame.merge(remoteGame.filter(parts))
+    var newGame = localGame.merge(remoteGame.filter(parts))
 
-    /* remove debris that is not pilotable */
-    if (allow_debris == "none" || allow_debris == "only_controllable") {
-      println("Culling non-controllable debris...")
-      tidyGame(newGame, _.getChild("ORBIT").getProperty("OBJ") != "0") // controllable objects all have OBJ=0
-    }
-
-    /* remove objects with names ending in "Debris" */
-    if (allow_debris == "none" || allow_debris == "only_named") {
-      println("Culling named debris...")
-      tidyGame(newGame, _.getProperty("name").endsWith("Debris"))
+    if (config.clean != null) {
+      newGame = filterGame(newGame, config.clean)
     }
 
     /* update elapsed-time value in downloaded save to match local save so
@@ -115,12 +120,20 @@ class KesslerClient(command: String, arg: String) extends Actor {
     safeSave(arg, newGame)
   }
 
-  def tidyGame(game: Game, filter: (Object => Boolean)) {
-    game.asObject.getChildren("VESSEL").filter {
-      filter(_)
-    } foreach {
-      game.asObject.deleteChild(_)
+  def filterGame(game: Game, filters: Seq[String]) = {
+    import kessler.GameEditor
+    val editor = new GameEditor(game)
+
+    filters foreach { filter =>
+      try {
+        println("Applying filter '" + filter + "'")
+        editor.runCommand("clean " + filter)
+      } catch {
+        case e: Exception => println("Error applying filter '" + filter + "': " + e.getMessage)
+      }
     }
+
+    editor.game
   }
 
   def safeSave(filename: String, game: Game) {
