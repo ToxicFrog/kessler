@@ -2,7 +2,7 @@ import java.io.File
 import java.util.Scanner
 import ksp.Game
 
-object GameEditor extends DefaultTextUI {
+class GameEditor extends DefaultTextUI {
   var backed_up = false
   var dirty = false
   var filename = ""
@@ -676,6 +676,9 @@ object GameEditor extends DefaultTextUI {
     }
   }
 
+}
+
+object GameEditor extends GameEditor {
   def main(args:Array[String]) {
     println("Welcome to the KSP Save File Editor")
     println("Type 'help' for a list of commands, or 'help <command>' for information on a specific command.")
@@ -692,5 +695,3 @@ object GameEditor extends DefaultTextUI {
     run()
   }
 }
-
-
