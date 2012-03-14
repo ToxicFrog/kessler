@@ -1,3 +1,5 @@
+package kessler
+
 import java.util.Scanner
 import collection.mutable.Map
 import annotation.tailrec

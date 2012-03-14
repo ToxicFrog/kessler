@@ -1,15 +1,16 @@
+package kessler
+
 import java.io.File
 import java.util.Scanner
 import ksp.Game
 
-class GameEditor extends DefaultTextUI {
+class GameEditor(var game: Game = null) extends DefaultTextUI {
   var backed_up = false
   var dirty = false
   var filename = ""
   var timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@hh-mm-ss").format(new java.util.Date())
 
   type Selection = Seq[ksp.Object]
-  var game: ksp.Game = null
   var selected: Selection = Seq.empty[ksp.Object]
   var stack: List[Selection] = List.empty[Selection]
   var select_type: String = "VESSEL"
@@ -678,7 +679,7 @@ class GameEditor extends DefaultTextUI {
 
 }
 
-object GameEditor extends GameEditor {
+object GameEditor extends GameEditor(null) {
   def main(args:Array[String]) {
     println("Welcome to the KSP Save File Editor")
     println("Type 'help' for a list of commands, or 'help <command>' for information on a specific command.")

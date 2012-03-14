@@ -1,3 +1,5 @@
+package kessler
+
 import java.util.Scanner
 
 class DefaultTextUI extends TextUI {
