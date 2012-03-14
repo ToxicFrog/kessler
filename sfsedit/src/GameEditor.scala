@@ -100,11 +100,14 @@ object GameEditor extends DefaultTextUI {
   }
 
   private val specials = Map[String, Filter](
-    "landed" -> (obj => ksp.Vessel.isLanded(obj)),
-    "debris" -> (obj => ksp.Vessel.isDebris(obj)),
-    "ghost"  -> (obj => ksp.Vessel.isGhost(obj)),
-    "invert" -> (obj => !isSelected(obj)),
-    "all" -> (_ => true)
+    "all"       -> (_ => true),
+    "debris"    -> (obj => ksp.Vessel.isDebris(obj)),
+    "ghost"     -> (obj => ksp.Vessel.isGhost(obj)),
+    "invert"    -> (obj => !isSelected(obj)),
+    "ksc"       -> (obj => obj("landedAt") == "KSC"),
+    "landed"    -> (obj => ksp.Vessel.isLanded(obj)),
+    "launchpad" -> (obj => obj("landedAt") == "LaunchPad"),
+    "nan"       -> (obj => obj.containsNaN)
   )
 
   private val compares = Map[String, Op](
@@ -298,11 +301,14 @@ object GameEditor extends DefaultTextUI {
 
       In addition to these operators, there are a few one-word filters included for convenience:
 
+        all       all objects
+        debris    all debris objects (objects not player-controllable)
+        ghost     all ghost ships (ships with orbital information but no parts, created by some staging bugs)
+        invert    all objects not currently selected (selected items are deselected and vice versa)
+        ksc       all objects on the ground around KSC, but not actually on the launchpad
         landed    matches all objects which are landed or splashed down
-        debris    matches all debris objects (objects without crew)
-        ghost     matches all ghost ships (ships with orbital information but no parts, created by some staging bugs)
-        invert    matches all objects not currently selected (selected items are deselected and vice versa)
-        all       matches all objects
+        launchpad all objects on the KSC launchpad itself
+        nan       all objects potentially containing NaN errors
 
       Like the operators, these can be prefixed with ! to invert them.
 

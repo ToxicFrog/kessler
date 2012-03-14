@@ -73,6 +73,7 @@ class Object(val kind: String) {
    * Property getters
    */
   def getProperty(key: String, n: Int = 0) = getProperties(key)(n)
+  def apply(key: String, n: Int = 0) = getProperty(key, n)
 
   def getProperties(key: String) = properties(key)
 
@@ -80,6 +81,14 @@ class Object(val kind: String) {
     val (objs, key, index) = parseProperty(prop)
 
     objs filter (_.hasProperty(key)) map (_.getProperty(key, index))
+  }
+
+  def containsNaN: Boolean = {
+    properties.exists {
+      case (key, ps) => ps exists (_ contains "NaN")
+    } || children.exists {
+      case (key, cs) => cs exists (_.containsNaN)
+    }
   }
 
   /*
