@@ -12,3 +12,20 @@ save = kessler/merged.sfs
 # Comma-separated list of files to load on startup (the server will load the first one it finds).
 # The first one of these should match kessler.server.save unless you want it to reset the world every time it starts up.
 load = kessler/merged.sfs,saves/default/persistent.sfs:kessler/empty.sfs
+
+# What filters to apply to incoming vessels. These have the same meanings as in the editor's
+# "select" and "clean" commands; the ones that are actually useful for Kessler are listed here.
+#
+#       debris          vessels that cannot be player controlled
+#       launchpad       anything on the KSC launchpad
+#       ksc             anything on the KSC grounds but not on the launchpad itself
+#       nan             anything with NaN errors in it
+#       ghost           anything with a ship definition but no actual parts to display
+#
+#filter = debris,launchpad,ksc,nan,ghost
+#
+# The recommended value is to filter out ships with NaN errors (causes massive performance hits),
+# ghost ships (clutter up the map screen with orbits with no ship attached), and ships on the
+# launchpad (or clients will get a "X is already on the launchpad!" warning every time they sync).
+#
+filter = launchpad,nan,ghost

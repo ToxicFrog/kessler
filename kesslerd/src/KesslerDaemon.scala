@@ -35,6 +35,7 @@ class KesslerDaemon(configfile: String) extends Actor {
     
     def port = this('port).toInt
     def load = this('load).split(",")
+    def filter = this('filter).split(",")
   }
   
   var game = loadFile(config.load)
@@ -101,14 +102,36 @@ class KesslerDaemon(configfile: String) extends Actor {
 
   def doPut(save: String) {
     var count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length)
-
-    game = game.merge(Game.fromString(save))
+    
+    val newGame = if (config.filter != null) {
+      filterGame(Game.fromString(save), config.filter)
+    } else {
+      Game.fromString(save)
+    }
+    
+    game = game.merge(newGame)
     count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length) - count
 
     log(count + " objects merged into world.")
     reply(Success(count + " objects merged."))
 
     safeSave(game)
+  }
+
+  def filterGame(game: Game, filters: Seq[String]) = {
+    import kessler.GameEditor
+    val editor = new GameEditor(game)
+    
+    filters foreach { filter =>
+      try {
+        log("Applying filter '" + filter + "'")
+        editor.runCommand("clean " + filter)
+      } catch {
+        case e: Exception => log("Error applying filter '" + filter + "': " + e.getMessage)
+      }
+    }
+
+    editor.game
   }
 
   def safeSave(game: Game) {
