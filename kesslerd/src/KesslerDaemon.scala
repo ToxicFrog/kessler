@@ -21,13 +21,23 @@ class KesslerDaemon(configfile: String) extends Actor {
   val VERSION = 12031300;
   
   println("Loading configuration from " + configfile)
-  val config = new Properties(); config.load(new FileInputStream(configfile))
-  val port = config.getProperty("port", "8988").toInt
-  val pass = config.getProperty("password", "")
-  val save = config.getProperty("save", "kessler/merged.sfs")
-  val games = config.getProperty("load", "kessler/merged.sfs:saves/default/persistent.sfs").split(':')
+  
+  private object config extends Properties(new Properties()) {
+    load(new FileInputStream(configfile))
 
-  var game = loadFile(games)
+    defaults put ("port", "8988")
+    defaults put ("save", "kessler/merged.sfs")
+    defaults put ("load", "kessler/merged.sfs,saves/default/persistent.sfs")
+    defaults put ("filter", "nan,ghost,launchpad")
+
+    def apply(key: String) = getProperty(key)
+    def apply(key: Symbol) = getProperty(key name)
+    
+    def port = this('port).toInt
+    def load = this('load).split(",")
+  }
+  
+  var game = loadFile(config.load)
 
   def log(message: String) { println(message) }
   
@@ -53,9 +63,9 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
 
   def act() {
-    alive(port)
+    alive(config.port)
     register('kesslerd, this)
-    log("Kessler daemon running on port " + port + " (protocol version " + VERSION + ")")
+    log("Kessler daemon running on port " + config.port + " (protocol version " + VERSION + ")")
 
     loop {
       react {
@@ -79,7 +89,7 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
 
   def doAuth(pass: String) = {
-    if (this.pass == "" || this.pass == pass) {
+    if (config('pass) == null || config('pass) == pass) {
       log("Command received from " + sender)
       true
     } else {
@@ -102,9 +112,9 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
 
   def safeSave(game: Game) {
-    game.save(save + ".tmp")
-    new File(save).delete()
-    new File(save + ".tmp").renameTo(new File(save))
+    game.save(config('save) + ".tmp")
+    new File(config('save)).delete()
+    new File(config('save) + ".tmp").renameTo(new File(config('save)))
   }
   
   def doGet() {
