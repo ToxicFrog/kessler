@@ -1,4 +1,12 @@
-Kessler is a set of tools for Kerbal Space Program. Currently it consists of a Scala library for editing save files (libksp), and a tool based on that library (sfsedit). With this editor, you can (among other things):
+Kessler is an asynchronous multiplayer client and server package for Kerbal Space Program. By automatically merging save files, it allows for a shared world: anything one player launches will appear in the save files of every player connected to the server. At the moment, it features:
+
+ * Automatic synchronization and merging of save file contents
+ * Limited duplicate detection
+ * Ability to filter save contents on the client *and* server, for example, to exclude debris or NaN-affected objects
+
+At present, only the first version of a flight uploaded to the server is stored, and later changes made to it by players will not be uploaded; a feature is under development that would permit later changes to a flight to be copied to all of the clients, allowing not just shared game worlds, but shared flights.
+
+The client and server also come with a save file editor, allowing you to:
 
  * Combine save files
  * Teleport objects to any orbit
@@ -6,10 +14,24 @@ Kessler is a set of tools for Kerbal Space Program. Currently it consists of a S
  * Delete objects
  * Edit raw object properties such as orbital characteristics and staging information
 
-To install Kessler, download KSPKessler.zip and unpack it your KSP directory. You should end up with a "kessler" directory and "sfsedit.bat" file in the same directory as KSP.exe.
+
+
+To install Kessler, download KSPKessler.zip and unpack it your KSP directory. You should end up with a "kessler" directory and three batch files, "kessler_server", "kessler_client", and "kessler_editor".
 
 In addition to Kessler itself, you will need Java installed.
 
-To run the save file editor, windows users can double-click on sfsedit.bat; on any operating system, you can start it directly with the command 'java -jar kessler/sfsedit.jar' from the KSP directory.
+To host a server, edit kessler/server_config.txt and then run kessler_server.bat.
 
-Once the save file editor is running, use 'help' to list all available commands, or 'help command' to get information on a specific command.
+To join a game, edit kessler/client_config.txt (make sure the host, port, and password you enter match the ones the server is using) and run kessler_client.bat. You can run it any time as long as you aren't actually looking at the world - so, at the VAB or KSC is safe, in-flight or at the tracking centre is not.
+
+To edit your save file, run kessler_editor.bat. Type 'help' at the prompt to get a list of commands, and 'help <command>' for help on a specific command.
+
+OSX/Linux users: you should be able to run the jar directly, or from the terminal in your KSP directory with:
+
+  java -cp kessler -jar kessler/server.jar   # for the server
+  java -cp kessler -jar kessler/client.jar   # for the client
+  java -cp kessler -jar kessler/sfsedit.jar  # for the editor
+
+
+Kessler is free and open source software, written in Scala and released under the terms of the MIT License.
+
