@@ -1,4 +1,6 @@
 # Kessler Client configuration file.
+# Lines starting with '#' are comments and will be ignored by the program.
+# To uncomment a line, just delete the '#' at the start.
 
 # Host and port the server is running on.
 host = localhost

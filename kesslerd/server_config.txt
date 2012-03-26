@@ -1,4 +1,6 @@
 # Kessler Server configuration file.
+# Lines starting with '#' are comments and will be ignored by the program.
+# To uncomment a line, just delete the '#' at the start.
 
 # Port to listen for connections on
 port = 8988
