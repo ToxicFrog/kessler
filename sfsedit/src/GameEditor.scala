@@ -73,11 +73,11 @@ class GameEditor(var game: Game = null) extends DefaultTextUI {
       }
 
       // special cases like 'all' and 'debris'
-      if (specials contains key) {
+      if (specials contains key.toLowerCase) {
         if (invert)
-          p = concat(p, not(specials(key)))
+          p = concat(p, not(specials(key.toLowerCase)))
         else
-          p = concat(p, specials(key))
+          p = concat(p, specials(key.toLowerCase))
 
       // parse 'key op value' condition
       } else {
