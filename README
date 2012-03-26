@@ -15,6 +15,8 @@ The client and server also come with a save file editor, allowing you to:
  * Edit raw object properties such as orbital characteristics and staging information
 
 
+    ---- INSTALLATION ----
+
 
 To install Kessler, download KSPKessler.zip and unpack it your KSP directory. You should end up with a "kessler" directory and three batch files, "kessler_server", "kessler_client", and "kessler_editor".
 
@@ -32,6 +34,21 @@ OSX/Linux users: you should be able to run the jar directly, or from the termina
   java -cp kessler -jar kessler/client.jar   # for the client
   java -cp kessler -jar kessler/sfsedit.jar  # for the editor
 
+
+    ---- TROUBLESHOOTING ----
+
+* Kessler does not start, saying it can't find your Java install or that bin\java.exe is not found
+
+  Make sure you have a recent (1.5 or later) Java install. Also make sure that you haven't accidentally ended up with two or more Java installs interfering with each other; this can cause problems on some systems.
+
+* The Kessler client crashes after downloading the save from the server with an "InternalError" or an error about "Currency.data"
+
+  Your Java install is corrupt - either it is missing vital files, or you are running one Java version but using the data files from a different Java version. Completely uninstall Java, reboot, and install Java from scratch.
+
+* The Kessler client crashes after downloading the save from the server with a "FileNotFound" error or an error about "part.cfg"
+* The Kessler client crashes after downloading the save from the server with a parser error
+
+  You have a file or directory in your KSP parts/ directory that is not a valid part. I am currently working on a fix that will cause it to simply skip such things rather than crashing.
 
 Kessler is free and open source software, written in Scala and released under the terms of the MIT License.
 
