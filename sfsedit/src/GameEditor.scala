@@ -569,6 +569,8 @@ class GameEditor(var game: Game = null) extends DefaultTextUI {
       ksp.Orbit.bodies foreach {
         b => printf("    %4d  %s\n", b.id, b.names.mkString(", "))
       }
+      println("")
+      println("Note: names are case sensitive!")
     }
 
     override def run(in: Scanner) {
