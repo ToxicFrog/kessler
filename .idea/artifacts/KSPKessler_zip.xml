@@ -17,7 +17,9 @@
         <element id="file-copy" path="$PROJECT_DIR$/sfsedit/kessler_editor.bat" />
         <element id="file-copy" path="$PROJECT_DIR$/kessler/kessler_client.bat" />
         <element id="file-copy" path="$PROJECT_DIR$/kesslerd/kessler_server.bat" />
-        <element id="file-copy" path="$PROJECT_DIR$/kessler/KSP Kessler Wrapper.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/kesslerd/kessler_server.sh" />
+        <element id="file-copy" path="$PROJECT_DIR$/kessler/kessler_client.sh" />
+        <element id="file-copy" path="$PROJECT_DIR$/sfsedit/kessler_editor.sh" />
       </element>
     </root>
   </artifact>
