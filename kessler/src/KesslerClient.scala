@@ -147,7 +147,9 @@ class KesslerClient(command: String, arg: String) extends Actor {
   }
 
   def listParts: Set[String] = {
-    new File("parts").listFiles.map(
+    new File("parts").listFiles.filter(
+      x => new File(x, "part.cfg").exists
+    ).map(
       x => """_""".r.replaceAllIn(Object.fromFile(new File(x, "part.cfg")).getProperty("name"), ".")
     ).toSet
   }
