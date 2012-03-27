@@ -34,7 +34,10 @@ log_rejects = kessler/rejected.txt
 # ghost ships (clutter up the map screen with orbits with no ship attached), and ships on the
 # launchpad (or clients will get a "X is already on the launchpad!" warning every time they sync).
 #
-filter = launchpad,nan,ghost
+# Debris filtering is also probably a good idea since a crowded server can completely destroy
+# performance in the map if debris syncing is left on.
+#
+filter = debris,launchpad,nan,ghost
 
 # What filters to apply to your own save file. This applies both to stuff downloaded from the
 # server and stuff in your save. Use it if you want Kessler to automatically clean up certain
