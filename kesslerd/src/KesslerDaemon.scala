@@ -81,6 +81,7 @@ class KesslerDaemon(configfile: String) extends Actor {
   def checkVersion(version: Int) = {
     println("Performing version check: " + version)
     if (version != VERSION) {
+      println("Rejecting connection (client is using mismatched version " + version + ")")
       sender ! Error("Version mismatch: server " + VERSION + ", client " + version)
       false
     } else {
@@ -112,8 +113,8 @@ class KesslerDaemon(configfile: String) extends Actor {
     game = game.merge(newGame)
     count = game.asObject.children.values.foldLeft(0)((total, buf) => total + buf.length) - count
 
-    log(count + " objects merged into world.")
-    reply(Success(count + " objects merged."))
+    log(count + " objects received from client.")
+    reply(Success(count + " objects successfully uploaded."))
 
     safeSave(game)
   }
