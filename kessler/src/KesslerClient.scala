@@ -149,17 +149,36 @@ class KesslerClient(command: String, arg: String) extends Actor {
   def listParts: Set[String] = {
     new File("parts").listFiles.filter(
       x => new File(x, "part.cfg").exists
-    ).map(
-      x => """_""".r.replaceAllIn(Object.fromFile(new File(x, "part.cfg")).getProperty("name"), ".")
+    ).map( x =>
+      try {
+        """_""".r.replaceAllIn(Object.fromFile(new File(x, "part.cfg")).getProperty("name"), ".")
+      } catch {
+        case e: Exception => {
+          println("Error loading part definition for " + x + ": " + e.getMessage + "; skipping")
+          "<corrupt part definition>"
+        }
+      }
     ).toSet
   }
 }
 
 object KesslerClient {
   def main(args: Array[String]) {
-    val command = args(0)
-    val arg = args(1)
+    try {
+      val command = args(0)
+      val arg = args(1)
 
-    new KesslerClient(command, arg).start()
+      new KesslerClient(command, arg).start()
+    } catch {
+      case e: Exception => {
+        println("  ---- BEGIN STACK TRACE ----")
+        e.printStackTrace()
+        println("   ---- END STACK TRACE ----")
+        println("Error executing Kessler client!")
+        println("Please record the above stack trace and report it to the developer as a bug.")
+        print("Press enter to continue...")
+        readLine()
+      }
+    }
   }
 }
