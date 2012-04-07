@@ -2,7 +2,6 @@ package kessler
 
 import ksp._
 import scala.actors._
-import java.io.FileWriter
 
 /**
  * A daemon for merging save files and replying with the merged files.
@@ -14,11 +13,11 @@ import java.io.FileWriter
  */
 class KesslerDaemon(configfile: String) extends Actor {
   import scala.actors.remote.RemoteActor._
-  import KesslerDaemon.{ConnectCommand,PutCommand,GetCommand,Success,Error}
+  import Protocol._
   import java.util.Properties
   import java.io.{File,FileInputStream}
 
-  val VERSION = 12031300;
+  val VERSION = 12040700;
   
   println("Loading configuration from " + configfile)
   
@@ -27,7 +26,7 @@ class KesslerDaemon(configfile: String) extends Actor {
 
     defaults put ("port", "8988")
     defaults put ("save", "kessler/merged.sfs")
-    defaults put ("load", "kessler/merged.sfs,saves/default/persistent.sfs")
+    defaults put ("load", "kessler/merged.sfs,saves/default/persistent.sfs,kessler/empty.sfs")
     defaults put ("filter", "nan,ghost,launchpad")
 
     def apply(key: String) = getProperty(key)
@@ -56,6 +55,7 @@ class KesslerDaemon(configfile: String) extends Actor {
       game
     } catch {
       case e: Exception => log(" failed (" + e.getMessage + ")"); loadFile(names.tail)
+      case other => log(" failed - unknown result - " + other); loadFile(names.tail)
     }
   }
 
@@ -71,8 +71,8 @@ class KesslerDaemon(configfile: String) extends Actor {
     loop {
       react {
         case ConnectCommand(pass, version) => doAuth(pass) && checkVersion(version)
-        case PutCommand(pass, save) => if (doAuth(pass)) doPut(save);
-        case GetCommand(pass) => if (doAuth(pass)) doGet();
+        case put: PutCommand => if (doAuth(put.pass)) doPut(put.payload);
+        case get: GetCommand => if (doAuth(get.pass)) doGet();
         case other => sender ! Error("Invalid command: " + other)
       }
     }
@@ -142,27 +142,21 @@ class KesslerDaemon(configfile: String) extends Actor {
   }
   
   def doGet() {
+    val (crew,vessels) = (game.asObject.getChildren("CREW").length,game.asObject.getChildren("VESSEL").length)
     log("Sending merged save file containing "
-      + game.asObject.getChildren("CREW").length
+      + crew
       + " crew and "
-      + game.asObject.getChildren("VESSEL").length
+      + vessels
       + " vessels."
     )
-    
-    reply(Success(game.mkString))
+
+    val msg = Success("Save file contains " + crew + " crew and " + vessels + " vessels.")
+    msg.payload = game.mkString
+    reply(msg)
   }
 }
 
 object KesslerDaemon {
-  abstract case class Command();
-  case class ConnectCommand(pass: String, version: Int) extends Command
-  case class PutCommand(pass: String, game: String) extends Command;
-  case class GetCommand(pass: String) extends Command;
-
-  abstract case class Reply();
-  case class Success(msg: String) extends Reply;
-  case class Error(msg: String) extends Reply;
-
   def main(args: Array[String]) {
     val configfile = if (args.length > 0) args(0) else "kessler/client_config.txt"
     new KesslerDaemon(configfile).start()
