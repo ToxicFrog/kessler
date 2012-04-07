@@ -1,10 +1,9 @@
 package kessler
 
 import ksp._
-import actors._
-import java.io.PrintStream
+import util.logging._
 
-class KesslerClient(command: String, arg: String) extends Actor {
+class KesslerClient extends Logged {
 
   import java.util.Properties
   import java.io.{File,FileInputStream}
@@ -14,6 +13,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
   val VERSION = 12031300;
 
+  // load configuration file - this is a normal Java property file
   private object config extends Properties(new Properties()) {
     load(new FileInputStream("kessler/client_config.txt"))
 
@@ -31,77 +31,66 @@ class KesslerClient(command: String, arg: String) extends Actor {
   }
 
   val server = select(Node(config('host), config.port), 'kesslerd)
-  
-  override def exceptionHandler = {
-    case e: Exception => e.printStackTrace(); die("unhandled exception")
+
+  // connect to the server - we automatically send a ConnectCommand, which
+  // includes an authentication and version check
+  // If we timeout or get a version mismatch, send() will call die()
+  def connect() {
+    log("Connecting to " + config('host) + ":" + config.port + "...")
+    send(10000, ConnectCommand(config('pass), VERSION))
   }
-  
+
   def die(reason: String) = {
-    Console.err.println(reason)
+    log(reason)
     System.exit(1)
-    println("Exiting")
-    exit()
     ""
   }
-  
-  def act() {
-    println("Connecting to " + config('host) + ":" + config.port + "...")
 
-    send(10000, ConnectCommand(config('pass), VERSION))
-    
-    command match {
-      case "put" => putGame()
-      case "get" => getGame()
-      case other => die("Invalid command: " + other)
-    }
-
-    System.exit(0)
-  }
-  
   def send(timeout: Long, message: KesslerDaemon.Command): String = {
     server !? (timeout, message) match {
       case Some(Success(msg)) => msg
       case Some(Error(msg)) => die("Error from server: " + msg)
-      case None => die("Error: timeout in communication with server.")
+      case None => die("Timeout in communication with server.")
       case other => die("Invalid message from server: " + other)
     }
   }
 
-  def putGame() {
-    println("Uploading " + arg + " to server for merge...")
-    println(send(60000, PutCommand(config('pass), io.Source.fromFile(arg).mkString)))
+  def syncGame(save: String) {
+    putGame(save)
+    getGame(save)
+  }
+
+  def putGame(save: String) {
+    log("Uploading " + save + " to server for merge...")
+    log(send(60000, PutCommand(config('pass), io.Source.fromFile(save).mkString)))
   }
 
   def logRejects(game: Game, parts: Set[String]) {
-    val fout = new PrintStream(config('log_rejects))
-
     game.asObject.getChildren("VESSEL").foreach { v =>
       val missing = v.getChildren("PART").map(_.getProperty("name")).filterNot(parts contains _)
 
       if (!missing.isEmpty) {
-        fout.println("Rejecting vessel " + v.getProperty("name") + " - requires the following parts:")
+        log("Rejecting vessel " + v.getProperty("name") + " - requires the following parts:")
         missing foreach { name =>
-          fout.println("\t" + name)
+          log("\t" + name)
         }
       }
     }
-    
-    fout.close()
   }
   
-  def getGame() {
-    println("Requesting new save file from server...")
-    val localGame = Game.fromFile(arg)
+  def getGame(save: String) {
+    log("Requesting new save file from server...")
+    val localGame = Game.fromFile(save)
     var remoteGame = Game.fromString(send(60000, GetCommand(config('pass))))
 
-    println("Scanning KSP directory for parts...")
+    log("Scanning KSP directory for parts...")
     val parts = listParts
 
     if (config.filter != null) {
       remoteGame = filterGame(remoteGame, config.filter)
     }
 
-    println("Merging save...")
+    log("Merging save...")
     if (config('log_rejects) != null) {
       logRejects(remoteGame, parts)
     }
@@ -114,10 +103,10 @@ class KesslerClient(command: String, arg: String) extends Actor {
     /* update elapsed-time value in downloaded save to match local save so
        orbits are correct */
     val UT = localGame.asObject.getProperty("UT")
-    println("Setting timestamp in merged game to " + UT)
+    log("Setting timestamp in merged game to " + UT)
     newGame.asObject.setProperty("UT", UT)
 
-    safeSave(arg, newGame)
+    safeSave(save, newGame)
   }
 
   def filterGame(game: Game, filters: Seq[String]) = {
@@ -126,10 +115,10 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
     filters foreach { filter =>
       try {
-        println("Applying filter '" + filter + "'")
+        log("Applying filter '" + filter + "'")
         editor.runCommand("clean " + filter)
       } catch {
-        case e: Exception => println("Error applying filter '" + filter + "': " + e.getMessage)
+        case e: Exception => log("Error applying filter '" + filter + "': " + e.getMessage)
       }
     }
 
@@ -138,10 +127,10 @@ class KesslerClient(command: String, arg: String) extends Actor {
 
   def safeSave(filename: String, game: Game) {
     val timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd@HH.mm.ss").format(new java.util.Date())
-    println("Saving to " + filename)
+    log("Saving to " + filename)
 
     if (!new File(filename).renameTo(new File(filename + "." + timestamp)))
-      println("Warning: couldn't create backup of save file.")
+      log("Warning: couldn't create backup of save file.")
 
     game.save(filename)
   }
@@ -154,7 +143,7 @@ class KesslerClient(command: String, arg: String) extends Actor {
         """_""".r.replaceAllIn(Object.fromFile(new File(x, "part.cfg")).getProperty("name"), ".")
       } catch {
         case e: Exception => {
-          println("Error loading part definition for " + x + ": " + e.getMessage + "; skipping")
+          log("Error loading part definition for " + x + ": " + e.getMessage + "; skipping")
           "<corrupt part definition>"
         }
       }
@@ -163,19 +152,39 @@ class KesslerClient(command: String, arg: String) extends Actor {
 }
 
 object KesslerClient {
+  import java.io.PrintStream
+
+  trait ClientLogger extends Logged {
+    val out = new PrintStream("kessler/client_log.txt")
+
+    override def log(s: String) {
+      println(s)
+      out.println(s)
+    }
+  }
+
   def main(args: Array[String]) {
+    val client = new KesslerClient with ClientLogger
+
     try {
       val command = args(0)
       val arg = args(1)
 
-      new KesslerClient(command, arg).start()
+      client.connect()
+
+      command match {
+        case "put" => client.putGame(arg)
+        case "get" => client.getGame(arg)
+        case "sync" => client.syncGame(arg)
+        case other => client.die("Invalid command: " + other)
+      }
     } catch {
       case e: Exception => {
-        println("  ---- BEGIN STACK TRACE ----")
-        e.printStackTrace()
-        println("   ---- END STACK TRACE ----")
-        println("Error executing Kessler client!")
-        println("Please record the above stack trace and report it to the developer as a bug.")
+        client.log("  ---- BEGIN STACK TRACE ----")
+        e.printStackTrace(client.out)
+        client.log("   ---- END STACK TRACE ----")
+        client.log("Unhandled error executing Kessler client!")
+        client.log("Please record the above stack trace and report it to the developer as a bug.")
         print("Press enter to continue...")
         readLine()
       }
