@@ -37,7 +37,7 @@ log_rejects = kessler/rejected.txt
 # Debris filtering is also probably a good idea since a crowded server can completely destroy
 # performance in the map if debris syncing is left on.
 #
-filter = debris,launchpad,nan,ghost
+filter = debris,launchpad,ghost
 
 # What filters to apply to your own save file. This applies both to stuff downloaded from the
 # server and stuff in your save. Use it if you want Kessler to automatically clean up certain
@@ -45,4 +45,4 @@ filter = debris,launchpad,nan,ghost
 # to them. It works the same way as "filter" above.
 #
 #clean = debris,launchpad,ksc,NaN,ghost
-clean = nan,ghost
+clean = ghost
