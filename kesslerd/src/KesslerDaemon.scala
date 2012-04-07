@@ -158,7 +158,7 @@ class KesslerDaemon(configfile: String) extends Actor {
 
 object KesslerDaemon {
   def main(args: Array[String]) {
-    val configfile = if (args.length > 0) args(0) else "kessler/client_config.txt"
+    val configfile = if (args.length > 0) args(0) else "kessler/server_config.txt"
     new KesslerDaemon(configfile).start()
   }
 }
