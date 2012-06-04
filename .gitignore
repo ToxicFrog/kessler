@@ -1,4 +1,5 @@
 .idea/workspace.xml
 out
 parts/
+run/
 *.sfs
