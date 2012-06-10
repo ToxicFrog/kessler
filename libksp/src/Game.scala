@@ -20,9 +20,9 @@ import java.io.{File, FileWriter}
  * For writing out the save, we dump properties, then crew, then vessels, then unknown blocks.
  */
 object Game {
-  def fromFile(file: String) = new Game(SFSParser.parseString("GAME", io.Source.fromFile(file).mkString))
-  def fromFile(file: File) = SFSParser.parseString("GAME", io.Source.fromFile(file).mkString)
-  def fromString(string: String) = new Game(SFSParser.parseString("GAME", string))
+  def fromFile(file: String) = new Game(Object.fromFile(file))
+  def fromFile(file: File) = new Game(Object.fromFile(file))
+  def fromString(string: String) = new Game(Object.fromString(string))
 }
 
 class Game(self: Object) extends WrappedObject(self) {

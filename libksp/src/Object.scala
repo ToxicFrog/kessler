@@ -5,8 +5,8 @@ import util.matching.Regex
 import java.io.File
 
 object Object {
-  def fromFile(file: String) = SFSParser.parseString("PART", io.Source.fromFile(file).mkString)
-  def fromFile(file: File) = SFSParser.parseString("PART", io.Source.fromFile(file).mkString)
+  def fromFile(file: String) = SFSParser.parseString("PART", io.Source.fromFile(file)("UTF-8").mkString)
+  def fromFile(file: File) = SFSParser.parseString("PART", io.Source.fromFile(file)("UTF-8").mkString)
   def fromString(string: String) = SFSParser.parseString("PART", string)
 }
 
