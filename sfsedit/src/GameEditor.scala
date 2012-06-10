@@ -535,8 +535,7 @@ class GameEditor(var game: Game = null) extends DefaultTextUI {
       (0-2).
 
       Altitude is altitude above the surface (in km), not orbital radius - for example,
-      'teleport Kerbin 100' will give you an altitude of 100km and a semi-major axis of
-      700km.
+      'orbit Kerbin 100' will give you an altitude of 100km and a semi-major axis of 700km.
 
       Inclination is given in degrees. An inclination of 0 will give you an equatorial orbit;
       90 will give you a polar orbit. (180 will give you an equatorial orbit in the opposite
