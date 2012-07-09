@@ -9,6 +9,7 @@
     (if matching
       (let [groups (re-find (:pattern matching) input)
             groups (if (string? groups) [groups] groups)]
+        ;(println "token:" (:tag matching) (apply (:result matching) groups))
         (assoc matching
           :text (first groups)
           :value (apply (:result matching) groups)
@@ -31,13 +32,14 @@
 (defn- lex-next
   "Processes the next token in input according to lexer and returns a vector of [token lexer remaining], where token is the token processed, lexer is the updated state of the lexer, and remaining is the rest of the input."
   [lexer input]
-  (let [token (lex-token lexer input)
-        input (subs input (:length token))
-        [next-line next-col] (advance-cursor token)
-        lexer (assoc lexer :line next-line :col next-col)]
-    (if (= (:value token) :drop-token)
-      (recur lexer input)
-      [token lexer input])))
+  (if (= 0 (count input)) nil
+    (let [token (lex-token lexer input)
+          input (subs input (:length token))
+          [next-line next-col] (advance-cursor token)
+          lexer (assoc lexer :line next-line :col next-col)]
+      (if (= (:value token) :drop-token)
+        (recur lexer input)
+        [token lexer input]))))
 
 (defn lexer []
   { :line 1 :col 1
@@ -47,9 +49,7 @@
   "Returns a lazy sequence of the tokens contained in input according to lexer. Throws an exception if lexing fails."
   [lexer input]
   (let [[lex-head lexer lex-tail] (lex-next lexer input)]
-    (if (> (count lex-tail) 0)
-      (lazy-seq (cons lex-head (lex-seq lexer lex-tail)))
-      (cons lex-head nil))))
+    (lazy-seq (cons lex-head (lex-seq lexer lex-tail)))))
 
 (defn lexer
   "Given any number of [pattern tag result] lexeme descriptions, constructs a lexer from them.

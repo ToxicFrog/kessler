@@ -67,19 +67,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.clj" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="core.clj" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ca/ancilla/kessler/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="20" selection-start="1577" selection-end="1577" vertical-scroll-proportion="0.0">
+            <state line="34" column="24" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.64123374">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lexer.clj" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="lexer.clj" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/ancilla/kessler/lexer.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="16" selection-start="71" selection-end="71" vertical-scroll-proportion="0.08279221">
+            <state line="41" column="31" selection-start="1865" selection-end="1865" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,8 +128,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/.lein-git-deps/clearley/test/clearley/examples/json.clj" />
-        <option value="$PROJECT_DIR$/src/ca/ancilla/kessler/core.clj" />
         <option value="$PROJECT_DIR$/src/ca/ancilla/kessler/lexer.clj" />
+        <option value="$PROJECT_DIR$/src/ca/ancilla/kessler/core.clj" />
       </list>
     </option>
   </component>
@@ -381,11 +381,6 @@
         <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.lein-git-deps/clearley/test/clearley/examples/json.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="19" selection-start="2456" selection-end="2456" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.lein-git-deps/clearley/test/clearley/examples/calculator.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -396,16 +391,21 @@
         <state line="44" column="0" selection-start="1702" selection-end="1702" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/ancilla/kessler/core.clj">
+    <entry file="file://$PROJECT_DIR$/.lein-git-deps/clearley/test/clearley/examples/json.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="20" selection-start="1577" selection-end="1577" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="75" column="19" selection-start="2456" selection-end="2456" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/ancilla/kessler/lexer.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="16" selection-start="71" selection-end="71" vertical-scroll-proportion="0.08279221">
+        <state line="41" column="31" selection-start="1865" selection-end="1865" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/ancilla/kessler/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="24" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.64123374">
           <folding />
         </state>
       </provider>
