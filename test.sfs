@@ -1,0 +1,5462 @@
+// KSP Flight State
+// Edited by libKSP
+
+version = 0.14.0
+UT = 148164.707099645
+activeVessel = 27
+CREW {
+	name = Jebediah Kerman
+	brave = 0.5
+	dumb = 0.5
+	badS = True
+	state = 1
+	ToD = 86430.9799993075
+}
+CREW {
+	name = Bill Kerman
+	brave = 0.5
+	dumb = 0.8
+	badS = False
+	state = 1
+	ToD = 86430.9799993075
+}
+CREW {
+	name = Bob Kerman
+	brave = 0.3
+	dumb = 0.1
+	badS = False
+	state = 1
+	ToD = 86430.9799993075
+}
+CREW {
+	name = Joncott Kerman
+	brave = 0.4697686
+	dumb = 0.7731647
+	badS = False
+	state = 1
+	ToD = 88418.0635901483
+}
+CREW {
+	name = Herlin Kerman
+	brave = 0.672255
+	dumb = 0.2442271
+	badS = False
+	state = 1
+	ToD = 88418.0635901483
+}
+CREW {
+	name = Samfrey Kerman
+	brave = 0.6181046
+	dumb = 0.476707
+	badS = True
+	state = 1
+	ToD = 88418.0635901483
+}
+CREW {
+	name = Millan Kerman
+	brave = 0.3867995
+	dumb = 0.6043662
+	badS = True
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Malton Kerman
+	brave = 0.8418986
+	dumb = 0.06548727
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Patford Kerman
+	brave = 0.1467811
+	dumb = 0.07443762
+	badS = True
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Adwig Kerman
+	brave = 0.9433295
+	dumb = 0.1995562
+	badS = False
+	state = 1
+	ToD = 92033.5752024629
+}
+CREW {
+	name = Genewin Kerman
+	brave = 0.5302255
+	dumb = 0.2907364
+	badS = False
+	state = 1
+	ToD = 92033.5752024629
+}
+CREW {
+	name = Seanfry Kerman
+	brave = 0.2164698
+	dumb = 0.5815998
+	badS = False
+	state = 1
+	ToD = 92033.5752024629
+}
+CREW {
+	name = Samdred Kerman
+	brave = 0.5097546
+	dumb = 0.6990719
+	badS = True
+	state = 3
+	ToD = 144786.717341947
+}
+CREW {
+	name = Joring Kerman
+	brave = 0.2641899
+	dumb = 0.7293993
+	badS = False
+	state = 3
+	ToD = 144786.717341947
+}
+CREW {
+	name = Kellin Kerman
+	brave = 0.2662054
+	dumb = 0.2488792
+	badS = False
+	state = 3
+	ToD = 144786.717341947
+}
+CREW {
+	name = Aldton Kerman
+	brave = 0.2665758
+	dumb = 0.09593523
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Dilbart Kerman
+	brave = 0.1897166
+	dumb = 0.03822982
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Shepwise Kerman
+	brave = 0.4128649
+	dumb = 0.5095277
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Barwise Kerman
+	brave = 0.834988
+	dumb = 0.8056071
+	badS = False
+	state = 1
+	ToD = 94612.2215632778
+}
+CREW {
+	name = Wilton Kerman
+	brave = 0.4639317
+	dumb = 0.555466
+	badS = False
+	state = 1
+	ToD = 94612.2215632778
+}
+CREW {
+	name = Dudrick Kerman
+	brave = 0.428827
+	dumb = 0.1726819
+	badS = False
+	state = 1
+	ToD = 94612.2215632778
+}
+CREW {
+	name = Bursby Kerman
+	brave = 0.476306
+	dumb = 0.7141469
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Wilfry Kerman
+	brave = 0.4296302
+	dumb = 0.2888965
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Tom Kerman
+	brave = 0.6257774
+	dumb = 0.8550477
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Calcott Kerman
+	brave = 0.3679958
+	dumb = 0.5953304
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Shelbert Kerman
+	brave = 0.5084893
+	dumb = 0.676448
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Corrim Kerman
+	brave = 0.8683443
+	dumb = 0.8425033
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Billy-Bobdrin Kerman
+	brave = 0.5398893
+	dumb = 0.089239
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Jonlock Kerman
+	brave = 0.9896427
+	dumb = 0.551467
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Rayler Kerman
+	brave = 0.4646791
+	dumb = 0.5669244
+	badS = False
+	state = 1
+	ToD = 0
+}
+CREW {
+	name = Merrie Kerman
+	brave = 0.6937209
+	dumb = 0.7902975
+	badS = False
+	state = 1
+	ToD = 97190.7999236053
+}
+CREW {
+	name = Sigble Kerman
+	brave = 0.6461893
+	dumb = 0.7609662
+	badS = False
+	state = 1
+	ToD = 97190.7999236053
+}
+CREW {
+	name = Kenny Kerman
+	brave = 0.8234802
+	dumb = 0.8761803
+	badS = False
+	state = 1
+	ToD = 97190.7999236053
+}
+CREW {
+	name = Luding Kerman
+	brave = 0.6713784
+	dumb = 0.05702984
+	badS = True
+	state = 0
+	ToD = 97235.8399225986
+}
+CREW {
+	name = Phillorf Kerman
+	brave = 0.07289684
+	dumb = 0.03798711
+	badS = False
+	state = 0
+	ToD = 97235.8399225986
+}
+CREW {
+	name = Mallock Kerman
+	brave = 0.3347804
+	dumb = 0.1142823
+	badS = False
+	state = 0
+	ToD = 97235.8399225986
+}
+CREW {
+	name = Gusbles Kerman
+	brave = 0.004346728
+	dumb = 0.8862122
+	badS = False
+	state = 0
+	ToD = 97286.9799214556
+}
+CREW {
+	name = Gilny Kerman
+	brave = 0.4698234
+	dumb = 0.01793194
+	badS = False
+	state = 0
+	ToD = 97286.9799214556
+}
+CREW {
+	name = Shepble Kerman
+	brave = 0.407895
+	dumb = 0.7288092
+	badS = False
+	state = 0
+	ToD = 97286.9799214556
+}
+CREW {
+	name = Roman Kerman
+	brave = 0.8368286
+	dumb = 0.3326268
+	badS = False
+	state = 0
+	ToD = 97456.4799176669
+}
+CREW {
+	name = Wilfred Kerman
+	brave = 0.4861209
+	dumb = 0.6366935
+	badS = False
+	state = 0
+	ToD = 97456.4799176669
+}
+CREW {
+	name = Alson Kerman
+	brave = 0.9349259
+	dumb = 0.6065493
+	badS = False
+	state = 0
+	ToD = 97456.4799176669
+}
+CREW {
+	name = Burble Kerman
+	brave = 0.2987573
+	dumb = 0.6077717
+	badS = True
+	state = 0
+	ToD = 15215.5367609713
+}
+CREW {
+	name = Neilvey Kerman
+	brave = 0.432099
+	dumb = 0.7258284
+	badS = False
+	state = 0
+	ToD = 15215.5367609713
+}
+CREW {
+	name = Corney Kerman
+	brave = 0.4244751
+	dumb = 0.9904603
+	badS = False
+	state = 0
+	ToD = 15215.5367609713
+}
+CREW {
+	name = Nedvey Kerman
+	brave = 0.06641471
+	dumb = 0.6609329
+	badS = False
+	state = 0
+	ToD = 97516.339916329
+}
+CREW {
+	name = Newwise Kerman
+	brave = 0.1125703
+	dumb = 0.3943474
+	badS = False
+	state = 0
+	ToD = 97516.339916329
+}
+CREW {
+	name = Jorlock Kerman
+	brave = 0.003597379
+	dumb = 0.2076524
+	badS = False
+	state = 0
+	ToD = 97516.339916329
+}
+CREW {
+	name = Macble Kerman
+	brave = 0.6102788
+	dumb = 0.3805129
+	badS = False
+	state = 3
+	ToD = 143678.969788586
+}
+CREW {
+	name = Haling Kerman
+	brave = 0.3394604
+	dumb = 0.8704185
+	badS = False
+	state = 3
+	ToD = 143678.969788586
+}
+CREW {
+	name = Philson Kerman
+	brave = 0.8579067
+	dumb = 0.8574208
+	badS = False
+	state = 3
+	ToD = 143678.969788586
+}
+CREW {
+	name = Gerfrey Kerman
+	brave = 0.5577762
+	dumb = 0.7225394
+	badS = False
+	state = 0
+	ToD = 0
+}
+CREW {
+	name = Patdorf Kerman
+	brave = 0.006831288
+	dumb = 0.02673626
+	badS = True
+	state = 0
+	ToD = 0
+}
+CREW {
+	name = Shelman Kerman
+	brave = 0.4548067
+	dumb = 0.05177748
+	badS = False
+	state = 0
+	ToD = 0
+}
+VESSEL {
+	name = Stock Moon 5
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 140562.98981353
+	lct = 356.039992041886
+	root = 0
+	pos = 0,0,0
+	lat = -0.2364531237084
+	lon = 27.824466904693
+	alt = 77.3648126540938
+	rot = -0.6118447,-0.136225,-0.3545031,-0.6938418
+	CoM = -9.794908E-06,0.09346965,-3.033751E-05
+	stg = 1
+	cPch = 0.2040004, FLOAT
+	cHdg = -2.464003, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 436999.945512706
+		ECC = 0.339713004720169
+		INC = 179.333831710909
+		LPE = 296.660485830981
+		LAN = -31.1435499198844
+		MNA = 3.69459542284261
+		EPH = 140919.049805571
+		REF = 2
+		OBJ = 0
+	}
+	PART {
+		name = mk1pod
+		uid = 4293445244
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = 0
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = None, -1
+		attN = top, 1
+		mass = 1
+		temp = -200.4941
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 0
+		crew = 1
+		crew = 2
+	}
+	PART {
+		name = parachuteSingle
+		uid = 4293444020
+		parent = 0
+		position = -3.09156312141567E-05,0.405145794153214,-7.39794340915978E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = 0
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.3
+		temp = -200.0159
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Untitled Space Craft
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 10939.3732186132
+	lct = 2190.02358630473
+	root = 0
+	pos = 0,0,0
+	lat = -0.236453590739855
+	lon = 27.8244631644222
+	alt = 72.0976316679735
+	rot = 0.1674443,-0.6730334,-0.06436908,0.717527
+	CoM = -0.0003787215,0.02909665,3.429281E-06
+	stg = 1
+	cPch = 0.024, FLOAT
+	cHdg = -1.158, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 702015.038472215
+		ECC = 0.00527743338544276
+		INC = 85.3107650336375
+		LPE = 181.603255623868
+		LAN = 68.5099888475641
+		MNA = 5.70371309935142
+		EPH = 13129.4168049175
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = probekitCore
+		uid = 4291977090
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = None, -1
+		attN = top, 5
+		mass = 0.5
+		temp = 203.2362
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 6
+		crew = 7
+		crew = 8
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4291976898
+		parent = 0
+		position = 3.92200818168931E-05,-0.0134901003912091,0.31561553478241
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 1
+		cData = 
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 202.0973
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4291976870
+		parent = 0
+		position = 0.315770298242569,-0.0135140549391508,-9.7574811661616E-05
+		rotation = -2.18174E-08,-3.606031E-08,-5.711875E-11,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 2
+		attm = 1
+		cData = 
+		sym = 1
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 201.9031
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4291976842
+		parent = 0
+		position = 3.46110828104429E-05,-0.0134812500327826,-0.315740823745728
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 3
+		attm = 1
+		cData = 
+		sym = 1
+		sym = 2
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 201.7095
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4291976814
+		parent = 0
+		position = -0.315668135881424,-0.0135113596916199,-2.80193853541277E-05
+		rotation = 0,1,0,0
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 4
+		attm = 1
+		cData = 
+		sym = 1
+		sym = 2
+		sym = 3
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 201.5162
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitDish
+		uid = 4291976786
+		parent = 0
+		position = -3.42528583132662E-05,0.487484753131866,6.37790508335456E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 5
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.05
+		temp = 201.3259
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Space Station Core 2
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 1903.58637590373
+	lct = 6066.45519278723
+	root = 0
+	pos = 0,0,0
+	lat = -0.236454590491508
+	lon = 27.8244614861019
+	alt = 75.5946396843065
+	rot = -0.3428676,-0.8819028,0.1907068,-0.2613814
+	CoM = 0.001590521,-1.284483,0.0002625142
+	stg = 2
+	cPch = 0.4959998, FLOAT
+	cHdg = -17.95599, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 701724.181244235
+		ECC = 0.00324681871942997
+		INC = 0.551164905525221
+		LPE = 282.867702310168
+		LAN = 161.87808719103
+		MNA = 5.91602407323474
+		EPH = 7970.04156869097
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = probekitCore2
+		uid = 4294518092
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 2
+		attN = top, 1
+		mass = 0.55
+		temp = 82.15622
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 15
+		crew = 16
+		crew = 17
+	}
+	PART {
+		name = probekitDish
+		uid = 4294518060
+		parent = 0
+		position = -2.49289732892066E-05,0.290973544120789,-0.000115245675260667
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.05
+		temp = 81.16164
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Docking Node
+		uid = 4294518036
+		parent = 0
+		position = 4.46728081442416E-05,-1.06593704223633,-6.11265277257189E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 2
+		attm = 0
+		srfN = None, -1
+		attN = top, 0
+		attN = bottom, 11
+		attN = sideX1, 9
+		attN = sideX2, 7
+		attN = sideZ1, 3
+		attN = sideZ2, 5
+		mass = 1
+		temp = 81.68552
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsas
+		uid = 4294518012
+		parent = 2
+		position = 2.91945325443521E-05,-1.06590759754181,0.94941508769989
+		rotation = -4.250237E-08,0.7071069,-0.7071069,-1.935523E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 3
+		attm = 0
+		srfN = None, -1
+		attN = top, 2
+		attN = None, -1
+		mass = 0.2
+		temp = 81.30441
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel2
+		uid = 4294517744
+		parent = 3
+		position = 1.29854088299908E-05,-1.07350492477417,1.11417710781097
+		rotation = -1.777421E-09,-0.7071069,1.060186E-08,0.707107
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 4
+		attm = 1
+		srfN = srfAttach, 3
+		mass = 0.025
+		temp = 81.29357
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsas
+		uid = 4294517980
+		parent = 2
+		position = 3.24201682815328E-05,-1.06591355800629,-0.949292898178101
+		rotation = 0.7071069,1.144257E-08,1.156081E-08,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 5
+		attm = 0
+		sym = 3
+		srfN = None, -1
+		attN = top, 2
+		attN = None, -1
+		mass = 0.2
+		temp = 81.30939
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel2
+		uid = 4294517772
+		parent = 5
+		position = 8.41613655211404E-06,-1.07349598407745,-1.11412525177002
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 6
+		attm = 1
+		sym = 4
+		srfN = srfAttach, 5
+		mass = 0.025
+		temp = 81.32684
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsas
+		uid = 4294517948
+		parent = 2
+		position = -0.949310421943665,-1.06594729423523,4.84799456899054E-05
+		rotation = 0.7071069,0.7071069,-3.855777E-08,-3.669982E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 7
+		attm = 0
+		srfN = None, -1
+		attN = top, 2
+		attN = None, -1
+		mass = 0.2
+		temp = 81.31425
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel2
+		uid = 4294517716
+		parent = 7
+		position = -1.11383867263794,-1.03493630886078,0.000103829763247631
+		rotation = -1.048422E-08,1,1.116455E-08,-1.813329E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 8
+		attm = 1
+		srfN = srfAttach, 7
+		mass = 0.025
+		temp = 81.36003
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsas
+		uid = 4294517916
+		parent = 2
+		position = 0.94926393032074,-1.0659304857254,7.37239097361453E-05
+		rotation = 5.947464E-09,7.871089E-09,0.7071069,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 9
+		attm = 0
+		sym = 7
+		srfN = None, -1
+		attN = top, 2
+		attN = None, -1
+		mass = 0.2
+		temp = 81.31914
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel2
+		uid = 4294517688
+		parent = 9
+		position = 1.11381840705872,-1.03491342067719,6.18570411461405E-05
+		rotation = 2.086447E-10,1.316955E-10,-7.574496E-09,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 10
+		attm = 1
+		sym = 8
+		srfN = srfAttach, 9
+		mass = 0.025
+		temp = 81.39312
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitFuelTank
+		uid = 4294517548
+		parent = 2
+		position = -5.57141902390867E-06,-1.96544945240021,-8.25643583084457E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 11
+		attm = 0
+		srfN = None, -1
+		attN = top, 2
+		attN = bottom, 12
+		mass = 0.2
+		temp = 81.32069
+		expt = 0.1
+		state = 0
+		connected = True
+		attached = True
+		fuel = 20, FLOAT
+	}
+	PART {
+		name = Docking Node
+		uid = 4294517516
+		parent = 11
+		position = -2.74914928013459E-05,-2.86501598358154,-0.00010432177077746
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 12
+		attm = 0
+		srfN = None, -1
+		attN = top, 11
+		attN = None, -1
+		attN = None, -1
+		attN = None, -1
+		attN = None, -1
+		attN = None, -1
+		mass = 1
+		temp = 81.42941
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitAntenna
+		uid = 4294517884
+		parent = 0
+		position = 0.703205585479736,-0.04097855463624,0.703189015388489
+		rotation = -0.6532816,-0.2705981,0.270598,-0.6532816
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 13
+		attm = 1
+		srfN = srfAttach, 0
+		attN = None, -1
+		mass = 0.05
+		temp = 81.19354
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitAntenna
+		uid = 4294517856
+		parent = 0
+		position = 0.703215181827545,-0.0409967228770256,-0.703324735164642
+		rotation = -0.2705981,-0.6532816,0.6532816,-0.2705981
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 14
+		attm = 1
+		sym = 13
+		srfN = srfAttach, 0
+		attN = None, -1
+		mass = 0.05
+		temp = 81.20943
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitAntenna
+		uid = 4294517828
+		parent = 0
+		position = -0.703264117240906,-0.0409793555736542,-0.703324854373932
+		rotation = 0.2705981,-0.6532816,0.6532816,0.270598
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 15
+		attm = 1
+		sym = 13
+		sym = 14
+		srfN = srfAttach, 0
+		attN = None, -1
+		mass = 0.05
+		temp = 81.2253
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitAntenna
+		uid = 4294517800
+		parent = 0
+		position = -0.703245341777802,-0.0410152524709702,0.703188538551331
+		rotation = -0.6532816,0.2705981,-0.2705981,-0.6532816
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 16
+		attm = 1
+		sym = 13
+		sym = 14
+		sym = 15
+		srfN = srfAttach, 0
+		attN = None, -1
+		mass = 0.05
+		temp = 81.24122
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4294517660
+		parent = 0
+		position = -0.495345383882523,0.0490459911525249,-3.36866069119424E-05
+		rotation = -3.030518E-10,1,-2.848581E-08,-1.157554E-07
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 17
+		attm = 1
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 81.25188
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4294517632
+		parent = 0
+		position = -4.11871442338452E-05,0.0490046441555023,0.495351433753967
+		rotation = -1.289988E-08,0.7071068,1.820411E-08,-0.707107
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 18
+		attm = 1
+		sym = 17
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 81.26718
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4294517604
+		parent = 0
+		position = 0.495371341705322,0.0490196570754051,1.71574356500059E-07
+		rotation = 2.848581E-08,-1.157554E-07,-3.030518E-10,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 19
+		attm = 1
+		sym = 17
+		sym = 18
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 81.28243
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitsolarPanel
+		uid = 4294517576
+		parent = 0
+		position = -4.09936183132231E-05,0.0490043573081493,-0.495384961366653
+		rotation = 1.068673E-08,0.7071069,-9.126163E-09,0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 20
+		attm = 1
+		sym = 17
+		sym = 18
+		sym = 19
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 81.29776
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = NovaPunch Heavy
+	sit = ESCAPING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 12184.1871470786
+	lct = 8222.24156305385
+	root = 0
+	pos = 0,0,0
+	lat = -0.236452699183231
+	lon = 27.8244642236332
+	alt = 76.6674151582411
+	rot = -0.1239073,0.33921,-0.3693584,0.8562465
+	CoM = 0.0001143761,1.013054,0.0001592419
+	stg = 1
+	cPch = 0.286, FLOAT
+	cHdg = 3.49, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = -133523.665608772
+		ECC = 16.1298885287258
+		INC = 179.999990116856
+		LPE = 203.906773346397
+		LAN = 231.425548897997
+		MNA = -6.30142909672236
+		EPH = 20406.4687101315
+		REF = 2
+		OBJ = 0
+	}
+	PART {
+		name = unmannedcontrolpod
+		uid = 4294101014
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 1
+		attN = top, 9
+		mass = 0.7
+		temp = 224.9906
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		crew = 21
+		crew = 22
+		crew = 23
+	}
+	PART {
+		name = YMRCSFuelTank
+		uid = 4294100832
+		parent = 0
+		position = 9.23847983358428E-06,-0.600019574165344,-9.73754140431993E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 0
+		attN = bottom, 2
+		mass = 0.9
+		temp = 224.8777
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = YMASasModule
+		uid = 4294100808
+		parent = 1
+		position = -1.94728199858218E-05,-1.10001027584076,2.51392266363837E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 2
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 1
+		attN = top, 3
+		mass = 0.5
+		temp = 221.9075
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = YMFuelTank
+		uid = 4294100784
+		parent = 2
+		position = -4.87773577333428E-05,-1.59999978542328,-9.64834471233189E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 3
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 2
+		attN = bottom, 4
+		mass = 0.09
+		temp = 224.2645
+		expt = 0.1
+		state = 2
+		connected = True
+		attached = True
+		fuel = -0.007901177, FLOAT
+	}
+	PART {
+		name = orbitliquidengine
+		uid = 4294100760
+		parent = 3
+		position = 2.67705618171021E-05,-1.97866332530975,0.000100213961559348
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 4
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 3
+		attN = None, -1
+		mass = 0.16
+		temp = 222.8237
+		expt = 0.5
+		state = 2
+		connected = True
+		attached = True
+	}
+	PART {
+		name = YMRCSBlock
+		uid = 4294100706
+		parent = 2
+		position = -0.483112543821335,-1.07803356647491,8.02733411546797E-05
+		rotation = 2.848581E-08,-1.157554E-07,-3.030518E-10,-1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 5
+		attm = 1
+		cData = 
+		srfN = srfAttach, 2
+		mass = 0.05
+		temp = 223.5849
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = YMRCSBlock
+		uid = 4294100642
+		parent = 2
+		position = 1.18334573926404E-05,-1.07797431945801,0.483044117689133
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 6
+		attm = 1
+		cData = 
+		sym = 5
+		srfN = srfAttach, 2
+		mass = 0.05
+		temp = 223.1561
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = YMRCSBlock
+		uid = 4294100578
+		parent = 2
+		position = 0.483059883117676,-1.07803237438202,-7.02413890394382E-05
+		rotation = 3.030518E-10,-1,2.848581E-08,1.157554E-07
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 7
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		srfN = srfAttach, 2
+		mass = 0.05
+		temp = 222.7291
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = YMRCSBlock
+		uid = 4294100514
+		parent = 2
+		position = 1.52957072714344E-05,-1.07798087596893,-0.483033776283264
+		rotation = 9.126163E-09,0.7071068,1.068673E-08,-0.7071069
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 8
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		srfN = srfAttach, 2
+		mass = 0.05
+		temp = 222.304
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = satellite1
+		uid = 4294100450
+		parent = 0
+		position = -3.98950724047609E-05,0.89994752407074,2.3674889234826E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 1
+		sqor = 0
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		attN = top, 10
+		mass = 0.9
+		temp = 223.3497
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = spaceprobe
+		uid = 4294100418
+		parent = 9
+		position = -2.09953577723354E-06,2.43999433517456,8.62627275637351E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 3
+		sqor = 0
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 9
+		attN = top, 11
+		mass = 1.5
+		temp = 223.0952
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = satellite2
+		uid = 4294100394
+		parent = 10
+		position = -4.99362067785114E-06,3.7299644947052,-3.434900281718E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 5
+		sqor = 0
+		sidx = 2
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 10
+		attN = None, -1
+		mass = 0.85
+		temp = 222.4232
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = NovaPunch X
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 308.139993112534
+	lct = 9648.06679973431
+	root = 0
+	pos = 0,0,0
+	lat = -0.236441828359615
+	lon = 27.8245226710827
+	alt = 73.256168136606
+	rot = 0.804464,0.1156141,-0.5663186,-0.1369463
+	CoM = 0.0002252809,-0.431955,0.000162501
+	stg = 1
+	cPch = 0.3859997, FLOAT
+	cHdg = 1.122, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 802590.700050332
+		ECC = 0.130475183885153
+		INC = 106.648183228499
+		LPE = 154.655020069019
+		LAN = 11.7250476569924
+		MNA = 0.59567537058773
+		EPH = 9956.2267928464
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = unmannedcontrolpod
+		uid = 4294832954
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 1
+		attN = top, 9
+		mass = 0.7
+		temp = -201.3183
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		crew = 24
+		crew = 25
+		crew = 26
+	}
+	PART {
+		name = advSasModule
+		uid = 4294832926
+		parent = 0
+		position = -8.01758142188191E-06,-1.11791908740997,-5.79510742682032E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 2
+		attN = top, 0
+		mass = 0.8
+		temp = -201.5137
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294832898
+		parent = 1
+		position = 1.00469624157995E-05,-1.554079413414,0.000116355542559177
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 2
+		attm = 0
+		srfN = None, -1
+		attN = top, 1
+		attN = bottom, 3
+		mass = 0.9
+		temp = -200.5979
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = smallfuelTank
+		uid = 4294832870
+		parent = 2
+		position = 1.93433952517807E-05,-1.78084051609039,4.11733562941663E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 3
+		attm = 0
+		srfN = None, -1
+		attN = top, 2
+		attN = bottom, 4
+		mass = 0.8246934
+		temp = -200.0221
+		expt = 0.6997498
+		state = 1
+		connected = True
+		attached = True
+		fuel = 164.9312, FLOAT
+	}
+	PART {
+		name = orbitliquidengine
+		uid = 4294832846
+		parent = 3
+		position = -1.38316972879693E-05,-2.15955972671509,-6.2665349105373E-06
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 4
+		attm = 0
+		srfN = None, -1
+		attN = top, 3
+		attN = None, -1
+		mass = 0.16
+		temp = -199.4466
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4294832792
+		parent = 1
+		position = 0.524409890174866,-0.508294820785522,-0.000702108023688197
+		rotation = 0,1,0,0
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 5
+		attm = 1
+		srfN = srfAttach, 1
+		mass = 0.05
+		temp = -200.2707
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4294832720
+		parent = 1
+		position = -0.000635469565168023,-0.50830203294754,-0.524335861206055
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 6
+		attm = 1
+		sym = 5
+		srfN = srfAttach, 1
+		mass = 0.05
+		temp = -200.0394
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4294832648
+		parent = 1
+		position = -0.524453938007355,-0.508283674716949,0.000625981716439128
+		rotation = 0,0,0,-1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 7
+		attm = 1
+		sym = 5
+		sym = 6
+		srfN = srfAttach, 1
+		mass = 0.05
+		temp = -199.809
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4294832576
+		parent = 1
+		position = 0.000591992167755961,-0.508277654647827,0.524503886699677
+		rotation = 3.79257E-09,0.7071069,1.231396E-08,0.7071069
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 8
+		attm = 1
+		sym = 5
+		sym = 6
+		sym = 7
+		srfN = srfAttach, 1
+		mass = 0.05
+		temp = -199.5792
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = spaceprobe
+		uid = 4294832462
+		parent = 0
+		position = -2.15723557630554E-05,1.33998417854309,0.000111401954200119
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 1
+		sqor = 0
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 0
+		attN = None, -1
+		mass = 1.5
+		temp = -200.1988
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = NP Sunfucker
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 131027.343011282
+	lct = 10114.9267892992
+	root = 0
+	pos = 0,0,0
+	lat = -0.236445848728475
+	lon = 27.8244470476579
+	alt = 80.8011432661442
+	rot = -0.596927,0.5663854,0.5390157,0.1798553
+	CoM = -0.002950941,-3.761592,-0.004554751
+	stg = 5
+	cPch = -0.904, FLOAT
+	cHdg = 0.6459999, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 12708570457.1607
+		ECC = 0.155519921891788
+		INC = 0.0348714749799682
+		LPE = 124.340132978105
+		LAN = -85.9611424004621
+		MNA = 4.48353772721256
+		EPH = 141142.289800581
+		REF = 0
+		OBJ = 0
+	}
+	PART {
+		name = NPLEM
+		uid = 4293438506
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 1
+		attN = top, 30
+		mass = 1
+		temp = 128.0964
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 27
+		crew = 28
+		crew = 29
+	}
+	PART {
+		name = NPLEMASAS
+		uid = 4293438368
+		parent = 0
+		position = -5.82016728003509E-05,-0.349999636411667,8.58241692185402E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		attN = top, 2
+		mass = 0.1
+		temp = 128.5217
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPlanderascenttank
+		uid = 4293438344
+		parent = 1
+		position = -1.00655597634614E-07,-0.575012624263763,1.86314282473177E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 2
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 1
+		attN = bottom, 3
+		mass = 1
+		temp = 128.3629
+		expt = 0.4
+		state = 0
+		connected = True
+		attached = True
+		fuel = 125, FLOAT
+	}
+	PART {
+		name = NPlanderascentengine
+		uid = 4293438320
+		parent = 2
+		position = -5.21063338965178E-06,-0.848567962646484,-2.94069541268982E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 3
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 2
+		attN = bottom, 4
+		mass = 0.2
+		temp = 128.3702
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPlanderdecoupler
+		uid = 4293438276
+		parent = 3
+		position = 5.6763987231534E-05,-0.882092773914337,5.90958297834732E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 1
+		sqor = 2
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = middle, 3
+		attN = bottom, 5
+		mass = 0.25
+		temp = 128.5001
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPlanderfueltank
+		uid = 4293438248
+		parent = 4
+		position = 3.47576424246654E-05,-1.20375287532806,3.21292682201602E-05
+		rotation = 0,0,0,1
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 4
+		attN = bottom, 6
+		mass = 1
+		temp = 127.849
+		expt = 0.4
+		state = 0
+		connected = True
+		attached = True
+		fuel = 270, FLOAT
+	}
+	PART {
+		name = NPlanderdescentengine
+		uid = 4293438224
+		parent = 5
+		position = -1.72722502611578E-06,-1.46988308429718,1.8605322111398E-05
+		rotation = 0,0,0,1
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 5
+		attN = bottom, 7
+		mass = 0.3
+		temp = 128.489
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = miniDecoupler
+		uid = 4293438184
+		parent = 6
+		position = 3.48713656421751E-05,-1.75140929222107,-6.65041225147434E-05
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 3
+		sqor = 4
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 8
+		attN = top, 6
+		mass = 0.2
+		temp = 128.3699
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = smallfuelTank
+		uid = 4293438142
+		parent = 7
+		position = -1.94719541468658E-05,-2.08142495155334,0.000111997687781695
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 7
+		attN = bottom, 9
+		mass = 0.09
+		temp = 128.477
+		expt = 0.1
+		state = 2
+		connected = True
+		attached = True
+		fuel = -0.1465566, FLOAT
+	}
+	PART {
+		name = 2m.fairing.plate
+		uid = 4293438118
+		parent = 8
+		position = 3.8915553886909E-05,-2.3814058303833,-5.87586837355047E-05
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 8
+		attN = bottom, 18
+		attN = connect1, 12
+		attN = connect2, 16
+		attN = connect3, 10
+		attN = connect4, 14
+		mass = 0.3
+		temp = 129.0958
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing panel
+		uid = 4293438094
+		parent = 9
+		position = 5.7070647017099E-06,-2.32136869430542,0.00510265957564116
+		rotation = 3.79257E-09,0.7071069,1.231396E-08,0.7071069
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 11
+		attN = bottom, 9
+		mass = 0.2
+		temp = 128.5064
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing nosecap
+		uid = 4293438060
+		parent = 10
+		position = -1.47151877172291E-05,-0.321410924196243,0.00510119553655386
+		rotation = 3.79257E-09,0.7071069,1.231396E-08,0.7071069
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 2
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 10
+		mass = 0.2
+		temp = 128.345
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing panel
+		uid = 4293438036
+		parent = 9
+		position = 0.00499056279659271,-2.32141399383545,-3.6688128602691E-05
+		rotation = -5.711875E-11,1,2.18174E-08,-3.606031E-08
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 3
+		attm = 0
+		cData = 
+		sym = 10
+		srfN = None, -1
+		attN = top, 13
+		attN = bottom, 9
+		mass = 0.2
+		temp = 128.4632
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing nosecap
+		uid = 4293438002
+		parent = 12
+		position = 0.00494181644171476,-0.321402192115784,-3.78328841179609E-05
+		rotation = -5.711875E-11,1,2.18174E-08,-3.606031E-08
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 4
+		attm = 0
+		cData = 
+		sym = 11
+		srfN = None, -1
+		attN = bottom, 12
+		mass = 0.2
+		temp = 128.3683
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing panel
+		uid = 4293437978
+		parent = 9
+		position = 9.70846303971484E-06,-2.32137632369995,-0.00490728998556733
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 5
+		attm = 0
+		cData = 
+		sym = 10
+		sym = 12
+		srfN = None, -1
+		attN = top, 15
+		attN = bottom, 9
+		mass = 0.2
+		temp = 128.4202
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing nosecap
+		uid = 4293437944
+		parent = 14
+		position = -1.07137893792242E-05,-0.321418553590775,-0.00490875402465463
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 6
+		attm = 0
+		cData = 
+		sym = 11
+		sym = 13
+		srfN = None, -1
+		attN = bottom, 14
+		mass = 0.2
+		temp = 128.3918
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing panel
+		uid = 4293437920
+		parent = 9
+		position = -0.00494741648435593,-2.32138395309448,-1.23988575069234E-05
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 7
+		attm = 0
+		cData = 
+		sym = 10
+		sym = 12
+		sym = 14
+		srfN = None, -1
+		attN = top, 17
+		attN = bottom, 9
+		mass = 0.2
+		temp = 128.3769
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m payload fairing nosecap
+		uid = 4293437886
+		parent = 16
+		position = -0.00499616283923388,-0.32137206196785,-1.35436130221933E-05
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 5
+		sqor = 4
+		sidx = 8
+		attm = 0
+		cData = 
+		sym = 11
+		sym = 13
+		sym = 15
+		srfN = None, -1
+		attN = bottom, 16
+		mass = 0.2
+		temp = 128.4144
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 2m175madapter
+		uid = 4293437862
+		parent = 9
+		position = -9.0672547230497E-06,-2.83138155937195,5.16323270858265E-05
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 2
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 9
+		attN = bottom, 19
+		mass = 0.5
+		temp = 128.3291
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = 175mshortfueltank
+		uid = 4293437838
+		parent = 18
+		position = 1.00029428722337E-05,-4.03142166137695,0.000101018813438714
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 3
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 18
+		attN = bottom, 20
+		mass = 1.1
+		temp = 128.4642
+		expt = 0.1
+		state = 2
+		connected = True
+		attached = True
+		fuel = -0.4728304, FLOAT
+	}
+	PART {
+		name = 175mfueltank
+		uid = 4293437806
+		parent = 19
+		position = 2.03921663342044E-05,-6.58138418197632,-7.01589306117967E-06
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 4
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 19
+		attN = bottom, 21
+		mass = 3.83775
+		temp = 128.5424
+		expt = 0.6780295
+		state = 1
+		connected = True
+		attached = True
+		fuel = 626.1986, FLOAT
+	}
+	PART {
+		name = 175mengine2
+		uid = 4293437774
+		parent = 20
+		position = 9.00772283785045E-06,-8.94138717651367,3.36142111336812E-05
+		rotation = 0,0,0,1
+		istg = 5
+		dstg = 4
+		sqor = 5
+		sidx = 5
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 20
+		attN = None, -1
+		mass = 1.5
+		temp = 128.4775
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPLanderRCS
+		uid = 4293437702
+		parent = 5
+		position = 0.458104699850082,-1.19506394863129,-0.458078265190125
+		rotation = -6.066418E-09,0.9238797,-1.430086E-08,-0.3826835
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 2
+		attm = 1
+		cData = 
+		srfN = srfAttach, 5
+		mass = 0.05
+		temp = 128.3792
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPLanderRCS
+		uid = 4293437638
+		parent = 5
+		position = -0.458053439855576,-1.19504594802856,-0.458049207925797
+		rotation = 9.510328E-09,0.3826835,-2.073174E-08,-0.9238797
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 3
+		attm = 1
+		cData = 
+		sym = 22
+		srfN = srfAttach, 5
+		mass = 0.05
+		temp = 128.3339
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPLanderRCS
+		uid = 4293437574
+		parent = 5
+		position = -0.458064615726471,-1.19502460956573,0.45822337269783
+		rotation = 1.430086E-08,-0.3826835,-6.066418E-09,-0.9238797
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 4
+		attm = 1
+		cData = 
+		sym = 22
+		sym = 23
+		srfN = srfAttach, 5
+		mass = 0.05
+		temp = 128.2887
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NPLanderRCS
+		uid = 4293437510
+		parent = 5
+		position = 0.458093494176865,-1.19504261016846,0.458194315433502
+		rotation = -2.073174E-08,0.9238797,-9.510328E-09,0.3826835
+		istg = 3
+		dstg = 2
+		sqor = 3
+		sidx = 5
+		attm = 1
+		cData = 
+		sym = 22
+		sym = 23
+		sym = 24
+		srfN = srfAttach, 5
+		mass = 0.05
+		temp = 128.2435
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4293437446
+		parent = 0
+		position = 0.36285075545311,-0.0649751871824265,-0.36373695731163
+		rotation = -6.066418E-09,0.9238797,-1.430086E-08,-0.3826835
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 4
+		attm = 1
+		cData = 
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 128.3826
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4293437374
+		parent = 0
+		position = -0.363674432039261,-0.0649742409586906,-0.362948060035706
+		rotation = 9.510328E-09,0.3826835,-2.073174E-08,-0.9238797
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 5
+		attm = 1
+		cData = 
+		sym = 26
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 128.3364
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4293437302
+		parent = 0
+		position = -0.362846314907074,-0.064976692199707,0.363622486591339
+		rotation = 1.430086E-08,-0.3826835,-6.066418E-09,-0.9238797
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 6
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 27
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 128.2908
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSBlock
+		uid = 4293437230
+		parent = 0
+		position = 0.363678842782974,-0.0649776384234428,0.362833589315414
+		rotation = -2.073174E-08,0.9238797,-9.510328E-09,0.3826835
+		istg = 1
+		dstg = 0
+		sqor = 1
+		sidx = 7
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 27
+		sym = 28
+		srfN = srfAttach, 0
+		mass = 0.05
+		temp = 128.2449
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitAeroshellCoupler
+		uid = 4293437158
+		parent = 0
+		position = 5.79883853788488E-05,0.969730257987976,0.000102950572909322
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 1
+		sqor = 0
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = None, -1
+		attN = bottom, 0
+		mass = 0.1
+		temp = 128.1971
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Orbital Tug
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 27372.0810679179
+	lct = 114407.048718429
+	root = 0
+	pos = 0,0,0
+	lat = -0.23645981554214
+	lon = 27.8244193422895
+	alt = 78.7213547803694
+	rot = -0.4750872,0.1206161,-0.01527364,0.8714991
+	CoM = -0.0005178303,-1.021679,0.0003928119
+	stg = 2
+	cPch = -0.116, FLOAT
+	cHdg = 0.5500001, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 703161.297543366
+		ECC = 0.000728833301613089
+		INC = 0.57844478847434
+		LPE = 181.059773188326
+		LAN = 159.461736091064
+		MNA = 1.6927545579494
+		EPH = 141779.169786346
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = mk1pod
+		uid = 4294733328
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 19
+		attN = top, 1
+		mass = 1
+		temp = 159.8947
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 3
+		crew = 4
+		crew = 5
+	}
+	PART {
+		name = stackparachute
+		uid = 4294733212
+		parent = 0
+		position = 6.05646127951331E-05,0.393134236335754,0.000114231705083512
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		attN = top, 2
+		mass = 0.3
+		temp = 159.2413
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.Upper.Decoupler
+		uid = 4294733172
+		parent = 1
+		position = -2.59651278611273E-05,0.711844921112061,-0.000116361312393565
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 1
+		sqor = -1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 1
+		attN = top, 3
+		mass = 0.1
+		temp = 159.2019
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.ASAS
+		uid = 4294733138
+		parent = 2
+		position = 1.12247435026802E-05,0.764645636081696,-0.000115701826871373
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 4
+		attN = top, 2
+		mass = 0.8
+		temp = 159.6907
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294733114
+		parent = 3
+		position = -4.83655458083376E-06,0.774145901203156,-7.16000504326075E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = None, -1
+		attN = bottom, 3
+		mass = 0.9
+		temp = 159.2571
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294733086
+		parent = 4
+		position = -0.399621367454529,1.20259177684784,-0.399706840515137
+		rotation = -1.338391E-08,0.3826834,-5.469806E-09,-0.9238797
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 2
+		attm = 1
+		cData = 
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 159.5596
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294733032
+		parent = 4
+		position = -0.565137803554535,1.20260858535767,0.000115054368507117
+		rotation = 2.848581E-08,-1.157554E-07,-3.030518E-10,-1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 3
+		attm = 1
+		cData = 
+		sym = 5
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 159.4344
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732978
+		parent = 4
+		position = -0.399633467197418,1.20261478424072,0.399620801210403
+		rotation = 1.430086E-08,-0.3826835,-6.066418E-09,-0.9238797
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 4
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 159.3094
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732924
+		parent = 4
+		position = -3.038439899683E-07,1.20263481140137,0.565155982971191
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 5
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 159.1847
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732870
+		parent = 4
+		position = 0.399649828672409,1.20262253284454,0.399631708860397
+		rotation = 5.469806E-09,-0.9238797,-1.338391E-08,-0.3826834
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 6
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		sym = 8
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 159.0603
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732816
+		parent = 4
+		position = 0.565166890621185,1.20260453224182,5.39587417733856E-05
+		rotation = 3.030518E-10,-1,2.848581E-08,1.157554E-07
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 7
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		sym = 8
+		sym = 9
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 158.9363
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732762
+		parent = 4
+		position = 0.39963361620903,1.20265352725983,-0.399695605039597
+		rotation = 1.861572E-08,-0.9238796,-1.974152E-08,0.3826838
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 8
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		sym = 8
+		sym = 9
+		sym = 10
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 158.8125
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = landingLeg1
+		uid = 4294732708
+		parent = 4
+		position = 4.47427737526596E-07,1.20263350009918,-0.565230786800385
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 9
+		attm = 1
+		cData = 
+		sym = 5
+		sym = 6
+		sym = 7
+		sym = 8
+		sym = 9
+		sym = 10
+		sym = 11
+		srfN = srfAttach, 4
+		mass = 0.1
+		temp = 158.6888
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		lgSt = 2, INT
+		angle = 0, FLOAT
+		transit = 1.000547, FLOAT
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732654
+		parent = 4
+		position = -0.45281246304512,0.901664614677429,-0.261567056179047
+		rotation = 2.392898E-08,0.258819,-5.130389E-09,-0.965926
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 10
+		attm = 1
+		cData = 
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.7462
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732550
+		parent = 4
+		position = -0.452816337347031,0.901671946048737,0.261389434337616
+		rotation = -2.488911E-09,-0.2588192,-1.420544E-08,-0.965926
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 11
+		attm = 1
+		cData = 
+		sym = 13
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.6208
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732446
+		parent = 4
+		position = 3.33624047925696E-05,0.901648938655853,0.522987842559814
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 12
+		attm = 1
+		cData = 
+		sym = 13
+		sym = 14
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.4957
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732342
+		parent = 4
+		position = 0.452886343002319,0.901619732379913,0.26138561964035
+		rotation = 3.412486E-09,-0.965926,-7.18218E-09,-0.258819
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 13
+		attm = 1
+		cData = 
+		sym = 13
+		sym = 14
+		sym = 15
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.3708
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732238
+		parent = 4
+		position = 0.452890187501907,0.901612401008606,-0.261570900678635
+		rotation = -7.820607E-09,-0.965926,5.028466E-09,0.2588191
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 14
+		attm = 1
+		cData = 
+		sym = 13
+		sym = 14
+		sym = 15
+		sym = 16
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.2464
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294732134
+		parent = 4
+		position = 4.11049259128049E-05,0.901634275913239,-0.522925138473511
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 15
+		attm = 1
+		cData = 
+		sym = 13
+		sym = 14
+		sym = 15
+		sym = 16
+		sym = 17
+		srfN = srfAttach, 4
+		mass = 0.05
+		temp = 158.1222
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = miniDecoupler
+		uid = 4294732030
+		parent = 0
+		position = -1.2320808309596E-05,-0.382704585790634,-6.59754223306663E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 1
+		sqor = -1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 20
+		attN = top, 0
+		mass = 0.2
+		temp = 160.6639
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294731988
+		parent = 19
+		position = 3.96806935896166E-05,-0.927303612232208,9.35899297473952E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 16
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 19
+		attN = bottom, 21
+		mass = 0.9
+		temp = 163.786
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294731960
+		parent = 20
+		position = 4.71921739517711E-05,-1.3687047958374,-5.28700184077024E-07
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 17
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 20
+		attN = bottom, 22
+		mass = 0.9
+		temp = 169.9667
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294731932
+		parent = 21
+		position = -5.34261198481545E-05,-1.81016254425049,-9.4647315563634E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 18
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 21
+		attN = bottom, 23
+		mass = 0.9
+		temp = 163.804
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = RCSFuelTank
+		uid = 4294731904
+		parent = 22
+		position = -1.69972481671721E-05,-2.2516188621521,5.50517870578915E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 19
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = top, 22
+		attN = None, -1
+		mass = 0.9
+		temp = 160.8719
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = fuelTank
+		uid = 4294731876
+		parent = 21
+		position = -0.863099813461304,-1.26706600189209,-0.498171031475067
+		rotation = -7.638211E-09,0.8660254,5.277618E-09,-0.5000002
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 20
+		attm = 1
+		cData = 
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 170.2465
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294731852
+		parent = 24
+		position = -1.37867724895477,-1.71443200111389,-0.795872211456299
+		rotation = -5.277618E-09,-0.5000002,-7.638211E-09,-0.8660254
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 21
+		attm = 1
+		cData = 
+		srfN = srfAttach, 24
+		mass = 0.2
+		temp = 166.4857
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731804
+		parent = 24
+		position = -1.01831662654877,-1.72572815418243,-1.07756590843201
+		rotation = -1.75927E-08,-0.1305262,-2.250503E-08,-0.9914451
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 22
+		attm = 1
+		cData = 
+		srfN = srfAttach, 24
+		mass = 0.2
+		temp = 166.3423
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731756
+		parent = 24
+		position = -1.45346438884735,-1.71951150894165,-0.340141296386719
+		rotation = -1.30909E-08,-0.7933534,-2.434727E-08,-0.6087615
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 23
+		attm = 1
+		cData = 
+		srfN = srfAttach, 24
+		mass = 0.2
+		temp = 166.2005
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294731708
+		parent = 24
+		position = -1.04526114463806,-1.99310600757599,-0.546994864940643
+		rotation = 1.254602E-08,-0.1305261,1.71909E-08,0.9914451
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 24
+		attm = 1
+		srfN = srfAttach, 24
+		mass = 0.05
+		temp = 181.3076
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = fuelTank
+		uid = 4294731660
+		parent = 21
+		position = -0.863114714622498,-1.26703774929047,0.498180836439133
+		rotation = -2.922413E-08,0.5,1.921986E-08,-0.8660256
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 25
+		attm = 1
+		cData = 
+		sym = 24
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 170.1764
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294731636
+		parent = 29
+		position = -1.37868976593018,-1.71440827846527,0.795946896076202
+		rotation = -1.921986E-08,-0.8660256,-2.922413E-08,-0.5
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 26
+		attm = 1
+		cData = 
+		sym = 25
+		srfN = srfAttach, 29
+		mass = 0.2
+		temp = 166.4638
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731588
+		parent = 29
+		position = -1.44238317012787,-1.72566938400269,0.343162298202515
+		rotation = -1.726074E-09,-0.6087615,-5.76261E-09,-0.7933534
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 27
+		attm = 1
+		cData = 
+		sym = 26
+		srfN = srfAttach, 29
+		mass = 0.2
+		temp = 166.3204
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731540
+		parent = 29
+		position = -1.02127718925476,-1.71955132484436,1.08875977993011
+		rotation = 6.649564E-09,-0.991445,2.043593E-08,-0.1305262
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 28
+		attm = 1
+		cData = 
+		sym = 27
+		srfN = srfAttach, 29
+		mass = 0.2
+		temp = 166.1786
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294731492
+		parent = 29
+		position = -0.996471524238586,-1.99311661720276,0.631613790988922
+		rotation = -1.87827E-08,0.3826835,-5.47967E-09,0.9238797
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 29
+		attm = 1
+		sym = 28
+		srfN = srfAttach, 29
+		mass = 0.05
+		temp = 181.2835
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = fuelTank
+		uid = 4294731444
+		parent = 21
+		position = -8.30769567983225E-06,-1.26706421375275,0.996578574180603
+		rotation = 2.848581E-08,-1.157554E-07,-3.030518E-10,-1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 30
+		attm = 1
+		cData = 
+		sym = 24
+		sym = 29
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 170.1061
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294731420
+		parent = 34
+		position = -2.12041923077777E-05,-1.7144763469696,1.59192383289337
+		rotation = 3.030518E-10,-1,2.848581E-08,1.157554E-07
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 31
+		attm = 1
+		cData = 
+		sym = 25
+		sym = 30
+		srfN = srfAttach, 34
+		mass = 0.2
+		temp = 166.442
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731372
+		parent = 34
+		position = -0.424108028411865,-1.72568964958191,1.4207808971405
+		rotation = 2.073174E-08,-0.9238797,9.510328E-09,-0.3826835
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 32
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 31
+		srfN = srfAttach, 34
+		mass = 0.2
+		temp = 166.2986
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731324
+		parent = 34
+		position = 0.432162761688232,-1.71950769424438,1.42873871326447
+		rotation = 6.066418E-09,-0.9238797,1.430086E-08,0.3826835
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 33
+		attm = 1
+		cData = 
+		sym = 27
+		sym = 32
+		srfN = srfAttach, 34
+		mass = 0.2
+		temp = 166.157
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294731276
+		parent = 34
+		position = 0.0487895868718624,-1.99309027194977,1.17888617515564
+		rotation = -1.303537E-09,0.7933534,1.025589E-08,0.6087615
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 34
+		attm = 1
+		sym = 28
+		sym = 33
+		srfN = srfAttach, 34
+		mass = 0.05
+		temp = 181.2598
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = fuelTank
+		uid = 4294731228
+		parent = 21
+		position = 0.863084018230438,-1.26706373691559,0.49838063120842
+		rotation = -5.277618E-09,-0.5000002,-7.638211E-09,-0.8660254
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 35
+		attm = 1
+		cData = 
+		sym = 24
+		sym = 29
+		sym = 34
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 170.0361
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294731204
+		parent = 39
+		position = 1.37871134281158,-1.7144033908844,0.796082377433777
+		rotation = 7.638211E-09,-0.8660254,-5.277618E-09,0.5000002
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 36
+		attm = 1
+		cData = 
+		sym = 25
+		sym = 30
+		sym = 35
+		srfN = srfAttach, 39
+		mass = 0.2
+		temp = 166.42
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731156
+		parent = 39
+		position = 1.01834189891815,-1.72571206092834,1.07767128944397
+		rotation = 1.995548E-08,-0.9914449,4.489058E-10,0.1305263
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 37
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 31
+		sym = 36
+		srfN = srfAttach, 39
+		mass = 0.2
+		temp = 166.2768
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294731108
+		parent = 39
+		position = 1.45347273349762,-1.71953356266022,0.340060085058212
+		rotation = 2.434727E-08,-0.6087615,-1.30909E-08,0.7933534
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 38
+		attm = 1
+		cData = 
+		sym = 27
+		sym = 32
+		sym = 37
+		srfN = srfAttach, 39
+		mass = 0.2
+		temp = 166.1352
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294731060
+		parent = 39
+		position = 1.04528820514679,-1.99310505390167,0.547061383724213
+		rotation = -1.71909E-08,0.9914451,1.254602E-08,0.1305261
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 39
+		attm = 1
+		sym = 28
+		sym = 33
+		sym = 38
+		srfN = srfAttach, 39
+		mass = 0.05
+		temp = 181.2358
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = fuelTank
+		uid = 4294731012
+		parent = 21
+		position = 0.863070011138916,-1.26703679561615,-0.498215049505234
+		rotation = 2.542938E-08,-0.8660255,1.384017E-08,-0.5000001
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 40
+		attm = 1
+		cData = 
+		sym = 24
+		sym = 29
+		sym = 34
+		sym = 39
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 169.9663
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294730988
+		parent = 44
+		position = 1.37872326374054,-1.71442604064941,-0.79598081111908
+		rotation = -1.384017E-08,-0.5000001,2.542938E-08,0.8660255
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 41
+		attm = 1
+		cData = 
+		sym = 25
+		sym = 30
+		sym = 35
+		sym = 40
+		srfN = srfAttach, 44
+		mass = 0.2
+		temp = 166.3982
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294730940
+		parent = 44
+		position = 1.44238007068634,-1.72571682929993,-0.343056589365005
+		rotation = -1.880873E-08,-0.7933535,1.570389E-08,0.6087615
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 42
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 31
+		sym = 36
+		sym = 41
+		srfN = srfAttach, 44
+		mass = 0.2
+		temp = 166.2551
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294730892
+		parent = 44
+		position = 1.02128612995148,-1.7194949388504,-1.0885968208313
+		rotation = -2.906021E-09,-0.1305263,-1.17122E-08,0.991445
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 43
+		attm = 1
+		cData = 
+		sym = 27
+		sym = 32
+		sym = 37
+		sym = 42
+		srfN = srfAttach, 44
+		mass = 0.2
+		temp = 166.1136
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294730844
+		parent = 44
+		position = 0.996470272541046,-1.99304032325745,-0.631546974182129
+		rotation = -6.066418E-09,0.9238797,-1.430086E-08,-0.3826835
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 44
+		attm = 1
+		sym = 28
+		sym = 33
+		sym = 38
+		sym = 43
+		srfN = srfAttach, 44
+		mass = 0.05
+		temp = 181.2121
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = fuelTank
+		uid = 4294730796
+		parent = 21
+		position = -8.07191099738702E-06,-1.26706445217133,-0.996613085269928
+		rotation = -5.711875E-11,1,2.18174E-08,-3.606031E-08
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 45
+		attm = 1
+		cData = 
+		sym = 24
+		sym = 29
+		sym = 34
+		sym = 39
+		sym = 44
+		srfN = srfAttach, 21
+		attN = None, -1
+		attN = None, -1
+		mass = 1.557855
+		temp = 169.8966
+		expt = 0.5574017
+		state = 1
+		connected = True
+		attached = True
+		fuel = 285.8761, FLOAT
+	}
+	PART {
+		name = Vernier
+		uid = 4294730772
+		parent = 49
+		position = -2.51261371886358E-05,-1.71446859836578,-1.59195804595947
+		rotation = -2.18174E-08,-3.606031E-08,-5.711875E-11,-1
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 46
+		attm = 1
+		cData = 
+		sym = 25
+		sym = 30
+		sym = 35
+		sym = 40
+		sym = 45
+		srfN = srfAttach, 49
+		mass = 0.2
+		temp = 166.3766
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294730724
+		parent = 49
+		position = 0.424104928970337,-1.72569644451141,-1.42067515850067
+		rotation = -4.581053E-09,0.3826835,-6.337312E-09,-0.9238797
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 47
+		attm = 1
+		cData = 
+		sym = 26
+		sym = 31
+		sym = 36
+		sym = 41
+		sym = 46
+		srfN = srfAttach, 49
+		mass = 0.2
+		temp = 166.2335
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Vernier
+		uid = 4294730676
+		parent = 49
+		position = -0.43218269944191,-1.71948337554932,-1.42881953716278
+		rotation = 1.910286E-08,-0.3826834,2.046003E-08,-0.9238797
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 48
+		attm = 1
+		cData = 
+		sym = 27
+		sym = 32
+		sym = 37
+		sym = 42
+		sym = 47
+		srfN = srfAttach, 49
+		mass = 0.2
+		temp = 166.0918
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294730628
+		parent = 49
+		position = -0.0487908273935318,-1.99306666851044,-1.17881941795349
+		rotation = 1.025589E-08,-0.6087615,1.303537E-09,0.7933534
+		istg = 2
+		dstg = 2
+		sqor = 3
+		sidx = 49
+		attm = 1
+		sym = 28
+		sym = 33
+		sym = 38
+		sym = 43
+		sym = 48
+		srfN = srfAttach, 49
+		mass = 0.05
+		temp = 181.1886
+		expt = 0
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Station 3.1
+	sit = SPLASHED
+	landed = False
+	landedAt = 
+	splashed = True
+	met = 596.81998666111
+	lct = 141409.209794615
+	root = 0
+	pos = 0,0,0
+	lat = -3.37807607171131
+	lon = 49.8019066406258
+	alt = -0.495338191045448
+	rot = -0.4180173,0.08907579,0.5552117,-0.7134894
+	CoM = -8.043354E-05,0.05666058,8.366707E-05
+	stg = 0
+	cPch = 0, FLOAT
+	cHdg = 0, FLOAT
+	cMod = -1, INT
+	ORBIT {
+		SMA = 300775.378050721
+		ECC = 0.994842679023647
+		INC = 3.3780755325392
+		LPE = 90.0027601909165
+		LAN = -13.4337442326801
+		MNA = 3.14162532446683
+		EPH = 142006.029781276
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = Kosmos.VA.RRV.Capsule
+		uid = 4294707994
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = None, -1
+		attN = top00, 1
+		attN = None, -1
+		mass = 1
+		temp = 19.84189
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+		crew = 9
+		crew = 10
+		crew = 11
+	}
+	PART {
+		name = Kosmos.VA.RRV.TriChute
+		uid = 4294707296
+		parent = 0
+		position = 2.22928356379271E-05,0.246692135930061,-7.65970689826645E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.3
+		temp = 19.7946
+		expt = 0.5
+		state = 2
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Station 3
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 670.824154925154
+	lct = 142505.477348234
+	root = 0
+	pos = 0,0,0
+	lat = -0.236453775388532
+	lon = 27.8244705627359
+	alt = 79.8520744155394
+	rot = -0.2926582,0.3271367,-0.4157216,0.7965603
+	CoM = -0.000188917,0.05669089,-0.0003147373
+	stg = 1
+	cPch = -0.3440001, FLOAT
+	cHdg = 0.3419998, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 951183.391513797
+		ECC = 0.118159333679965
+		INC = 0.389102626384771
+		LPE = 22.066653337232
+		LAN = -59.2956832160047
+		MNA = 5.96864013531184
+		EPH = 143176.301503159
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = Kosmos.VA.RRV.Capsule
+		uid = 4294427744
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = None, -1
+		attN = top00, 1
+		attN = None, -1
+		mass = 1
+		temp = 166.0115
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 18
+		crew = 19
+		crew = 20
+	}
+	PART {
+		name = Kosmos.VA.RRV.TriChute
+		uid = 4294427026
+		parent = 0
+		position = 2.22928356379271E-05,0.246692135930061,-7.65970689826645E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 0
+		cData = 
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.3
+		temp = 164.9175
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+}
+VESSEL {
+	name = Station 3
+	sit = ORBITING
+	landed = False
+	landedAt = 
+	splashed = False
+	met = 4949.64559735279
+	lct = 143215.061502293
+	root = 0
+	pos = 0,0,0
+	lat = -0.236453004367747
+	lon = 27.8244711789142
+	alt = 79.8565513791982
+	rot = -0.07136704,0.6990464,0.7054113,0.09292925
+	CoM = 0.02298437,-4.881556,0.0004971233
+	stg = 4
+	cPch = 0, FLOAT
+	cHdg = 0, FLOAT
+	cMod = 1, INT
+	ORBIT {
+		SMA = 847665.733097499
+		ECC = 0.00294053704131279
+		INC = 0.206889702237154
+		LPE = 216.266311942051
+		LAN = 20.2551166283139
+		MNA = 0.351682660523493
+		EPH = 148164.707099645
+		REF = 1
+		OBJ = 0
+	}
+	PART {
+		name = Kosmos.VA.RRV.Capsule
+		uid = 4294394704
+		parent = 0
+		position = 0,0,0
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 17
+		attN = top00, 16
+		attN = top01, 1
+		mass = 1
+		temp = -201.9895
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		crew = 30
+		crew = 31
+		crew = 32
+	}
+	PART {
+		name = Kosmos.VA.RRV.Upper.Decoupler
+		uid = 4294394680
+		parent = 0
+		position = -3.64116640412249E-05,0.278632432222366,7.16871654731222E-05
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 1
+		sqor = -1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 0
+		attN = top, 2
+		mass = 0.1
+		temp = -201.4466
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RCS.TANK
+		uid = 4294394602
+		parent = 1
+		position = -3.61240818165243E-05,0.850751221179962,3.96334580727853E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = top, 7
+		attN = bottom, 1
+		attN = rcs00, 4
+		attN = rcs01, 6
+		attN = rcs02, 5
+		attN = rcs03, 3
+		mass = 0.15
+		temp = -199.9851
+		expt = 0.1
+		state = 2
+		connected = True
+		attached = True
+		qty = -0.003891498, FLOAT
+	}
+	PART {
+		name = Kosmos.VA.RRV.RCS.Thrusters
+		uid = 4294394578
+		parent = 2
+		position = 1.58731709234416E-05,0.366652190685272,-0.233166009187698
+		rotation = 3.79257E-09,0.7071069,1.231396E-08,0.7071069
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = main, 2
+		mass = 0.05
+		temp = -201.1798
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RCS.Thrusters
+		uid = 4294394514
+		parent = 2
+		position = -0.233296006917953,0.366657227277756,7.02020042808726E-05
+		rotation = -5.711875E-11,1,2.18174E-08,-3.606031E-08
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 2
+		attm = 0
+		sym = 3
+		srfN = None, -1
+		attN = main, 2
+		mass = 0.05
+		temp = -200.9383
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RCS.Thrusters
+		uid = 4294394450
+		parent = 2
+		position = 1.59914779942483E-05,0.366651922464371,0.233149036765099
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 3
+		attm = 0
+		sym = 3
+		sym = 4
+		srfN = None, -1
+		attN = main, 2
+		mass = 0.05
+		temp = -200.7018
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RCS.Thrusters
+		uid = 4294394386
+		parent = 2
+		position = 0.233299553394318,0.366700947284698,-8.68549614096992E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 4
+		attm = 0
+		sym = 3
+		sym = 4
+		sym = 5
+		srfN = None, -1
+		attN = main, 2
+		mass = 0.05
+		temp = -200.466
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RetroTank
+		uid = 4294394322
+		parent = 2
+		position = 2.2583466488868E-05,1.13156950473785,0.000121227531053592
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 5
+		attm = 0
+		srfN = None, -1
+		attN = top, 8
+		attN = bottom, 2
+		attN = RCS00, 13
+		attN = RCS01, 15
+		attN = RCS02, 12
+		attN = RCS03, 14
+		mass = 0.25
+		temp = -201.3049
+		expt = 0.9
+		state = 0
+		connected = True
+		attached = True
+		fuel = 50, FLOAT
+	}
+	PART {
+		name = Kosmos.VA.RRV.GYRO
+		uid = 4294394298
+		parent = 7
+		position = 1.11262706923299E-05,1.48380649089813,4.59494476672262E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 6
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 7
+		attN = top, 9
+		mass = 0.8
+		temp = -200.7629
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.ASAS
+		uid = 4294394058
+		parent = 8
+		position = -3.75360468751751E-05,1.61173844337463,-9.30060050450265E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 7
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 10
+		attN = top, 8
+		mass = 0.8
+		temp = -200.5064
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = satellite2
+		uid = 4294393536
+		parent = 9
+		position = 3.29864342347719E-05,2.34444260597229,-0.0001128547519329
+		rotation = 0,0,0,1
+		istg = 1
+		dstg = 3
+		sqor = 1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 9
+		attN = top, 11
+		mass = 0.85
+		temp = -200.2984
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = probekitDish
+		uid = 4294389578
+		parent = 10
+		position = 3.18213060381822E-05,3.14146637916565,-7.83548821345903E-05
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 10
+		mass = 0.05
+		temp = -199.9144
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RetroMotor
+		uid = 4294394274
+		parent = 7
+		position = -2.81595421256498E-05,1.22846627235413,-0.216961547732353
+		rotation = 3.79257E-09,0.7071069,1.231396E-08,0.7071069
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 8
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 7
+		mass = 0.1
+		temp = -200.1681
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RetroMotor
+		uid = 4294394220
+		parent = 7
+		position = -0.217079371213913,1.22847270965576,0.000121657663839869
+		rotation = -5.711875E-11,1,2.18174E-08,-3.606031E-08
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 9
+		attm = 0
+		sym = 12
+		srfN = None, -1
+		attN = bottom, 7
+		mass = 0.1
+		temp = -199.9274
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RetroMotor
+		uid = 4294394166
+		parent = 7
+		position = -2.13761813938618E-05,1.22845327854156,0.217126429080963
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 10
+		attm = 0
+		sym = 12
+		sym = 13
+		srfN = None, -1
+		attN = bottom, 7
+		mass = 0.1
+		temp = -199.6893
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.RetroMotor
+		uid = 4294394112
+		parent = 7
+		position = 0.217001497745514,1.22850108146667,4.35408583143726E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 2
+		sqor = -1
+		sidx = 11
+		attm = 0
+		sym = 12
+		sym = 13
+		sym = 14
+		srfN = None, -1
+		attN = bottom, 7
+		mass = 0.1
+		temp = -199.4514
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.TriChute
+		uid = 4294394646
+		parent = 0
+		position = 2.22928356379271E-05,0.246692135930061,-7.65970689826645E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 0
+		mass = 0.3
+		temp = -200.5106
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.VA.RRV.LockDown
+		uid = 4294394034
+		parent = 0
+		position = 3.80040000891313E-06,-0.353274494409561,7.04844132997096E-05
+		rotation = 0,0,0,1
+		istg = 2
+		dstg = 0
+		sqor = 2
+		sidx = 12
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 18
+		attN = top, 0
+		mass = 0.8
+		temp = -201.6725
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.1m.body
+		uid = 4294394000
+		parent = 17
+		position = 2.65106573351659E-05,-0.892030656337738,1.30765911308117E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 2
+		attm = 0
+		srfN = None, -1
+		attN = top, 17
+		attN = bottom, 19
+		mass = 1
+		temp = -201.625
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Pirdora.1m.body
+		uid = 4294393972
+		parent = 18
+		position = -1.04204009403475E-05,-2.67855072021484,2.80445528915152E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 3
+		attm = 0
+		srfN = None, -1
+		attN = top, 18
+		attN = bottom, 20
+		mass = 1
+		temp = -200.9246
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.1.5mto1m.Taper
+		uid = 4294393944
+		parent = 19
+		position = 4.10161810577847E-05,-4.17431354522705,-7.35114881535992E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 4
+		attm = 0
+		srfN = None, -1
+		attN = top, 19
+		attN = bottom, 21
+		mass = 0.75
+		temp = -201.6611
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.1.5m.body
+		uid = 4294393912
+		parent = 20
+		position = 1.55159796122462E-06,-5.1824836730957,-0.000110649314592592
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 5
+		attm = 0
+		srfN = None, -1
+		attN = top, 20
+		attN = bottom, 22
+		mass = 1
+		temp = -201.749
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.1.5mto0.5m.Taper
+		uid = 4294393888
+		parent = 21
+		position = 5.94818047829904E-05,-6.21451330184937,-1.45434314617887E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 6
+		attm = 0
+		srfN = None, -1
+		attN = top, 21
+		attN = bottom, 23
+		mass = 0.75
+		temp = -201.4446
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.UUI.Capable.Dockur.Node
+		uid = 4294393856
+		parent = 22
+		position = 5.03559567732736E-05,-6.80923700332642,-8.73113312991336E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 7
+		attm = 0
+		srfN = None, -1
+		attN = top, 22
+		attN = bottom, 34
+		attN = sideX1, 31
+		attN = sideX2, 28
+		attN = sideZ1, 24
+		attN = sideZ2, 26
+		mass = 0.5
+		temp = -202.1075
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.0.5mto0.75m.Taper
+		uid = 4294393832
+		parent = 23
+		position = 3.31190967699513E-05,-6.8092041015625,0.447428852319717
+		rotation = 0.7071069,1.144257E-08,1.156081E-08,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 8
+		attm = 0
+		srfN = None, -1
+		attN = top, 25
+		attN = bottom, 23
+		mass = 1
+		temp = -200.9297
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Kvant2.0.75m.body
+		uid = 4294393804
+		parent = 24
+		position = 3.12261399812996E-05,-6.80920028686523,1.16936266422272
+		rotation = 0.707107,1.147527E-08,1.138373E-08,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 9
+		attm = 0
+		srfN = None, -1
+		attN = None, -1
+		attN = bottom, 24
+		mass = 1
+		temp = -200.2252
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.0.5mto0.75m.Taper
+		uid = 4294393776
+		parent = 23
+		position = 3.98619013139978E-05,-6.80921697616577,-0.447359025478363
+		rotation = -0.7071069,-1.156081E-08,1.144257E-08,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 10
+		attm = 0
+		srfN = None, -1
+		attN = top, 27
+		attN = bottom, 23
+		mass = 1
+		temp = -200.7398
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Kristall.0.75m.body
+		uid = 4294393748
+		parent = 26
+		position = 3.03912238450721E-05,-6.80919885635376,-0.952492833137512
+		rotation = -0.707107,-1.155482E-08,1.159375E-08,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 11
+		attm = 0
+		srfN = None, -1
+		attN = None, -1
+		attN = bottom, 26
+		mass = 1
+		temp = -200.13
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.UUI.Capable.Dockur.Ring.Downfacing.Inverter
+		uid = 4294393724
+		parent = 23
+		position = -0.294442534446716,-6.80924272537231,-0.000104148333775811
+		rotation = 5.947464E-09,7.871089E-09,0.7071069,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 12
+		attm = 0
+		srfN = None, -1
+		attN = top, 29
+		attN = bottom, 23
+		mass = 1
+		temp = -200.6569
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.1mto0.5m.Taper
+		uid = 4294393700
+		parent = 28
+		position = -0.418878972530365,-6.80925130844116,-4.59480434074067E-05
+		rotation = -7.682274E-09,5.833226E-09,-0.7071068,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 13
+		attm = 0
+		srfN = None, -1
+		attN = top, 28
+		attN = bottom, 30
+		mass = 1
+		temp = -200.3509
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Kvant2.1m.body
+		uid = 4294393620
+		parent = 29
+		position = -1.09525513648987,-6.80922508239746,-0.000111228182504419
+		rotation = 2.794329E-08,-1.585011E-08,-0.7071069,0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 14
+		attm = 0
+		srfN = None, -1
+		attN = top, 29
+		attN = None, -1
+		mass = 1
+		temp = -199.9397
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.UUI.Capable.Dockur.Ring.Downfacing.Inverter
+		uid = 4294393672
+		parent = 23
+		position = 0.294406801462173,-6.80923318862915,-7.01547323842533E-05
+		rotation = -7.871089E-09,5.947464E-09,-0.7071069,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 15
+		attm = 0
+		srfN = None, -1
+		attN = top, 32
+		attN = bottom, 23
+		mass = 1
+		temp = -200.4728
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.1mto0.5m.Taper
+		uid = 4294393648
+		parent = 31
+		position = 0.418872147798538,-6.80928039550781,0.00011546270980034
+		rotation = -1.585011E-08,-2.794329E-08,0.7071068,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 16
+		attm = 0
+		srfN = None, -1
+		attN = top, 31
+		attN = bottom, 33
+		mass = 1
+		temp = -200.2789
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Mir.1m.body
+		uid = 4294393596
+		parent = 32
+		position = 1.08364403247833,-6.80925226211548,-3.49504553014413E-05
+		rotation = 5.833226E-09,7.682274E-09,0.7071069,0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 17
+		attm = 0
+		srfN = None, -1
+		attN = top, 32
+		attN = None, -1
+		mass = 1
+		temp = -199.9017
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Spektr.1mto0.5.taper
+		uid = 4294393568
+		parent = 23
+		position = 6.6469656303525E-06,-7.69034862518311,-2.34218168770894E-05
+		rotation = 0,0,0,1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 18
+		attm = 0
+		srfN = None, -1
+		attN = top, 23
+		attN = bottom, 39
+		attN = None, -1
+		attN = None, -1
+		attN = None, -1
+		attN = None, -1
+		mass = 1
+		temp = -199.5172
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392680
+		parent = 34
+		position = 1.14888898679055E-05,-8.03994274139404,0.473215222358704
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 19
+		attm = 1
+		srfN = srfAttach, 34
+		mass = 0.05
+		temp = -200.9366
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392576
+		parent = 34
+		position = 0.473253399133682,-8.03995895385742,-0.00010935610771412
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 20
+		attm = 1
+		sym = 35
+		srfN = srfAttach, 34
+		mass = 0.05
+		temp = -200.6994
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392472
+		parent = 34
+		position = 5.76186721445993E-06,-8.03993129730225,-0.473331034183502
+		rotation = 1.231396E-08,-0.7071069,-3.79257E-09,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 21
+		attm = 1
+		sym = 35
+		sym = 36
+		srfN = srfAttach, 34
+		mass = 0.05
+		temp = -200.4633
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392368
+		parent = 34
+		position = -0.47323614358902,-8.03991508483887,-6.4611595007591E-06
+		rotation = 0,0,0,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 22
+		attm = 1
+		sym = 35
+		sym = 36
+		sym = 37
+		srfN = srfAttach, 34
+		mass = 0.05
+		temp = -200.2264
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = miniDecoupler
+		uid = 4294391656
+		parent = 34
+		position = 2.60047454503365E-05,-8.31827068328857,-6.0890379245393E-06
+		rotation = 0,0,0,1
+		istg = 3
+		dstg = 1
+		sqor = 3
+		sidx = 0
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 40
+		attN = top, 34
+		mass = 0.2
+		temp = -200.2167
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = RetroPack
+		uid = 4294391614
+		parent = 39
+		position = -4.37120761489496E-05,-8.68929100036621,-1.77361798705533E-05
+		rotation = 0,0,0,1
+		istg = 3
+		dstg = 3
+		sqor = 4
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = bottom, 41
+		attN = top, 39
+		mass = 0.4
+		temp = -200.651
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+		fuel = 20, FLOAT
+	}
+	PART {
+		name = fuelTank
+		uid = 4294391518
+		parent = 40
+		position = -4.15524045820348E-05,-9.46185398101807,6.12141666351818E-05
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 1
+		attm = 0
+		srfN = None, -1
+		attN = top, 40
+		attN = bottom, 42
+		mass = 1.540442
+		temp = -199.4198
+		expt = 0.5510698
+		state = 1
+		connected = True
+		attached = True
+		fuel = 281.9186, FLOAT
+	}
+	PART {
+		name = NERVAEngine
+		uid = 4294391494
+		parent = 41
+		position = -4.21306176576763E-05,-10.9188499450684,-0.000104556726000737
+		rotation = 0,0,0,1
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 2
+		attm = 0
+		srfN = None, -1
+		attN = top, 41
+		attN = None, -1
+		mass = 3
+		temp = -200.4002
+		expt = 0.5
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294390908
+		parent = 41
+		position = -2.51413584919646E-05,-9.25592231750488,0.495407909154892
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 3
+		attm = 1
+		cData = tgt: Kosmos.Kvant2.0.75m.body_25; pos: -0.551913,2.07717,-0.01805645; dir: -0.256847,0.9664153,-0.00843903
+		srfN = srfAttach, 41
+		mass = 0.05
+		temp = -200.6581
+		expt = 0
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294390860
+		parent = 41
+		position = 0.495495527982712,-9.25585079193115,5.66530507057905E-05
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 4
+		attm = 1
+		cData = tgt: Kosmos.Mir.1m.body_33; pos: -0.5192791,1.95398,-0.01727606; dir: -0.256847,0.9664153,-0.00843903
+		sym = 43
+		srfN = srfAttach, 41
+		mass = 0.05
+		temp = -200.4209
+		expt = 0
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294390812
+		parent = 41
+		position = -2.55410704994574E-05,-9.25592136383057,-0.495572596788406
+		rotation = 1.231396E-08,-0.7071069,-3.79257E-09,0.7071069
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 5
+		attm = 1
+		cData = tgt: Kosmos.Kristall.0.75m.body_27; pos: -0.5521392,2.076991,-0.01792841; dir: -0.256847,0.9664153,-0.00843903
+		sym = 43
+		sym = 44
+		srfN = srfAttach, 41
+		mass = 0.05
+		temp = -200.1843
+		expt = 0
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = NP.Heavystrut
+		uid = 4294390764
+		parent = 41
+		position = -0.495465785264969,-9.25588321685791,2.31144804274663E-05
+		rotation = 0,0,0,-1
+		istg = 4
+		dstg = 4
+		sqor = -1
+		sidx = 6
+		attm = 1
+		cData = tgt: Kosmos.Kvant2.1m.body_30; pos: -0.5193305,1.954108,-0.01691474; dir: -0.256847,0.9664153,-0.00843903
+		sym = 43
+		sym = 44
+		sym = 45
+		srfN = srfAttach, 41
+		mass = 0.05
+		temp = -199.9481
+		expt = 0
+		state = 1
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Short.Panel
+		uid = 4294392168
+		parent = 21
+		position = 3.88035259675235E-05,-5.27093744277954,0.780739843845367
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 23
+		attm = 1
+		srfN = srfAttach, 21
+		attN = None, -1
+		mass = 0.01
+		temp = -200.3978
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Short.Panel
+		uid = 4294392144
+		parent = 21
+		position = 0.780731439590454,-5.27095508575439,2.32650636462495E-05
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 24
+		attm = 1
+		sym = 47
+		srfN = srfAttach, 21
+		attN = None, -1
+		mass = 0.01
+		temp = -200.1681
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Short.Panel
+		uid = 4294392120
+		parent = 21
+		position = 3.98902921006083E-05,-5.27093935012817,-0.780805230140686
+		rotation = 1.231396E-08,-0.7071069,-3.79257E-09,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 25
+		attm = 1
+		sym = 47
+		sym = 48
+		srfN = srfAttach, 21
+		attN = None, -1
+		mass = 0.01
+		temp = -199.9357
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Short.Panel
+		uid = 4294392096
+		parent = 21
+		position = -0.780760884284973,-5.27097797393799,-8.86909256223589E-05
+		rotation = 0,0,0,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 26
+		attm = 1
+		sym = 47
+		sym = 48
+		sym = 49
+		srfN = srfAttach, 21
+		attN = None, -1
+		mass = 0.01
+		temp = -199.7051
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294393096
+		parent = 19
+		position = -2.49819058808498E-05,-3.69334435462952,0.516568839550018
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 27
+		attm = 1
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -201.4019
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392992
+		parent = 19
+		position = 0.516604781150818,-3.69331932067871,-7.44584031053819E-05
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 28
+		attm = 1
+		sym = 51
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -201.1767
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392888
+		parent = 19
+		position = -1.47151658893563E-05,-3.693363904953,-0.516648709774017
+		rotation = 1.231396E-08,-0.7071069,-3.79257E-09,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 29
+		attm = 1
+		sym = 51
+		sym = 52
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -200.9522
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294392784
+		parent = 19
+		position = -0.516536295413971,-3.69333219528198,-5.40673499926925E-06
+		rotation = 0,0,0,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 30
+		attm = 1
+		sym = 51
+		sym = 52
+		sym = 53
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -200.7292
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Long.Panel
+		uid = 4294392072
+		parent = 19
+		position = 0.536274373531342,-2.76733613014221,2.20776346395724E-05
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 31
+		attm = 1
+		srfN = srfAttach, 19
+		attN = None, -1
+		mass = 0.01
+		temp = -200.0412
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Long.Panel
+		uid = 4294392048
+		parent = 19
+		position = -0.536289691925049,-2.76733016967773,-5.71292839595117E-05
+		rotation = 0,0,0,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 32
+		attm = 1
+		sym = 55
+		srfN = srfAttach, 19
+		attN = None, -1
+		mass = 0.01
+		temp = -199.8065
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294392024
+		parent = 19
+		position = 6.96528877597302E-06,-3.06078600883484,0.587618827819824
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 33
+		attm = 1
+		srfN = srfAttach, 19
+		mass = 0.3232027
+		temp = -199.5738
+		expt = 0.3341738
+		state = 1
+		connected = True
+		attached = True
+		qty = 97.5724, FLOAT
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294392000
+		parent = 19
+		position = 1.18573952931911E-05,-3.06079530715942,-0.587690532207489
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 34
+		attm = 1
+		sym = 57
+		srfN = srfAttach, 19
+		mass = 0.3232027
+		temp = -199.3426
+		expt = 0.3341738
+		state = 1
+		connected = True
+		attached = True
+		qty = 97.5724, FLOAT
+	}
+	PART {
+		name = Kosmos.Common.Boom.RCS
+		uid = 4294391880
+		parent = 19
+		position = -4.1297942516394E-05,-2.26156854629517,4.75837564468384
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 35
+		attm = 1
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -199.9306
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Boom.RCS
+		uid = 4294391768
+		parent = 19
+		position = -2.54722981480882E-05,-2.2615978717804,-4.75860214233398
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 36
+		attm = 1
+		sym = 59
+		srfN = srfAttach, 19
+		mass = 0.05
+		temp = -199.9243
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294393512
+		parent = 18
+		position = 6.27862027613446E-06,-0.543196618556976,0.516530752182007
+		rotation = -3.79257E-09,-0.7071069,-1.231396E-08,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 37
+		attm = 1
+		srfN = srfAttach, 18
+		mass = 0.05
+		temp = -201.7769
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294393408
+		parent = 18
+		position = 0.51663601398468,-0.543171584606171,-0.000112546447780915
+		rotation = 5.711875E-11,-1,-2.18174E-08,3.606031E-08
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 38
+		attm = 1
+		sym = 61
+		srfN = srfAttach, 18
+		mass = 0.05
+		temp = -201.5384
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294393304
+		parent = 18
+		position = -1.17787931230851E-05,-0.543162047863007,-0.516686499118805
+		rotation = 1.231396E-08,-0.7071069,-3.79257E-09,0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 39
+		attm = 1
+		sym = 61
+		sym = 62
+		srfN = srfAttach, 18
+		mass = 0.05
+		temp = -201.2991
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.RCS
+		uid = 4294393200
+		parent = 18
+		position = -0.516641497612,-0.543187081813812,-4.3175183236599E-05
+		rotation = 0,0,0,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 40
+		attm = 1
+		sym = 61
+		sym = 62
+		sym = 63
+		srfN = srfAttach, 18
+		mass = 0.05
+		temp = -201.0631
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Extendable.Radiator.Panel
+		uid = 4294392264
+		parent = 18
+		position = -0.381614625453949,-0.961378157138824,0.381483495235443
+		rotation = 1.910286E-08,-0.3826834,2.046003E-08,-0.9238797
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 41
+		attm = 1
+		srfN = srfAttach, 18
+		attN = None, -1
+		mass = 0.01
+		temp = -200.352
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Extendable.Radiator.Panel
+		uid = 4294392240
+		parent = 18
+		position = 0.381549566984177,-0.96134477853775,0.381582289934158
+		rotation = 6.337312E-09,-0.9238797,-4.581053E-09,-0.3826835
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 42
+		attm = 1
+		sym = 65
+		srfN = srfAttach, 18
+		attN = None, -1
+		mass = 0.01
+		temp = -200.1154
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Extendable.Radiator.Panel
+		uid = 4294392216
+		parent = 18
+		position = 0.381564497947693,-0.961373269557953,-0.381612062454224
+		rotation = -2.046003E-08,-0.9238797,1.910286E-08,0.3826834
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 43
+		attm = 1
+		sym = 65
+		sym = 66
+		srfN = srfAttach, 18
+		attN = None, -1
+		mass = 0.01
+		temp = -199.8783
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.Common.Extendable.Radiator.Panel
+		uid = 4294392192
+		parent = 18
+		position = -0.381628006696701,-0.961352527141571,-0.381710529327393
+		rotation = -4.581053E-09,0.3826835,-6.337312E-09,-0.9238797
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 44
+		attm = 1
+		sym = 65
+		sym = 66
+		sym = 67
+		srfN = srfAttach, 18
+		attN = None, -1
+		mass = 0.01
+		temp = -199.6416
+		expt = 0.5
+		state = 0
+		connected = True
+		attached = True
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294391976
+		parent = 18
+		position = -0.587107300758362,-1.38036668300629,-9.2685739218723E-05
+		rotation = 2.848581E-08,-1.157554E-07,-3.030518E-10,-1
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 45
+		attm = 1
+		srfN = srfAttach, 18
+		mass = 0.75
+		temp = -199.4143
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294391952
+		parent = 18
+		position = -2.13361927308142E-05,-1.38041090965271,0.587111711502075
+		rotation = -1.820411E-08,-0.707107,-1.289988E-08,-0.7071068
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 46
+		attm = 1
+		sym = 69
+		srfN = srfAttach, 18
+		mass = 0.75
+		temp = -199.185
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294391928
+		parent = 18
+		position = 0.587151706218719,-1.38035821914673,-1.63890435942449E-05
+		rotation = 3.030518E-10,-1,2.848581E-08,1.157554E-07
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 47
+		attm = 1
+		sym = 69
+		sym = 70
+		srfN = srfAttach, 18
+		mass = 0.75
+		temp = -198.9566
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+	PART {
+		name = Kosmos.TKS.RCS.Tank
+		uid = 4294391904
+		parent = 18
+		position = -4.23952878918499E-05,-1.38037061691284,-0.587220728397369
+		rotation = -1.231396E-08,0.7071069,3.79257E-09,-0.7071069
+		istg = 0
+		dstg = 0
+		sqor = -1
+		sidx = 48
+		attm = 1
+		sym = 69
+		sym = 70
+		sym = 71
+		srfN = srfAttach, 18
+		mass = 0.75
+		temp = -198.7283
+		expt = 0.7
+		state = 0
+		connected = True
+		attached = True
+		qty = 250, FLOAT
+	}
+}
