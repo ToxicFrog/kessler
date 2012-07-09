@@ -41,10 +41,6 @@
         (recur lexer input)
         [token lexer input]))))
 
-(defn lexer []
-  { :line 1 :col 1
-    :lexicon [{:pattern #"^s"} {:pattern #"^."}] })
-
 (defn lex-seq
   "Returns a lazy sequence of the tokens contained in input according to lexer. Throws an exception if lexing fails."
   [lexer input]
