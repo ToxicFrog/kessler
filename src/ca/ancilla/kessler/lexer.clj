@@ -47,6 +47,23 @@
   (let [[lex-head lexer lex-tail] (lex-next lexer input)]
     (lazy-seq (cons lex-head (lex-seq lexer lex-tail)))))
 
+(defn- make-pattern
+  "Given a string, return a corresponding regex anchored with ^."
+  [pattern]
+  (re-pattern (str "^" pattern)))
+
+(defn- make-result
+  "Given a lexer result value, make a result function of it. (see (doc lexer))"
+  [result]
+  (cond (nil? result) identity
+    (fn? result) result
+    :else (constantly result)))
+
+(defn- make-lexeme
+  "Given a pattern, a tag, and an optional result value, create a map describing a single lexeme."
+  [pattern tag & [result]]
+  { :tag tag :pattern (make-pattern pattern) :result (make-result result) })
+
 (defn lexer
   "Given any number of [pattern tag result] lexeme descriptions, constructs a lexer from them.
 
@@ -59,10 +76,6 @@
   - otherwise, the value is taken as the result
 
   The resulting lexer can be run with (lex-seq lexer input)"
-  [& lexicon]
-  (let [make-pattern (fn [p] (re-pattern (str "^" p)))
-        make-result (fn [r] (cond (nil? r) identity (fn? r) r :else (constantly r)))
-        make-lexeme (fn [pattern tag & [result]]
-                       { :pattern (make-pattern pattern) :tag tag :result (make-result result)})
-        lexicon (map (partial apply make-lexeme) lexicon)]
+  [& lexemes]
+  (let [lexicon (map (partial apply make-lexeme) lexemes)]
     { :lexicon lexicon :line 1 :col 1 }))
