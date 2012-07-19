@@ -3,6 +3,7 @@
 /classes
 /checkouts
 pom.xml
+.idea/workspace.xml
 *.jar
 *.class
 *.iml
