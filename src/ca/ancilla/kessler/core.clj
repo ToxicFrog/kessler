@@ -7,4 +7,4 @@
 
 (defn -main
   [& args]
-  (println (execute sfs-parser (lex-seq sfs-lexer (slurp "test.sfs")))))
+  (-> "test.sfs" slurp sfs-parse sfs-str doall println))
