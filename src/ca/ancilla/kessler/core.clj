@@ -1,10 +1,7 @@
 (ns ca.ancilla.kessler.core
   (:gen-class)
-  (:import java.lang.Character)
-  (:use
-    clearley.core
-    [ca.ancilla.kessler parser writer]))
+  (:require [ca.ancilla.kessler.sfs :as sfs]))
 
 (defn -main
   [& args]
-  (-> "test.sfs" slurp sfs-parse sfs-str doall println))
+  (println (sfs/write (sfs/load (first args)))))

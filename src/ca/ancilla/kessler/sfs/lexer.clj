@@ -1,5 +1,5 @@
-(ns ca.ancilla.kessler.lexer
-  (:use clojure.string))
+(ns ca.ancilla.kessler.sfs.lexer
+  (:require [clojure.string :as string]))
 
 (defn- lex-token
   "Creates and returns the token for the next token in input according to lexer. Throws an exception if input does not match any tokens."
@@ -21,7 +21,7 @@
 (defn- advance-cursor
   "Given a token, returns the [line col] of the first character *after* the token, ie, the start of the next token."
   [token]
-  (let [lines (split (:text token) #"\n" -1)
+  (let [lines (string/split (:text token) #"\n" -1)
         line-delta (- (count lines) 1)
         chars (last lines)
         col-delta (count chars)]

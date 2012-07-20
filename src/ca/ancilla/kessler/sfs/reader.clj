@@ -1,15 +1,17 @@
-(ns ca.ancilla.kessler.parser
-  (:import java.lang.Character)
-  (:use clearley.core ca.ancilla.kessler.lexer clojure.string))
+(ns ca.ancilla.kessler.sfs.reader
+  (:require
+    [clearley.core :as parser]
+    [ca.ancilla.kessler.sfs.lexer :as lexer]
+    [clojure.string :as string]))
 
-; an SFS is a sequence of objects and properties, optionally commented
+  ; an SFS is a sequence of objects and properties, optionally commented
 ; a comment starts with // and extends to the end of the line
 ; a property consists of NAME '=' VALUE, where VALUE is an arbitrary string
 ; running from the first non-whitespace after the '=' to the end of the line
 ; an object consists of TYPE '{' SFS '}', where TYPE is an allcaps NAME
 
-(def ^:private sfs-lexer
-  (lexer
+(def sfs-lexer
+  (lexer/lexer
     ["\\s+"           :whitespace :drop-token]
     ["//.*"           :comment    :drop-token]
     ["\\{"            :open-brace]
@@ -18,7 +20,7 @@
     ["=\\s*(.*)"      :value      #(-> %2)]))
 
 (defmacro deftoken [name tag]
-  `(def ~name (scanner #(= (:tag %) ~tag) #(:value %))))
+  `(def ~name (parser/scanner #(= (:tag %) ~tag) #(:value %))))
 
 (deftoken sfs-key :key)
 (deftoken sfs-value :value)
@@ -31,7 +33,7 @@
   If v is a vector value, returns a vector of its contents.
   So '1' => '1', and '1,2,3,4' => [1 2 3 4]."
   [v]
-  (let [values (split v #",")]
+  (let [values (string/split v #",")]
     (if (> (count values) 1)
       values
       v)))
@@ -43,14 +45,14 @@
     (let [[key value] item] (update-in sfs [:properties] assoc key value))
     (update-in sfs [:children] conj item)))
 
-(defrule sfs-item
+(parser/defrule sfs-item
   ([sfs-key sfs-value] [sfs-key sfs-value])
   ([sfs-key open-brace sfs close-brace] (assoc sfs :type sfs-key)))
 
-(defrule sfs
+(parser/defrule sfs
   ([sfs-item sfs] (sfs-conj sfs sfs-item))
   ([sfs-item] (sfs-conj { :children nil :properties {} } sfs-item)))
 
-(def sfs-parser (build-parser sfs))
+(def sfs-parser (parser/build-parser sfs))
 
-(defn sfs-parse [sfs] (assoc (execute sfs-parser (lex-seq sfs-lexer sfs)) :type "SFS"))
+(defn parse [sfs] (assoc (parser/execute sfs-parser (lexer/lex-seq sfs-lexer sfs)) :type "SFS"))
