@@ -1,4 +1,5 @@
 (ns ca.ancilla.kessler.sfs
+  (:refer-clojure :exclude [read write load save]) ; work around a bug in the Clojure compiler
   (:require (ca.ancilla.kessler.sfs
     [reader :as reader]
     [writer :as writer])))
@@ -16,9 +17,9 @@
 (defn load
   "Loads an SFS file with the given name from disk."
   [file]
-  (->> file slurp read))
+  (read (slurp file)))
 
 (defn save
   "Saves an SFS file to disk."
   [sfs file]
-  (->> sfs write (spit file)))
+  (spit file (write sfs)))
