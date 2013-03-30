@@ -16,7 +16,7 @@
     ["//.*"           :comment    :drop-token]
     ["\\{"            :open-brace]
     ["\\}"            :close-brace]
-    ["[a-zA-Z0-9]+"   :key]
+    ["[a-zA-Z0-9_]+"  :key]
     ["=\\s*(.*)"      :value      #(-> %2)]))
 
 (defmacro deftoken [name tag]
