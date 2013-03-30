@@ -17,7 +17,7 @@
     ["\\{"            :open-brace]
     ["\\}"            :close-brace]
     ["[a-zA-Z0-9_]+"  :key]
-    ["=\\s*(.*)"      :value      #(-> %2)]))
+    ["= *([^\\n]*)"      :value      #(-> %2)]))
 
 (defmacro deftoken [name tag]
   `(def ~name (parser/scanner #(= (:tag %) ~tag) #(:value %))))
