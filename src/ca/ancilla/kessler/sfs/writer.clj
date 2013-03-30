@@ -11,8 +11,8 @@
 (defn- sfs-object
   "Stringifies a single SFS interior object."
   [indent sfs]
-  (str indent (:type sfs) " {\n"
-              (sfs-content (str "    " indent) sfs)
+  (str indent (:type sfs) "\n" indent "{\n"
+              (sfs-content (str "\t" indent) sfs)
               indent "}\n"))
 
 (defn- sfs-content
@@ -24,4 +24,4 @@
 (defn write
   "Turns a parsed SFS structure back into a string."
   [sfs]
-  (sfs-content "" sfs))
+  (sfs-object "" sfs))

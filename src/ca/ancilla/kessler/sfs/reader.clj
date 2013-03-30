@@ -10,7 +10,7 @@
 ; running from the first non-whitespace after the '=' to the end of the line
 ; an object consists of TYPE '{' SFS '}', where TYPE is an allcaps NAME
 
-(def sfs-lexer
+(def ^:private sfs-lexer
   (lexer/lexer
     ["\\s+"           :whitespace :drop-token]
     ["//.*"           :comment    :drop-token]
@@ -20,7 +20,7 @@
     ["= *([^\\n]*)"      :value      #(-> %2)]))
 
 (defmacro deftoken [name tag]
-  `(def ~name (parser/scanner #(= (:tag %) ~tag) #(:value %))))
+  `(def ^:private ~name (parser/scanner #(= (:tag %) ~tag) #(:value %))))
 
 (deftoken sfs-key :key)
 (deftoken sfs-value :value)
@@ -45,14 +45,17 @@
     (let [[key value] item] (update-in sfs [:properties] assoc key value))
     (update-in sfs [:children] conj item)))
 
+(def ^:private blank-sfs { :children nil :properties {} })
+
 (parser/defrule sfs-item
   ([sfs-key sfs-value] [sfs-key sfs-value])
+  ([sfs-key open-brace close-brace] (assoc blank-sfs :type sfs-key))
   ([sfs-key open-brace sfs close-brace] (assoc sfs :type sfs-key)))
 
 (parser/defrule sfs
   ([sfs-item sfs] (sfs-conj sfs sfs-item))
-  ([sfs-item] (sfs-conj { :children nil :properties {} } sfs-item)))
+  ([sfs-item] (sfs-conj blank-sfs sfs-item)))
 
-(def sfs-parser (parser/build-parser sfs))
+(def ^:private sfs-parser (parser/build-parser sfs-item))
 
-(defn parse [sfs] (assoc (parser/execute sfs-parser (lexer/lex-seq sfs-lexer sfs)) :type "SFS"))
+(defn parse [sfs] (parser/execute sfs-parser (lexer/lex-seq sfs-lexer sfs)))
