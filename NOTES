@@ -1,0 +1,29 @@
+TODO: determine how crew is stored in .19 save files
+
+[B]Conflicts[/B]
+
+As long as each player only ever plays with their own rockets, there's no problem. You see other rockets on the map, maybe you even zoom in for a closer look, but you never actually control them - that's fine. Even if two or more players are sharing a rocket, as long as they aren't trying to fly it [i]at the same time[/i], it's all good. I sync, play with the [i]Sunsmash V[/i] a bit, then sync again and quit; you sync, play with it a bit more, then sync again. As long as we sync before and after each play session, and never play with the same rockets at the same time, no conflicts arise.
+
+Where it goes wrong is when two players have both played with the same rocket - or part, rather, since "rocket" is now a somewhat fluid concept - in concurrent playing sessions. I set it on a course to impact the sun; you put it on a lunar trajectory so that you could have the pilots bail out at the station there first. They can't both happen, right? So what [i]does[/i] happen?
+
+[b]Conflict Detection[/b]
+
+Even detecting that a conflict has occurred is not trivial. The server doesn't see the game as you're playing, just the final save, and all it has to compare that to is its shared save state. If I sync first after playing, it has no idea that a conflict has occurred and dutifully updates the save file with the rocket's new trajectory and fuel reserves. Then you sync and the rocket is in a different place - is that because you were flying it concurrently, or because you loaded my save and then moved the rocket after the fact?
+
+One possibility is to have each client keep a copy of the last synced state, and upload both. Then the server can see not only which parts the player moved, but also what the base state of each part was last time they synced - if that differs from the state of the part currently recorded, someone else has been flying it at the same time. Another option would be to annotate each part on the server with extra information detailing when it was last updated, and annotate the client's save with a corresponding timestamp for the entire save (probably by modifying the GAME.Title or GAME.Description fields; you can't just add new fields, as the game will discard them when it loads the save file). If the timestamp on your save is earlier than the last update to a part you want to modify, it's been updated since your last sync and a conflict has occurred.
+
+There are likely other approaches to this, but this is what comes immediately to mind. This is also likely to be slightly complicated by midflight docking and undocking, meaning that conflict detection will have to deal with VESSELs appearing and disappearing even if the set of PARTs present hasn't changed. I would probably say that parts count as changed if they belong to any vessel that changes [i]or[/i] if which vessel they are a part of changes, and a vessel counts as conflicted if it contains any conflicted parts - I don't think that misses any cases.
+
+[b]Conflict Resolution[/b]
+
+Once a conflict is detected, something has to be done. A few possible approaches to conflict resolution are outlined here; it's possible to implement all of them, even, and have a configuration option for them.
+
+[i]Earliest wins.[/i] If we both sync to the same state and then modify the same parts, whoever re-syncs first wins; the second person's changes will be synced to the first person's. On the server, this is accomplished with timestamps as mentioned above; if the version on the server has a more recent timestamp than your basis version, your version is overwritten with the server's.
+
+[i]Latest wins.[/i] If we both sync to the same state and then modify the same parts, whoever re-syncs [i]last[/i] wins. This doesn't actually work in practice because whoever is syncing at the moment is syncing "last"; if you're lucky you end up with [i]everyone wins locally[/i], below, and if you aren't you get rockets teleporting around seemingly at random whenever you sync.
+
+[i]Everyone wins locally.[/i] If a conflict occurs, the server arbitrarily picks one as the "winner" to record in the server's state, but stops syncing changes to that rocket to the "losing" players - in effect, that rocket (or rather, the parts comprising it) become decoupled from the server for those users. This lets two players take the same rocket off in radically different directions without affecting each other - but the rest of the server population will only see one of those trajectories. This is closest to how .14/.15 Kessler worked.
+
+[i]Everyone wins globally.[/i] When a conflict occurs, the "winner" updates the server state and the "losers" have new UIDs assigned, and possibly their names changed, and become duplicate rockets. In the above example, both of our rockets would show up upon sync, but mine would now be called [i]ToxicFrog's Sunsmash V[/i]. This could potentially get very confusing if people keep conflicting on the same rockets and you end up with [i]ToxicFrog's Manitcor's ToxicFrog's ToxicFrog's Thanar's Sunsmash V[/i] or something; the naming scheme will need some work, if this is even a useful feature.
+
+Which one of these is the right answer is unclear, and probably depends on how you and your friends are using the server. If it's just a way to fill the sky up some and get more rockets to play with, [i]everyone wins locally[/i] is probably the best bet. If people tend to collaborate on missions, [i]earliest wins[/i] is the safest approach. And if you want more rockets to play with but [i]also[/i] want to see what everyone else is doing, [i]everyone wins globally[/i] is what you want. This is a good argument for it being a configuration option, I think.
