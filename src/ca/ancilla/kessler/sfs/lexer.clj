@@ -1,6 +1,11 @@
 (ns ca.ancilla.kessler.sfs.lexer
   (:require [clojure.string :as string]))
 
+(defn- escape-str
+  "Escapes a string for error message reporting."
+  [str]
+  (string/escape (subs str 0 8) char-escape-string))
+
 (defn- lex-token
   "Creates and returns the token for the next token in input according to lexer. Throws an exception if input does not match any tokens."
   [lexer input]
@@ -16,7 +21,7 @@
           :length (count (first groups))
           :col (:col lexer)
           :line (:line lexer)))
-      (throw (RuntimeException. (str "Lex error at " (:line lexer) "." (:col lexer)))))))
+      (throw (RuntimeException. (str "Lex error at " (:line lexer) "." (:col lexer) " near '" (escape-str input) "'"))))))
 
 (defn- advance-cursor
   "Given a token, returns the [line col] of the first character *after* the token, ie, the start of the next token."
