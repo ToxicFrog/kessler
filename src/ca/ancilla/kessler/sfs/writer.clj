@@ -24,4 +24,4 @@
 (defn write
   "Turns a parsed SFS structure back into a string."
   [sfs]
-  (sfs-object "" sfs))
+  (sfs-content "" sfs))

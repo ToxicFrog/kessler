@@ -4,7 +4,7 @@
     [ca.ancilla.kessler.sfs.lexer :as lexer]
     [clojure.string :as string]))
 
-  ; an SFS is a sequence of objects and properties, optionally commented
+; an SFS is a sequence of objects and properties, optionally commented
 ; a comment starts with // and extends to the end of the line
 ; a property consists of NAME '=' VALUE, where VALUE is an arbitrary string
 ; running from the first non-whitespace after the '=' to the end of the line
@@ -56,6 +56,6 @@
   ([sfs-item sfs] (sfs-conj sfs sfs-item))
   ([sfs-item] (sfs-conj blank-sfs sfs-item)))
 
-(def ^:private sfs-parser (parser/build-parser sfs-item))
+(def ^:private sfs-parser (parser/build-parser sfs))
 
 (defn parse [sfs] (parser/execute sfs-parser (lexer/lex-seq sfs-lexer sfs)))
