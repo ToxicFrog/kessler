@@ -94,8 +94,8 @@ function get-date() {
   wget -c -q -O/tmp/$$.$1 "$link"
 
   local posted=$(</tmp/$$.$1 egrep -m1 'span class="date"' | sed -r 's/[^>]+>([^,]+),.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
-  local author="$(</tmp/$$.$1 egrep -m1 'strong' | sed -r 's/.*<strong>([^<]+).*/\1/')"
-  local edited=$(</tmp/$$.$1 egrep -m1 "Last edited by $author" | sed -r 's/.*Last edited by .*; (.*) at <span.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
+  local edited=$(</tmp/$$.$1 awk '/Reply With Quote/ { exit 0; }; /.*/ { print $0; }' | egrep "Last edited by" | tail -n1 \
+                 | sed -r 's/.*Last edited by .*; (.*) at <span.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
 
   echo -e "$posted\n$edited" | sort | tail -n1
 }
