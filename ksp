@@ -1,0 +1,119 @@
+#!/bin/bash
+
+LATEST=2013-12-17
+
+touch ~/.kspmods
+
+# check all mods for updates
+# syntax: ksp check
+# produces: a table of known mods with installed version vs latest version
+function mod-check() {
+  printf "%8s %15s %15s    %s\n" ID VERSION DATE NAME
+  cat ~/.kspmods | while read id version date name; do
+    local new_version=$(get-version $id)
+    local new_date=$(get-date $id)
+
+    [[ $date == $new_date && $version == $new_version ]] && {
+      [[ $date < $LATEST ]] && {
+        printf "\033[1;32m%8d %15s \033[1;33m%15s\033[1;32m    %s\n" $id $version $date "$name"
+      } || {
+        printf "\033[1;32m%8d %15s %15s    %s\n" $id $version $date "$name"
+      }
+    } || {
+      printf "\033[1;31m%8d %15s %15s    %s\n" $id $version $date "$name"
+      printf "%8s %15s %15s    %s\n" "" "$new_version" "$new_date" ""
+    }
+  done
+}
+
+# add a mod
+# syntax: ksp add <forum link> [mod name]
+function mod-add() {
+  local id="$(link-to-id $1)"; shift
+  local name
+
+  exists $id && {
+    echo "Mod already exists in database."
+    exit 1
+  }
+
+  [[ $1 ]] && {
+    name="$*"
+  } || {
+    echo "No name specified."
+    exit 1
+  }
+
+  printf "%s\t%s\t%s\t%s\n" $id $(get-version $id) $(get-date $id) "$name" | tee -a ~/.kspmods
+  sort ~/.kspmods > /tmp/$$.kspmods
+  mv /tmp/$$.kspmods ~/.kspmods
+}
+
+# tell it that you've updated a mod to the latest version
+function mod-update() {
+  exists $1 || {
+    echo "Mod does not exist in database."
+    exit 1
+  }
+
+  local name=$(egrep "^$1" ~/.kspmods | cut -f4)
+  mod-rm $1 >/dev/null
+  mod-add $1 "$name"
+
+  shift
+  [[ $1 ]] && mod-update "$@"
+}
+
+function mod-rm() {
+  echo -n "rm "
+  egrep "^$1" ~/.kspmods
+  egrep -v "^$1" ~/.kspmods > /tmp/$$.kspmods
+  mv /tmp/$$.kspmods ~/.kspmods
+
+  shift
+  [[ $1 ]] && mod-rm "$@"
+}
+
+function mod-ls() {
+  printf "%8s %15s %15s    %s\n" ID VERSION DATE NAME
+  cat ~/.kspmods | while read tid version date name; do
+    printf "%8d %15s %15s    %s\n" $tid $version $date "$name"
+  done
+}
+
+function mod-ids() {
+  cat ~/.kspmods | cut -f1
+}
+
+function link-to-id() {
+  echo "$1" | egrep -o "[^/]+$" | egrep -o "^[0-9]+"
+}
+
+function get-date() {
+  local link="http://forum.kerbalspaceprogram.com/threads/$1"
+  wget -c -q -O/tmp/$$.$1 "$link"
+
+  local posted=$(</tmp/$$.$1 egrep -m1 'span class="date"' | sed -r 's/[^>]+>([^,]+),.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
+  local author="$(</tmp/$$.$1 egrep -m1 'strong' | sed -r 's/.*<strong>([^<]+).*/\1/')"
+  local edited=$(</tmp/$$.$1 egrep -m1 "Last edited by $author" | sed -r 's/.*Last edited by .*; (.*) at <span.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
+
+  echo -e "$posted\n$edited" | sort | tail -n1
+}
+
+function get-version() {
+  local link="http://forum.kerbalspaceprogram.com/threads/$1"
+  wget -c -q -O/tmp/$$.$1 "$link"
+
+  (</tmp/$$.$1 egrep -o '([Bb]uild [0-9]+|v[0-9.][0-9.]+)' || echo "unknown") | sed -r 's/ /-/g' | sort | tail -n1
+}
+
+function exists() {
+  egrep -q "^$1" ~/.kspmods
+}
+
+
+[[ $1 ]] || { echo "usage: ksp <command> <args>"; exit 1; }
+
+command=$1; shift
+mod-$command "$@"
+rm -f /tmp/$$.*
