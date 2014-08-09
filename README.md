@@ -3,7 +3,9 @@ ksp-mod-check
 
 Check KSP mods for updates.
 
-Usage:
+The basic idea is that you `ksp add` mods as you install them. When you're ready to do a round of mod updates, you `ksp refresh` to make it aware of the latest mod versions, then `ksp check` to see which ones you need to update. You then `ksp updated` the ones you actually updated, and `ksp add` or `ksp rm` ones that you`ve added or removed.
+
+Commands:
 
 * `ksp add <link> <name>`
 
@@ -17,13 +19,17 @@ Usage:
 
   Remove mods from the list.
 
-* `ksp update <id-list>`
+* `ksp refresh`
 
-  Update mods in the list to the latest version. Equivalent to removing and re-adding them.
+  Download the latest version of the forum threads.
+
+* `ksp updated <id-list>`
+
+  Mark the listed mods as being updated to the latest version.
 
 * `ksp check`
 
-  Check all mods for newer versions. Up to date mods will appear in green. Outdated mods will appear in red. If a mod is otherwise green but the date appears in yellow, that means you have the latest version but the author hasn't updated it since the latest KSP release.
+  Check mods against the local cache and report any that need to be updated, along with a link to their forum thread.
 
 * `ksp url <id-list>`
 

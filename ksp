@@ -1,19 +1,22 @@
 #!/bin/bash
 
 LATEST=2014-07-25
+CACHE="$HOME/.cache/kspmods"
 
 touch ~/.kspmods
+mkdir -p "$CACHE"
 
 function _help() {
   printf "%20s  %s\n" "$1" "$2"
 }
 
 function mod-help() {
+  _help "ls" "list all known mods"
   _help "add <link> <name>" "add a new mod to the list"
-  _help "check" "check for updates"
-  _help "update <id...>" "mark a mod or mod as updated"
+  _help "refresh" "fetch latest version information from KSP forums"
+  _help "check" "check mods against fetched version info and report any that need updates"
+  _help "updated <id...>" "mark a mod or mod as updated"
   _help "rm <id...>" "remove mods from the list"
-  _help "ls" "list all mods"
   _help "url <id...>" "get URL to forum thread for a mod"
 }
 
@@ -39,6 +42,16 @@ function mod-check() {
   done
 }
 
+function mod-refresh() {
+  rm -rf "$CACHE"/*
+  cat ~/.kspmods | while read id _ _ name; do
+    echo -ne '\r\x1B[K'
+    echo -n "$name"
+    fetch-thread "$id"
+  done
+  echo -e '\r\x1B[KDone.'
+}
+
 # add a mod
 # syntax: ksp add <forum link> <mod name>
 function mod-add() {
@@ -58,7 +71,7 @@ function mod-add() {
   }
 
   printf "%s\t%s\t%s\t%s\n" $id $(get-version $id) $(get-date $id) "$name" | tee -a ~/.kspmods
-  sort ~/.kspmods > /tmp/$$.kspmods
+  sort -k 4 ~/.kspmods > /tmp/$$.kspmods
   mv /tmp/$$.kspmods ~/.kspmods
 }
 
@@ -70,7 +83,7 @@ function mod-url() {
 }
 
 # tell it that you've updated a mod to the latest version
-function mod-update() {
+function mod-updated() {
   exists $1 || {
     echo "Mod does not exist in database."
     exit 1
@@ -81,7 +94,7 @@ function mod-update() {
   mod-add $1 "$name"
 
   shift
-  [[ $1 ]] && mod-update "$@"
+  [[ $1 ]] && mod-updated "$@"
 }
 
 function mod-rm() {
@@ -109,9 +122,13 @@ function link-to-id() {
   echo "$1" | egrep -o "[^/]+$" | egrep -o "^[0-9]+"
 }
 
+function fetch-thread() {
+  wget -c -q -O "$CACHE/$1" "http://forum.kerbalspaceprogram.com/threads/$1"
+}
+
 function get-first-post() {
-  wget -c -q -O- "http://forum.kerbalspaceprogram.com/threads/$1" \
-  | awk 'BEGIN {flag=0}; /div class="postbody"/ {flag=1}; /<title>/ {print $0}; (flag) {print $0}; /div class="postfoot"/ {exit 0};'
+  [[ ! -f "$CACHE/$1" ]] && fetch-thread "$1"
+  <"$CACHE/$1" awk 'BEGIN {flag=0}; /div class="postbody"/ {flag=1}; /<title>/ {print $0}; (flag) {print $0}; /div class="postfoot"/ {exit 0};'
 }
 
 function strip-tags() {
@@ -155,4 +172,3 @@ function exists() {
 
 command=$1; shift
 mod-$command "$@"
-rm -f /tmp/$$.*
