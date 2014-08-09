@@ -4,6 +4,19 @@ LATEST=2013-12-17
 
 touch ~/.kspmods
 
+function _help() {
+  printf "%20s  %s\n" "$1" "$2"
+}
+
+function mod-help() {
+  _help "add <link> <name>" "add a new mod to the list"
+  _help "check" "check for updates"
+  _help "update <id...>" "mark a mod or mod as updated"
+  _help "rm <id...>" "remove mods from the list"
+  _help "ls" "list all mods"
+  _help "url <id...>" "get URL to forum thread for a mod"
+}
+
 # check all mods for updates
 # syntax: ksp check
 # produces: a table of known mods with installed version vs latest version
