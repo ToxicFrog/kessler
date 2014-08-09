@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LATEST=2013-12-17
+LATEST=2014-07-25
 
 touch ~/.kspmods
 
