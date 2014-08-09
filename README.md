@@ -25,6 +25,10 @@ Usage:
 
   Check all mods for newer versions. Up to date mods will appear in green. Outdated mods will appear in red. If a mod is otherwise green but the date appears in yellow, that means you have the latest version but the author hasn't updated it since the latest KSP release.
 
+* `ksp url <id-list>`
+
+  Display the url to a given mod's forum thread.
+
 
 ## License
 

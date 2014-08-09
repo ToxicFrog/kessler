@@ -49,6 +49,13 @@ function mod-add() {
   mv /tmp/$$.kspmods ~/.kspmods
 }
 
+function mod-url() {
+  local id="$1"; shift
+  echo "http://forum.kerbalspaceprogram.com/threads/$id"
+
+  [[ $1 ]] && mod-url "$@"
+}
+
 # tell it that you've updated a mod to the latest version
 function mod-update() {
   exists $1 || {
