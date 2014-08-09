@@ -109,22 +109,41 @@ function link-to-id() {
   echo "$1" | egrep -o "[^/]+$" | egrep -o "^[0-9]+"
 }
 
+function get-first-post() {
+  wget -c -q -O- "http://forum.kerbalspaceprogram.com/threads/$1" \
+  | awk 'BEGIN {flag=0}; /div class="postbody"/ {flag=1}; /<title>/ {print $0}; (flag) {print $0}; /div class="postfoot"/ {exit 0};'
+}
+
+function strip-tags() {
+  sed -r 's/<[^>]+>//g'
+}
+
 function get-date() {
-  local link="http://forum.kerbalspaceprogram.com/threads/$1"
-  wget -c -q -O/tmp/$$.$1 "$link"
+  get-first-post "$1" > /tmp/$$.$1
 
   local posted=$(</tmp/$$.$1 egrep -m1 'span class="date"' | sed -r 's/[^>]+>([^,]+),.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
-  local edited=$(</tmp/$$.$1 awk '/Reply With Quote/ { exit 0; }; /.*/ { print $0; }' | egrep "Last edited by" | tail -n1 \
+  local edited=$(</tmp/$$.$1 egrep "Last edited by" | tail -n1 \
                  | sed -r 's/.*Last edited by .*; (.*) at <span.*/\1/; s/([0-9]+)[a-z]*/\1/' | date -I -f -)
 
   echo -e "$posted\n$edited" | sort | tail -n1
 }
 
-function get-version() {
-  local link="http://forum.kerbalspaceprogram.com/threads/$1"
-  wget -c -q -O/tmp/$$.$1 "$link"
+function version-from-string() {
+  egrep -vi license \
+  | (egrep -oi '([bvr]|(rc|release( candidate)?|build|ver(sion)?|rev(ision)?) *)[0-9.][0-9.]+' || echo "unknown") \
+  | sed -r 's/[bvr][^0-9 ]+/v/i; s/ //g;' | sort | tail -n1
+}
 
-  (</tmp/$$.$1 egrep -o '([Bb]uild [0-9]+|v[0-9.][0-9.]+)' || echo "unknown") | sed -r 's/ /-/g' | sort | tail -n1
+function get-version() {
+  get-first-post "$1" > /tmp/$$.$1
+
+  local version="$(</tmp/$$.$1 fgrep -n1 '<title>' | version-from-string)"
+  [[ $version != "unknown" ]] && {
+    echo "$version"
+    return 0
+  }
+
+  </tmp/$$.$1 strip-tags | version-from-string
 }
 
 function exists() {
