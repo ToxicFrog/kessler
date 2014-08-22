@@ -172,3 +172,4 @@ function exists() {
 
 command=$1; shift
 mod-$command "$@"
+rm -f /tmp/$$.*
