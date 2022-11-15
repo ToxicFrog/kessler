@@ -1,0 +1,38 @@
+Notes on Funding Floor for KSP
+
+# settings:
+- funding per reputation
+- funding per science earned?
+- minimum funding (at <=0 reputation)
+- keep excess funding y/n
+- excess funding conversion to reputation ratio
+- excess funding conversion to science ratio
+- reputation decay per transaction %
+
+# mod design idea
+Reputational Funding Floor: you get infinite money, but the cap on any individual expenditure is based on your reputation.
+In practice this just means the mod fixes your available funds at a value based on reputation.
+All funding income (from recovery, contracts, etc) is reduced to 0. Question: how do we handle recovery?
+## Recommended difficulty settings:
+- funding rewards 0%
+- science rewards 0%
+## MM patches:
+- adjust strategies to disable most funding strategies, if you can do that from MM
+## actual code
+Probably need an OnFundingChanged handler to clamp funding, value passed is absolute funds, not delta
+Also OnReputationChanged
+Calculate funding value based on reputation when either of these fire, then, if funds are < value, adjust funds
+if funds are > value and upper bound is set, also adjust funds
+
+## upgrade costs
+75k     LP 2, RW 2, AC 2, MC 2
+150     TS 2, AB 2
+225k    VAB 2, SPH 2
+280k    LP 3, RW 2, AC 3, MC 3
+450k    R&D 2
+60k     TS 3, AB 3
+850k    VAB 3, SPH 3
+1.7M    R&D 3
+# so we need at least to cap out at 2M, but probably more than that
+# discussion on reddit says 2-3M for most people's "ridiculously huge rockets"
+# perhaps cap out at 5M? 10M?
