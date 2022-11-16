@@ -5,6 +5,9 @@ FLAGS=-codepage:utf8 -target:library -lib:"$(KSP)/KSP_Data/Managed" -r:$(LIBS)
 
 all: $(DLL)
 
+deploy: $(DLL)
+	rsync -aPhv --delete GameData/FundingFloor/ durandal:/cygdrive/f/ksp-devel/GameData/FundingFloor/
+
 clean:
 	rm -f $(DLL)
 
