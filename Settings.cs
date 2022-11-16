@@ -28,7 +28,7 @@ namespace FundingFloor {
 
     [GameParameters.CustomFloatParameterUI("Funding decay per transaction (%)",
       toolTip = "Spending money slightly decreases reputation.\nIf 'keep excess' is on, spending excess doesn't count.",
-      minValue = 0, maxValue = 10, stepCount = 100)]
+      minValue = 0.0f, maxValue = 10.0f, stepCount = 100)]
     public float FundingDecayPercent = 0;
 
     [GameParameters.CustomParameterUI("Keep excess funding",
