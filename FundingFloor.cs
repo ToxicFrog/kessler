@@ -15,8 +15,6 @@ namespace FundingFloor {
       Log("Starting up Funding Floor...");
       cfg = HighLogic.CurrentGame.Parameters.CustomParams<Settings>();
 
-      // GameEvents.onGameNewStart.Add(OnGameNewStart);
-      // GameEvents.onGameStatePostLoad.Add(OnGameStatePostLoad);
       GameEvents.OnGameSettingsApplied.Add(OnGameSettingsApplied);
 
       GameEvents.OnFundsChanged.Add(OnFundsChanged);
@@ -27,16 +25,12 @@ namespace FundingFloor {
       CalcBudget();
       ClampFunds();
 
-      // GameEvents.OnKSCFacilityUpgraded
-      // GameEvents.OnProgressComplete
       Log("Funding Floor started.");
     }
 
     public void OnDisable() {
       Log("Shutting down Funding Floor...");
 
-      // GameEvents.onGameNewStart.Remove(OnGameNewStart);
-      // GameEvents.onGameStatePostLoad.Remove(OnGameStatePostLoad);
       GameEvents.OnGameSettingsApplied.Remove(OnGameSettingsApplied);
 
       GameEvents.OnFundsChanged.Remove(OnFundsChanged);
@@ -74,16 +68,6 @@ namespace FundingFloor {
       Log($"Setting player funds to {budget}");
       Funding.Instance.SetFunds(budget, TransactionReasons.None);
     }
-
-    // public void OnGameNewStart() {
-    //   Log($"Start: funds={Funding.Instance.Funds} rep={Reputation.CurrentRep})");
-    //   UpdateFunding();
-    // }
-
-    // public void OnGameStatePostLoad(ConfigNode unused) {
-    //   Log($"PostLoad: funds={Funding.Instance.Funds} rep={Reputation.CurrentRep})");
-    //   UpdateFunding();
-    // }
 
     public void OnGameSettingsApplied() {
       Log($"SettingsApplied: funds={Funding.Instance.Funds} rep={Reputation.CurrentRep})");
