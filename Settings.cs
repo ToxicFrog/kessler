@@ -31,10 +31,6 @@ namespace FundingFloor {
       minValue = 0.0f, maxValue = 10.0f, stepCount = 100)]
     public float FundingDecayPercent = 0;
 
-    [GameParameters.CustomParameterUI("Keep excess funding",
-      toolTip = "Funding earned in excess of what your reputation would give you (from recovery, contracts, etc) can be spent normally, temporarily increasing your budget.")]
-    public bool KeepExcessFunding = true;
-
     // [GameParameters.CustomFloatParameterUI("Excess funding conversion to science",
     //   toolTip = "Excess funding earned will be converted into science at this ratio.",
     //   minValue = 0, maxValue = 0.1f, stepCount = 100)]

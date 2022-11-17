@@ -70,9 +70,7 @@ namespace FundingFloor {
     void ClampFunds() {
       float rep = Reputation.CurrentRep;
       double funds = Funding.Instance.Funds;
-      if (cfg.KeepExcessFunding ? (funds >= budget) : (funds == budget)) {
-        return;
-      }
+      if (funds == budget) return;
       Log($"Setting player funds to {budget}");
       Funding.Instance.SetFunds(budget, TransactionReasons.None);
     }
