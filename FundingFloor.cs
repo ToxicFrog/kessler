@@ -97,6 +97,7 @@ namespace FundingFloor {
       if (Funding.Instance == null) return;
 
       double funds = Funding.Instance.Funds;
+      if (funds == budget) return;
       Log($"OnFundsChanged: funds={funds} new={val}, why={txns}, budget={budget} decay={cfg.FundingDecayPercent})");
       if (funds < budget && cfg.FundingDecayPercent > 0) {
         // Intentionally subtract budget from funds to get a negative value,
