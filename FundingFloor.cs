@@ -43,6 +43,7 @@ namespace FundingFloor {
 
     int budget;
     double funds_per_rep;
+    const double funds_per_science = 10_000; // Based on funds->science strategy.
 
     void UpdateFunding() {
       CalcBudget(); ClampFunds();
@@ -57,7 +58,7 @@ namespace FundingFloor {
         cfg.MaxFunding - 1000);
       funds_per_rep = (cfg.MaxFunding - cfg.MinFunding)/1000.0;
       Log($"Calculating budget with min={cfg.MinFunding} sci={science_spent} amin={actual_min} max={cfg.MaxFunding} f/r={funds_per_rep}");
-      budget = (int)(actual_min + Reputation.CurrentRep * funds_per_rep);
+      budget = (int)(actual_min + Reputation.CurrentRep * Math.Max(0, funds_per_rep));
       Log($"Budget recalculated as {budget}");
     }
 
@@ -75,18 +76,36 @@ namespace FundingFloor {
       UpdateFunding();
     }
 
+    void ApplyExpensePenalties(double delta) {
+      if (cfg.FundingPenaltyPercent == 0) return;
+      double penalty = -delta * (cfg.FundingPenaltyPercent) / funds_per_rep;
+      Log($"Applying reputation penalty of {penalty} based on expenditure of {delta}");
+      Reputation.Instance.AddReputation((float)penalty, TransactionReasons.None);
+    }
+
+    void ApplyIncomeBonuses(double delta) {
+      if (cfg.FundingBonusPercent > 0) {
+        double bonus = delta * (cfg.FundingBonusPercent) / funds_per_rep;
+        Log($"Applying reputation bonus of {bonus} based on income of {delta}");
+        Reputation.Instance.AddReputation((float)bonus, TransactionReasons.None);
+      }
+      if (cfg.ScienceBonusPercent > 0) {
+        double bonus = delta * (cfg.ScienceBonusPercent) / funds_per_science;
+        Log($"Applying science bonus of {bonus} based on income of {delta}");
+        ResearchAndDevelopment.Instance.AddScience((float)bonus, TransactionReasons.None);
+      }
+    }
+
     public void OnFundsChanged(double val, TransactionReasons txns) {
       if (Funding.Instance == null) return;
 
       double funds = Funding.Instance.Funds;
       if (funds == budget) return;
-      Log($"OnFundsChanged: funds={funds} new={val}, why={txns}, budget={budget} decay={cfg.FundingDecayPercent})");
-      if (funds < budget && cfg.FundingDecayPercent > 0) {
-        // Intentionally subtract budget from funds to get a negative value,
-        // so we penalize reputation.
-        double rep_diff = (funds - budget) * (cfg.FundingDecayPercent/100.0) / funds_per_rep;
-        Log($"Applying reputation decay of {rep_diff} based on expenditure of {budget - funds}");
-        Reputation.Instance.AddReputation((float)rep_diff, TransactionReasons.None);
+      Log($"OnFundsChanged: funds={funds} new={val}, why={txns}, budget={budget} decay={cfg.FundingPenaltyPercent})");
+      if (funds < budget) {
+        ApplyExpensePenalties(budget - funds);
+      } else if (funds > budget) {
+        ApplyIncomeBonuses(funds - budget);
       }
       UpdateFunding();
     }
