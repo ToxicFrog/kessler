@@ -8,6 +8,9 @@ all: $(DLL)
 deploy: $(DLL)
 	rsync -aPhv --delete GameData/FundingFloor/ durandal:/cygdrive/f/ksp-devel/GameData/FundingFloor/
 
+deploy-prod: $(DLL)
+	rsync -aPhv --delete GameData/FundingFloor/ durandal:steam/'Kerbal Space Program'/GameData/FundingFloor/
+
 clean:
 	rm -f $(DLL)
 
