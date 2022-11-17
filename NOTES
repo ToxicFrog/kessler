@@ -1,5 +1,32 @@
 Notes on Funding Floor for KSP
 
+# interaction with strategies
+
+Funds -> X only work on funds from contracts. They're implemented by giving you the complete amount of money first, then taking some of it away, so it shows up as two FundingChanged events, with type ContractAdvance.
+
+Arbitrary amounts of "excess money" events can be triggered by repeatedly rolling out a rocket and then rolling it back. So we want something that discourages that.
+
+Probably we want something like:
+- expenditures reduce funding limit by X%
+- income increases funding limit by Y% (Y≤X)
+- income increases science by Z%
+
+And then warn not to combine these with strategies that convert to/from funding or things will get weird
+
+And then, for disablement, turn off:
+- any funds -> X strategy
+
+
+fundraising (rep -> funds)
+appreciation (funds -> rep)
+patents (sci -> funds)
+outsourcing (funds -> sci)
+interns (rep -> sci)
+OSPO (sci -> rep)
+aggressive (-rep on each launch, upgrade, repair, or R&D purchase)
+bailout (rep -> funds, effective immediately)
+sellout (sci -> funds, effective immedaitely)
+
 # settings:
 - funding per reputation
 - funding per science earned?
