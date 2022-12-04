@@ -53,11 +53,12 @@ namespace FundingFloor {
     // and MaxFunding. This also means that the science bonus counts for more
     // when your reputation is lower.
     void CalcBudget() {
+      double actual_max = cfg.MaxFunding + science_spent * cfg.MaxFundingPerScience;
       double actual_min = Math.Min(
-        cfg.MinFunding + science_spent * cfg.FundingPerScience,
-        cfg.MaxFunding - 1000);
-      funds_per_rep = (cfg.MaxFunding - cfg.MinFunding)/1000.0;
-      Log($"Calculating budget with min={cfg.MinFunding} sci={science_spent} amin={actual_min} max={cfg.MaxFunding} f/r={funds_per_rep}");
+        cfg.MinFunding + science_spent * cfg.MinFundingPerScience,
+        actual_max);
+      funds_per_rep = (actual_max - actual_min)/1000.0;
+      Log($"Calculating budget with min={cfg.MinFunding} max={cfg.MaxFunding} sci={science_spent} amin={actual_min} amax={actual_max} f/r={funds_per_rep}");
       budget = (int)(actual_min + Reputation.CurrentRep * Math.Max(0, funds_per_rep));
       Log($"Budget recalculated as {budget}");
     }

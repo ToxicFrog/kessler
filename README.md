@@ -20,7 +20,7 @@ Min funding is how much funding you will have at (and below) 0 reputation; you w
 
 ### R&D Funding Bonus
 
-For every point of science spent at the R&D center, your min funding will be permanently increased by this much. It does not affect max funding.
+For every point of science spent at the R&D center, your min or max funding will be permanently increased by this much.
 
 ### Funding Penalty for Expenses
 

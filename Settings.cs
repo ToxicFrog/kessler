@@ -10,7 +10,7 @@ namespace FundingFloor {
     [GameParameters.CustomIntParameterUI("Min funding",
       toolTip = "How much you can spend at 0 (or less) reputation.",
       minValue = 10_000, maxValue = 100_000, stepSize = 1000)]
-    public int MinFunding = 10000;
+    public int MinFunding = 10_000;
 
     [GameParameters.CustomIntParameterUI("Max funding",
       toolTip = "How much you can spend at 1000 reputation.\nRecommended at least 2M so you can buy all the upgrades.",
@@ -21,10 +21,15 @@ namespace FundingFloor {
     // Ongoing TO funds: 2500 F : 2 rep : 1 sci
     // Ongoing FROM funds: 10k F : 2 rep : 1 sci
     // Immediate TO funds: 100 F : 1 rep : 2 sci
-    [GameParameters.CustomIntParameterUI("R&D funding bonus",
+    [GameParameters.CustomIntParameterUI("R&D min funding bonus",
       toolTip = "How much min funding increases per science spent.\nOnly science spent on R&D unlocks counts.",
       minValue = 0, maxValue = 100, stepSize = 5)]
-    public int FundingPerScience = 50;
+    public int MinFundingPerScience = 5;
+
+    [GameParameters.CustomIntParameterUI("R&D max funding bonus",
+      toolTip = "How much max funding increases per science spent.\nOnly science spent on R&D unlocks counts.",
+      minValue = 0, maxValue = 100, stepSize = 5)]
+    public int MaxFundingPerScience = 50;
 
     [GameParameters.CustomFloatParameterUI("Funding penalty for expenses",
       toolTip = "Spending money slightly decreases reputation.",
