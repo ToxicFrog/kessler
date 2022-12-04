@@ -14,7 +14,7 @@ namespace FundingFloor {
 
     [GameParameters.CustomIntParameterUI("Max funding",
       toolTip = "How much you can spend at 1000 reputation.\nRecommended at least 2M so you can buy all the upgrades.",
-      minValue = 500_000, maxValue = 10_000_000, stepSize = 100_00)]
+      minValue = 100_000, maxValue = 10_000_000, stepSize = 100_00)]
     public int MaxFunding = 2_000_000;
 
     // Conversion ratios:
