@@ -1,3 +1,7 @@
+⚠️ This project has been retired, and likely doesn't work properly on modern KSP anyways. If you want to play KSP multiplayer, take a look at [Dark MP](http://d-mp.org/). ⚠️
+
+The original README is reproduced below.
+
 Kessler is an asynchronous multiplayer client and server package for Kerbal Space Program. By automatically merging save files, it allows for a shared world: anything one player launches will appear in the save files of every player connected to the server. At the moment, it features:
 
  * Automatic synchronization and merging of save file contents

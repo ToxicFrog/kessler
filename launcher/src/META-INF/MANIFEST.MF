@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: scala-library.jar scala-swing.jar scala-dbc.jar
+Main-Class: kessler.Launcher
+

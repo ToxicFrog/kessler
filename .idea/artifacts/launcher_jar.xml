@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="launcher:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/launcher_jar</output-path>
+    <root id="root">
+      <element id="archive" name="launcher.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/launcher/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="launcher" />
+      </element>
+      <element id="library" level="project" name="scala-library" />
+    </root>
+  </artifact>
+</component>
